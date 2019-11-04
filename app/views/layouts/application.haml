@@ -1,0 +1,51 @@
+!!!
+%html
+  %head
+    = display_meta_tags site: 'Mint Packages',
+                        keywords: %w(mint packages),
+                        description: 'Find and read documentation of Mint packages',
+                        canonical: request.path,
+                        charset: 'utf-8'
+    = csrf_meta_tags
+
+    %meta{ content: 'width=device-width; initial-scale=1.0; maximum-scale=1.0;',
+           name: 'viewport' }
+
+    = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:300,400,600,700|Noto+Sans:400,700|Source+Code+Pro:400,600'
+    = stylesheet_link_tag '//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
+    = stylesheet_link_tag 'application', media: 'all'
+
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js'
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/elm.min.js'
+  %body
+    .nav
+      = link_to root_path, class: :nav__brand do
+        %i.ion-folder
+        Mint Packages
+
+      = active_link_to packages_path, class: :nav__item, active: :exact do
+        %i.ion-grid
+        All Packages
+
+      .nav__separator
+
+      = link_to '', class: :nav__item, active: :exact do
+        %i.ion-social-github
+        Github
+
+    - if breadcrumbs.length > 1
+      .breadcrumbs
+        .breadcrumbs__wrap<
+          = render_breadcrumbs separator: '<i class="ion-ios-arrow-forward"></i>'
+
+    %article
+      = yield
+
+    .footer
+      %span
+        = link_to '@gdotdesign', 'https://github.com/gdotdesign', target: '_blank'
+
+    :javascript
+      hljs.initHighlightingOnLoad();
+

@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: mint_development
+  host: localhost
+  password: postgres
+  username: postgres
+
+test:
+  <<: *default
+  database: mint_test
+  password: postgres
+  username: postgres
+
+production:
+  <<: *default
+  database: db/production.sqlite3

@@ -1,0 +1,100 @@
+- package = @version.package
+- set_meta_tags description: @version.description
+
+.version-detail
+  .version-detail__content
+    .version-detail__readme
+      %div
+        .markdown-body
+          - if @entity
+            %h1= @entity
+          = preserve do
+            != body_html
+
+  .version-detail__sidebar
+    .version-detail__sidebar__title Basic information
+    .version-detail__infos
+      %div
+        - if @version == package.latest_version
+          = link_to repo_root_path(package.author, package.repo) do
+            %i.ion-clipboard
+            README
+        - else
+          = link_to repo_version_path(package.author, package.repo, @version) do
+            %i.ion-clipboard
+            README
+
+      %div
+        = link_to "https://github.com/#{package.repository}/tree/#{@version.version}" do
+          %i.ion-social-github
+          Browse source on Github
+
+      %div
+      - if @version.experimental?
+        %div{ title: 'Experimental' }
+          %i.ion-ios-flask
+          Experimental
+
+    .version-detail__sidebar__title Components
+    - @version.documentation['components'].sort_by { |mod| mod['name'] } .each do |mod|
+      - if @entity == mod['name']
+        .version-detail__tag.version-detail__tag--active
+          = mod['name']
+      - else
+        = link_to mod['name'],
+                repo_entity_path(package.author,
+                                 package.repo,
+                                 @version,
+                                 'components',
+                                 mod['name']),
+                class: 'version-detail__tag'
+
+    .version-detail__sidebar__title Modules
+    - @version.documentation['modules'].sort_by { |mod| mod['name'] } .each do |mod|
+      - if @entity == mod['name']
+        .version-detail__tag.version-detail__tag--active
+          = mod['name']
+      - else
+        = link_to mod['name'],
+                repo_entity_path(package.author,
+                                 package.repo,
+                                 @version,
+                                 'modules',
+                                 mod['name']),
+                class: 'version-detail__tag'
+
+    .version-detail__sidebar__title Versions
+    - package.versions.each do |version|
+      - if version == @version
+        .version-detail__tag.version-detail__tag--active
+          = version.version
+      - elsif @entity
+        = link_to version.version,
+                  repo_entity_path(package.author,
+                                   package.repo,
+                                   version.version,
+                                   @category,
+                                   @entity),
+                  class: 'version-detail__tag'
+      - else
+        = link_to version.version,
+                  repo_version_path(package.author, package.repo, version.version),
+                  class: 'version-detail__tag'
+
+    - if @version.dependencies.any?
+      .version-detail__sidebar__title Dependencies
+      .version-detail__dependencies
+        - @version.dependencies.each do |repo, version|
+          - if Package.visible.find_by_repository(repo)
+            - owner, name = repo.split('/')
+            = link_to repo_root_path(owner, name), class: 'version-detail__dependency' do
+              %strong
+                = repo
+              %span
+                = version
+          - else
+            .version-detail__dependency
+              %strong
+                = repo
+              %span
+                = version

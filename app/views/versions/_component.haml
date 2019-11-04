@@ -1,0 +1,23 @@
+!= docs['description']
+
+%h2 Properties
+
+- docs['properties'].each do |property|
+  = property['name']
+  = ":"
+  = property['type']
+  = "="
+  %pre
+    = property['default']
+
+  != property['description']
+
+%h2 Functions
+
+- docs['functions'].each do |item|
+  = item['name']
+  = ":"
+  = item['type']
+
+  != item['description']
+

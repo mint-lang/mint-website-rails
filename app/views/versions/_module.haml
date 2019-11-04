@@ -1,0 +1,11 @@
+!= docs['description']
+
+%h2 Functions
+
+- docs['functions'].each do |item|
+  = item['name']
+  = ":"
+  = item['type']
+
+  != item['description']
+
