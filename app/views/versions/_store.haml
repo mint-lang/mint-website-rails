@@ -6,14 +6,9 @@
   - docs['states'].each do |item|
     = render partial: 'shared/entity', locals: { item: item }
 
-- if docs['properties'].any?
-  %h2.docs__title Properties
-
-  - docs['properties'].each do |item|
-    = render partial: 'shared/entity', locals: { item: item }
-
 - if docs['functions'].any?
   %h2.docs__title Functions
 
   - docs['functions'].each do |item|
     = render partial: 'shared/entity', locals: { item: item }
+

@@ -3,6 +3,8 @@ require 'pathname'
 require 'zip'
 require 'open3'
 
+Zip.warn_invalid_date = false
+
 class ImportVersion < ActiveInteraction::Base
   object :package, class: Package
   string :semver
@@ -10,7 +12,7 @@ class ImportVersion < ActiveInteraction::Base
   def execute
     extract do |dir|
       version
-        .update_attributes(
+        .update(
           documentation: compile_documentation(dir),
           mint_json: mint_json(dir),
           readme: readme(dir),
@@ -45,11 +47,13 @@ class ImportVersion < ActiveInteraction::Base
     Dir.chdir dir do
       begin
         Open3.popen3("#{relative_executable} docs generate") do |stdin, stdout, stderr|
+          stdout.read
+          stderr.read
           JSON.parse(File.read(File.join(dir, 'docs.json')))
         end
       rescue StandardError, SystemExit => error
         puts error
-        []
+        {}
       end
     end
   end
@@ -68,7 +72,11 @@ class ImportVersion < ActiveInteraction::Base
         end
       end
 
-      yield dir
+      if package.folder
+        yield File.join(dir, package.folder)
+      else
+        yield dir
+      end
     end
   end
 

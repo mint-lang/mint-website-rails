@@ -1,11 +1,7 @@
 != docs['description']
 
-%h2 Functions
+%h2.docs__title Functions
 
 - docs['functions'].each do |item|
-  = item['name']
-  = ":"
-  = item['type']
-
-  != item['description']
+	= render partial: 'shared/entity', locals: { item: item }
 

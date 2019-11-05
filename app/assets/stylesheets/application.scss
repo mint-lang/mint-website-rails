@@ -13,6 +13,8 @@ $link: #29C;
 
 * {
   box-sizing: border-box;
+  min-height: 0;
+  min-width: 0;
 }
 
 body {
@@ -34,7 +36,6 @@ article {
 .footer {
   text-align: center;
   line-height: 50px;
-  margin-top: 50px;
   background: #333;
   font-size: 14px;
   padding: 0 20px;
@@ -51,5 +52,94 @@ article {
 
   span:first-child {
     font-weight: 600;
+  }
+}
+
+.docs {
+  background: #FFF;
+  padding: 30px;
+  flex: 1;
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #666;
+
+    margin: 0;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+
+    border-bottom: 3px solid #EEE;
+  }
+}
+
+.entity {
+  padding: 10px 0;
+
+  + a + .entity {
+    border-top: 1px solid #EEE;
+    padding-top: 30px;
+    margin-top: 15px;
+  }
+
+  &__body {
+    padding-top: 20px;
+    margin-left: 20px;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    .hljs {
+      max-width: 880px;
+      font-size: 16px;
+      line-height: 1.5;
+      overflow: auto;
+
+      @media (max-width: 1000px) {
+        max-width: calc(100vw - 90px);
+      }
+    }
+  }
+
+  &__name {
+    text-decoration: none;
+    color: $link;
+  }
+
+  &__default {
+    border: 1px solid #EEE;
+    border-radius: 2px;
+
+    background: #F6F6F6;
+    font-size: 16px;
+    padding: 10px;
+    margin: 0;
+
+    &--block {
+      display: inline-block;
+      margin-left: 30px;
+      margin-top: 15px;
+    }
+  }
+
+  &__signature {
+    align-items: center;
+    font-size: 18px;
+    display: flex;
+
+    pre {
+      margin: 0;
+    }
+
+    > pre + pre,
+    > a + pre {
+      margin-left: 10px;
+    }
   }
 }

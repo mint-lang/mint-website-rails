@@ -23,11 +23,11 @@ class Package < ActiveRecord::Base
       .includes(:latest_version)
       .where("
         version =
-         (SELECT   version
-          FROM     versions
-          WHERE    package_id = packages.id
-          ORDER BY String_to_array(version, '.')::INT[] DESC limit 1)
-      ")
+          (SELECT   version
+           FROM     versions
+           WHERE    package_id = packages.id
+           ORDER BY ? DESC limit 1)
+        ", "string_to_array(version, '.')::INT[]")
       .distinct
       .order(stars: :desc)
   }

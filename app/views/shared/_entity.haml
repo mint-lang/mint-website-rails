@@ -1,0 +1,29 @@
+%a{name: item['name']}
+.entity
+  .entity__signature
+    %a.entity__name{href: "##{item['name']}"}
+      %pre= item['name']
+
+    - if item['arguments'].any?
+      = "("
+      - item['arguments'].each do |argument|
+        %pre= argument['name']
+        %pre= ":"
+        %pre= argument['type']
+      = ")"
+    %pre= ":"
+
+    %pre.entity__type
+      = item['type']
+
+    - if item['default']
+      %pre= "="
+
+    - if item['default'] && item['default'].size < 50
+      %pre.entity__default= item['default']
+
+  - if item['default'] && item['default'].size > 50
+    %pre.entity__default.entity__default--block= item['default']
+
+  .entity__body
+    != item['description']

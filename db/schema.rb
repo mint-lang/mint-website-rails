@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_120933) do
   enable_extension "plpgsql"
 
   create_table "packages", force: :cascade do |t|
+    t.string "folder"
     t.string "string"
     t.string "repository"
     t.integer "stars"

@@ -8,6 +8,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     end
 
     create_table :packages do |t|
+      t.string :folder
       t.string :string
       t.string :repository
       t.integer :stars

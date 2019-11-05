@@ -22,7 +22,6 @@
   }
 
   &__content {
-    max-width: 960px;
     flex: 1 1 960px;
     display: flex;
 
@@ -52,7 +51,7 @@
     font-weight: 600;
     color: #444;
 
-    grid-template-columns: 260px 260px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     justify-content: start;
     grid-gap: 10px 30px;
     display: grid;
@@ -68,7 +67,7 @@
   }
 
   &__sidebar {
-    flex: 1 0 300px;
+    flex: 1 0 230px;
     padding: 20px;
     padding-bottom: 100px;
 
@@ -88,6 +87,15 @@
       &:not(:first-child) {
         margin-top: 20px;
       }
+    }
+  }
+
+  &__entity {
+    display: block;
+    color: $link;
+
+    &--active {
+      font-weight: bold;
     }
   }
 

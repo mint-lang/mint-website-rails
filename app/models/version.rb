@@ -15,8 +15,8 @@
 
 class Version < ActiveRecord::Base
   default_scope do
-    where("documentation::text != '[]'")
-      .order("string_to_array(version, '.')::int[] desc")
+    where("documentation::text != '{}'")
+      .order(Arel.sql("string_to_array(version, '.')::int[]") => :desc)
   end
 
   belongs_to :package

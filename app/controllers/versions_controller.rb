@@ -23,8 +23,8 @@ class VersionsController < ApplicationController
 
   def version
     render :show
-  rescue StandardError
-    redirect_to repo_root_path(params[:author], params[:repo])
+  #rescue StandardError
+  #  redirect_to repo_root_path(params[:author], params[:repo])
   end
 
   def set_title

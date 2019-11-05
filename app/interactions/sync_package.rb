@@ -1,5 +1,6 @@
 class SyncPackage < ActiveInteraction::Base
   string :repository
+  string :folder, default: nil
 
   def execute
     return if raw_versions.empty?
@@ -54,6 +55,6 @@ class SyncPackage < ActiveInteraction::Base
   end
 
   def package
-    @package ||= Package.find_or_create_by(repository: repository)
+    @package ||= Package.find_or_create_by(repository: repository, folder: folder)
   end
 end
