@@ -4,7 +4,7 @@
     %a.entity__name{href: "##{item['name']}"}
       %pre= item['name']
 
-    - if item['arguments'].any?
+    - if item['arguments'].to_a.any?
       = "("
       - item['arguments'].each do |argument|
         %pre= argument['name']

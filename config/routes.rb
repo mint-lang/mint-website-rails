@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'packages#landing'
+  root 'landings#index'
 
   get '/recently-updated',
       to: 'packages#recent',
