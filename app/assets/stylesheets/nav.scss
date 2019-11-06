@@ -1,8 +1,8 @@
 .nav {
-  background: $primary;
+  color: #333;
+
   padding: 0 20px;
   height: 60px;
-  color: #EEE;
 
   align-items: center;
   display: flex;
@@ -57,8 +57,8 @@
   }
 
   &__separator {
-    border-left: 5px solid rgba(#FFF, 0.2);
-    margin-left: 20px;
+    border-left: 2px solid #DDD;
+    margin: 0 10px;
     height: 30px;
 
     @media (max-width: 1200px) {
@@ -71,9 +71,7 @@
   }
 
   &__item {
-    border-bottom: 7px solid transparent;
     font-family: Raleway;
-    margin-left: 20px;
     line-height: 52px;
     padding: 0 10px;
     height: 50px;
@@ -87,7 +85,7 @@
     }
 
     &.active {
-      border-bottom-color: #FAFAFA;
+      color: $primary;
     }
 
     @media (max-width: 1200px) {

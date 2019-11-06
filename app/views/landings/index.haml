@@ -1,0 +1,55 @@
+.landing-index
+  %h1
+    The programming language for writing single page applications.
+
+  %h2
+    Mint has all the tools you need to write
+    %b error free, easily readable
+    and
+    %b maintainable
+    applications
+    in
+    %b record time.
+
+  %pre
+    %code
+      :escaped
+        component Main {
+          connect Application exposing { page }
+
+          fun render : Html {
+            case (page) {
+              Page::NotFound => <div/>"404"</div>
+              Page::Home => <div>"Home"</div>
+            }
+          }
+        }
+
+  %pre
+    %code
+      :escaped
+        enum Page {
+          NotFound
+          Home
+        }
+
+        component Application {
+          state page : Page = Page::Home
+
+          fun setPage (page : Page) : Promise(Never, Void) {
+            next { page = page }
+          }
+        }
+
+  %pre
+    %code
+      :escaped
+        routes {
+          / {
+            Application.setPage(Page::Home)
+          }
+
+          * {
+            Application.setPage(Page::NotFound)
+          }
+        }

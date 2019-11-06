@@ -18,7 +18,7 @@ $link: #29C;
 }
 
 body {
-  font-family: Noto Sans;
+  font-family: Open Sans;
   flex-direction: column;
   background: #FAFAFA;
   min-height: 100vh;
@@ -28,8 +28,6 @@ body {
 }
 
 article {
-  flex-direction: column;
-  display: flex;
   flex: 1;
 }
 
@@ -141,5 +139,22 @@ article {
     > a + pre {
       margin-left: 10px;
     }
+  }
+}
+
+.landing-index {
+  padding: 20px;
+
+  display: grid;
+
+  h1 {
+    font-family: Heebo;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 18px;
   }
 }
