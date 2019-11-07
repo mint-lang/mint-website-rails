@@ -29,3 +29,6 @@ end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
+
+gem "octicons", "~> 9.2"
+gem "octicons_helper", "~> 9.2"

@@ -1,55 +1,64 @@
 .landing-index
-  %h1
-    The programming language for writing single page applications.
+  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
+    %path{:d => "M0,128L120,149.3C240,171,480,213,720,218.7C960,224,1200,192,1320,176L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#50aa62", "fill-opacity" => "1"}
 
-  %h2
-    Mint has all the tools you need to write
-    %b error free, easily readable
-    and
-    %b maintainable
-    applications
-    in
-    %b record time.
+  .landing-index__left
+    %h1
+      The programming language for writing single page applications.
 
-  %pre
-    %code
-      :escaped
-        component Main {
-          connect Application exposing { page }
+    %h2
+      Mint has all the tools you need to write
+      %b error free, easily readable
+      and
+      %b maintainable
+      applications
+      in
+      %b record time.
 
-          fun render : Html {
-            case (page) {
-              Page::NotFound => <div/>"404"</div>
-              Page::Home => <div>"Home"</div>
+    .btn-group
+      %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
+        = octicon 'terminal', height: 22
+        Try
+
+      %a.btn.btn--big.btn--secondary
+        = octicon 'cloud-download', height: 22
+        Install
+
+      %a.btn.btn--big.btn--tertiary(href="")
+        = octicon 'book', height: 22
+
+        Learn
+
+  .landing-index__right
+    %pre
+      %code.mint
+        :escaped
+          component Counter {
+            state count : Number = 0
+
+            fun increment : Promise(Never, Void) {
+              next { counter = counter + 1 }
+            }
+
+            fun decrement : Promise(Never, Void) {
+              next { counter = counter - 1 }
+            }
+
+            fun render : Html {
+              <div>
+                <button onClick={decrement}>
+                  <{ "Decrement" }>
+                </button>
+
+                <span>
+                  <{ Number.toString(counter) }>
+                </span>
+
+                <button onClick={increment}>
+                  <{ "Increment" }>
+                </button>
+              </div>
             }
           }
-        }
 
-  %pre
-    %code
-      :escaped
-        enum Page {
-          NotFound
-          Home
-        }
-
-        component Application {
-          state page : Page = Page::Home
-
-          fun setPage (page : Page) : Promise(Never, Void) {
-            next { page = page }
-          }
-        }
-
-  %pre
-    %code
-      :escaped
-        routes {
-          / {
-            Application.setPage(Page::Home)
-          }
-
-          * {
-            Application.setPage(Page::NotFound)
-          }
-        }
+.landing-section

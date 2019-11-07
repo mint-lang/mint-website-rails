@@ -12,25 +12,52 @@
            name: 'viewport' }
 
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Heebo:400,500,700|Open+Sans:400,600,700|Source+Code+Pro:400,600'
-    = stylesheet_link_tag '//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
+    = stylesheet_link_tag 'https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'
     = stylesheet_link_tag 'application', media: 'all'
 
-    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js'
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css'
+    = javascript_include_tag '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js'
 
   %body
     .nav
       = link_to root_path, class: :nav__brand do
         Mint
 
+      = link_to 'https://sandbox.mint-lang.com',
+                class: :nav__item,
+                target: '_blank',
+                active: :exact do
+        = octicon "terminal"
+        %span Try
+
+      .nav__separator
+
+      = link_to '',
+                class: :nav__item,
+                active: :exact do
+        = octicon "cloud-download"
+        %span Install
+
+      .nav__separator
+
+      = link_to 'https://guide.mint-lang.com',
+                target: '_blank',
+                class: :nav__item,
+                active: :exact do
+        = octicon "book"
+        %span Learn
+
+      .nav__separator
+
       = active_link_to packages_path, class: :nav__item, active: :exact do
-        %i.ion-cube
-        Packages
+        = octicon "archive"
+        %span Packages
 
       .nav__separator
 
       = link_to '', class: :nav__item, active: :exact do
-        %i.ion-social-github
-        Github
+        = octicon "mark-github"
+        %span Github
 
     - if breadcrumbs.length > 1
       .breadcrumbs
@@ -45,5 +72,86 @@
         = link_to '@gdotdesign', 'https://github.com/gdotdesign', target: '_blank'
 
     :javascript
+      hljs.registerLanguage('mint',() => {
+        const MINT_CONTAINS = []
+        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel'
+
+         var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
+         var TAG_INTERNALS = {
+          endsWithParent: true,
+          illegal: /</,
+          relevance: 0,
+          contains: [
+            {
+              className: 'attr',
+              begin: XML_IDENT_RE,
+              relevance: 0
+            },
+            {
+              begin: /=\s*/,
+              relevance: 0,
+              contains: [
+                {
+                  endsParent: true,
+                  className: 'tag',
+                  begin: '\\{',
+                  end: '\\}',
+                  contains: MINT_CONTAINS
+                },
+                {
+                  className: 'string',
+                  endsParent: true,
+                  variants: [
+                    {begin: /"/, end: /"/},
+                    {begin: /'/, end: /'/}
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+
+        MINT_CONTAINS.push(
+          ...[
+            {
+              className: 'string',
+              begin: '"',
+              end: '"'
+            },
+            {
+              className: 'type',
+              begin: "\\b[A-Z][A-Za-z0-9]+",
+              ends: "[^A-Za-z0-9]"
+            },
+            {
+              className: 'tag',
+              begin: '<{', end: '}>',
+              contains: MINT_CONTAINS
+            },
+            {
+              className: 'tag',
+              begin: '</?', end: '/?>',
+              contains: [
+                {
+                  className: 'name', begin: /[^\/><\s]+/, relevance: 0
+                },
+                TAG_INTERNALS
+              ]
+            },
+            {
+              keywords: MINT_KEYWORDS,
+              className: 'class',
+              begin: "\\b[a-z][A-Za-z0-9]+",
+              ends: "[^A-Za-z0-9]",
+            },
+         ])
+
+        return {
+          k: MINT_KEYWORDS,
+          contains: MINT_CONTAINS
+        }
+      })
+
+      hljs.configure({languages: ['mint']})
       hljs.initHighlightingOnLoad();
 

@@ -1,20 +1,22 @@
 .nav {
+  background: #FFF;
   color: #333;
 
-  padding: 0 20px;
-  height: 60px;
+  padding: 0 60px;
+  height: 80px;
 
   align-items: center;
   display: flex;
 
   @media (max-width: 1200px) {
+    padding: 0 40px;
     font-size: 14px;
   }
 
   @media (max-width: 960px) {
     align-items: flex-start;
     flex-direction: column;
-    padding: 5px 0;
+    padding: 5px 20px;
     font-size: 12px;
     height: auto;
   }
@@ -25,40 +27,25 @@
     letter-spacing: 1px;
     font-weight: bold;
     color: inherit;
+
+    align-items: center;
+    display: flex;
+
+    svg {
+      margin-right: 10px;
+      position: relative;
+      top: 1px;
+    }
   }
 
   &__brand {
-    font-family: Raleway;
     margin-right: auto;
-    line-height: 51px;
-
-    i {
-      vertical-align: middle;
-      position: relative;
-      line-height: 16px;
-      margin-right: 2px;
-      font-size: 21px;
-      top: -2px;
-
-      @media (max-width: 1200px) {
-        font-size: 18px;
-        top: -1px;
-      }
-    }
-
-    @media (max-width: 960px) {
-      border-bottom: 1px solid rgba(#000, 0.1);
-      padding-left: 15px;
-      margin-bottom: 5px;
-      line-height: 30px;
-      height: auto;
-      width: 100%;
-    }
+    font-size: 24px;
   }
 
   &__separator {
-    border-left: 2px solid #DDD;
-    margin: 0 10px;
+    border-left: 1px solid #DDD;
+    margin: 0 15px;
     height: 30px;
 
     @media (max-width: 1200px) {
@@ -71,7 +58,6 @@
   }
 
   &__item {
-    font-family: Raleway;
     line-height: 52px;
     padding: 0 10px;
     height: 50px;
