@@ -11,7 +11,7 @@
     %meta{ content: 'width=device-width; initial-scale=1.0; maximum-scale=1.0;',
            name: 'viewport' }
 
-    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Heebo:400,500,700|Open+Sans:400,600,700|Source+Code+Pro:400,600'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:400,600,700|Source+Code+Pro:400,600|M+PLUS+Rounded+1c:700&display=swap'
     = stylesheet_link_tag 'https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'
     = stylesheet_link_tag 'application', media: 'all'
 
@@ -21,7 +21,7 @@
   %body
     .nav
       = link_to root_path, class: :nav__brand do
-        Mint
+        = render partial: 'shared/logo', locals: { size: 20 }
 
       = link_to 'https://sandbox.mint-lang.com',
                 class: :nav__item,
@@ -74,7 +74,7 @@
     :javascript
       hljs.registerLanguage('mint',() => {
         const MINT_CONTAINS = []
-        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel'
+        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel style record connect enum routes route'
 
          var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
          var TAG_INTERNALS = {
@@ -140,10 +140,29 @@
             },
             {
               keywords: MINT_KEYWORDS,
-              className: 'class',
-              begin: "\\b[a-z][A-Za-z0-9]+",
-              ends: "[^A-Za-z0-9]",
-            },
+              begin: 'style\\s+[a-zA-Z0-9-]+\\s*{',
+              end: '}',
+              contains: [
+                {
+                  begin: '(?=[-a-zA-Z0-9]+\\s*:\\s*[^;]+)',
+                  end: ';',
+                  contains: [
+                    {
+                      begin: '[-a-zA-Z0-9]+\\s*',
+                      className: 'string',
+                      excludeEnd: true,
+                      end: ':',
+                    },
+                    {
+                      begin: '[^;]+',
+                      end: ';',
+                      excludeEnd: true,
+                      endsParent: true,
+                    },
+                  ]
+                }
+              ]
+            }
          ])
 
         return {

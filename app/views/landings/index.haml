@@ -1,8 +1,10 @@
-.landing-index
+.landing-hero
   %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,128L120,149.3C240,171,480,213,720,218.7C960,224,1200,192,1320,176L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#50aa62", "fill-opacity" => "1"}
+    %path{:d => "M0,128L120,149.3C240,171,480,213,720,218.7C960,224,1200,192,1320,176L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#459f56", "fill-opacity" => "1"}
 
-  .landing-index__left
+  .landing-hero__left
+    = render partial: 'shared/logo', locals: { size: 40 }
+
     %h1
       The programming language for writing single page applications.
 
@@ -29,8 +31,8 @@
 
         Learn
 
-  .landing-index__right
-    %pre
+  .landing-hero__right
+    %pre.landing-snippet
       %code.mint
         :escaped
           component Counter {
@@ -47,18 +49,260 @@
             fun render : Html {
               <div>
                 <button onClick={decrement}>
-                  <{ "Decrement" }>
+                  "Decrement"
                 </button>
 
                 <span>
-                  <{ Number.toString(counter) }>
+                  <{ counter }>
                 </span>
 
                 <button onClick={increment}>
-                  <{ "Increment" }>
+                  "Increment"
                 </button>
               </div>
             }
           }
 
+.landing-section.landing-section--green.landing-section--inverse
+  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
+    %path{:d => "M0,288L120,288C240,288,480,288,720,261.3C960,235,1200,181,1320,154.7L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#FFF", "fill-opacity" => "1"}
+
+  .landing-section__content
+    %h3 Styling
+
+    %hr
+
+    %p
+      In Mint you can
+      %b style elements
+      directly using
+      %code style
+      blocks.
+    %p
+      Inside a
+      %code style
+      block you can nest as many
+      %b sub selectors
+      and
+      %b media queries
+      as you like.
+    %P
+      You can even use
+      %code if
+      and
+      %code case
+      expressions inside any block to apply styles conditionally.
+
+    %hr
+
+    .btn.btn--neutral
+      Learn more
+
+  %pre.landing-snippet
+    %code.mint
+      :escaped
+        component TodoItem {
+          property label : String = ""
+          property done : Bool = false
+
+          style base {
+            align-items: center;
+            display: flex;
+          }
+
+          style label {
+            font-weight: bold;
+            flex: 1;
+
+            if (done) {
+              text-decoration: line-through;
+            }
+          }
+
+          fun render : Html {
+            <div::base>
+              <span::label>
+                <{ label }>
+              </span>
+
+              <Icon.Checkmark/>
+              <Icon.Trash/>
+            </div>
+          }
+        }
+
 .landing-section
+  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
+    %path{:d => "M0,128L120,154.7C240,181,480,235,720,256C960,277,1200,267,1320,261.3L1440,256L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#db6a41", "fill-opacity" => "1"}
+
+  .landing-section__content
+    %h3 Data Management
+
+    %hr
+
+    %p
+      In Mint a
+      %code store
+      contains and manages some data.
+
+    %p
+      Stores are
+      %b globally accessible
+      and can be
+
+      = succeed '.' do
+        %b connected to components
+
+    %p
+      When the data in a store changes the connected components are re-rendered.
+
+    %hr
+
+    .btn.btn--neutral
+      Learn more
+
+  %pre.landing-snippet
+    %code.mint
+      :escaped
+        record Todo {
+          label : String,
+          done : Bool
+        }
+
+        store Todos {
+          property items : Array(Todo) = []
+
+          fun add (todo : Todo) : Promise(Never, Void) {
+            next { items = Array.push(todo, items) }
+          }
+
+          fun delete (todo : Todo) : Promise(Never, Void) {
+            next { items = Array.delete(todo, items) }
+          }
+        }
+
+        component TodoList {
+          connect Todos exposing { add, delete }
+
+          ...
+        }
+
+.landing-section.landing-section--inverse.landing-section--orange
+  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
+    %path{:d => "M0,256L120,240C240,224,480,192,720,197.3C960,203,1200,245,1320,266.7L1440,288L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#FFF", "fill-opacity" => "1"}
+
+  .landing-section__content
+    %h3 Routing
+
+    %hr
+
+    %p
+      In Mint
+      %b routing
+      is a language feature instead of a library.
+
+    %p
+      Routes can be defined in a
+      %code routes
+      block, with support for
+
+      = succeed '.' do
+        %b typed path parameters
+
+    %p
+      The runtime handles clicks on anchor tags and navigates in a smart way so
+      you don't have to.
+
+    %hr
+
+    .btn.btn--neutral
+      Learn more
+
+  %pre.landing-snippet
+    %code.mint
+      :escaped
+
+        routes {
+          / {
+            Application.setPage(Page::Home)
+          }
+
+          /blog {
+            Application.setPage(Page::Blog)
+          }
+
+          /blog/:slug (slug : String) {
+            sequence {
+              Posts.load(slug)
+              Application.setPage(Page::Post)
+            }
+          }
+
+          * {
+            Application.setPage(Page::NotFound)
+          }
+        }
+
+.landing-section
+  .landing-section__content
+    %h3 JavaScript Interopability
+
+    %hr
+
+    %p
+      You can
+      %b inline
+      any
+      %b JavaScript code
+      easily by using
+      %b bacticks:
+      %code `...`
+
+    %p
+      There are constructs for helping converting values:
+
+    %ul
+      %li
+        %code encode
+        converts an typed value into a JavaScript object
+
+      %li
+        %code decode
+        convert a JavaScript object into a typed value
+
+    %p
+      Interpolating Mint code in the inlined JavaScript can be done with the
+      %b interpolation syntax:
+      %code \#{...}
+    %hr
+
+    .btn.btn--neutral
+      Learn more
+
+  %pre.landing-snippet
+    %code.mint
+      :escaped
+        module MyFunctions {
+          fun alert(message : String) : Promise(Never, Void) {
+            `
+            (new Promise((resolve) => {
+              alert(\#{message})
+              resolve()
+            })()
+            `
+          }
+
+          fun decode : Maybe(TodoItem) {
+            try {
+              object =
+                `{ label: "Check out Mint!", done: false }`
+
+              result =
+                decode as TodoItem
+
+              Maybe::Just(result)
+            } catch {
+              Maybe::Nothing()
+            }
+          }
+        }
