@@ -3,13 +3,13 @@ $link: #29C;
 $secondary: #ff5c21;
 $tertiary: #6761a8;
 
-@import 'version_detail';
-@import 'packages_page';
 @import 'markdown_body';
 @import 'breadcrumbs';
 @import 'pagination';
+@import 'container';
 @import 'packages';
 @import 'package';
+@import 'version';
 @import 'hero';
 @import 'nav';
 
@@ -35,30 +35,21 @@ article {
 }
 
 .footer {
-  text-align: center;
-  line-height: 50px;
-  background: #333;
-  font-size: 14px;
-  padding: 0 20px;
-  color: #AAA;
-
-  @media (max-width: 900px) {
-    line-height: 30px;
-    font-size: 8px;
-  }
+  flex-direction: column;
+  display: flex;
+  color: #EEE;
 
   a {
     color: inherit;
   }
 
-  span:first-child {
-    font-weight: 600;
+  &__content {
+    background: #333;
   }
 }
 
 .docs {
   background: #FFF;
-  padding: 30px;
   flex: 1;
 
   &__title {

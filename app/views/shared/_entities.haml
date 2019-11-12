@@ -1,0 +1,6 @@
+- if items.present? && items.any?
+  %h2.docs__title
+    = title
+
+  - items.sort_by { |item| item['name'].to_s }.each do |item|
+    = render partial: 'shared/entity', locals: { item: item }

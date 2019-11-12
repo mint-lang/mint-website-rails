@@ -45,7 +45,7 @@
 
   &__separator {
     border-left: 1px solid #DDD;
-    margin: 0 15px;
+    margin: 0 25px;
     height: 30px;
 
     @media (max-width: 1200px) {
@@ -59,19 +59,14 @@
 
   &__item {
     line-height: 52px;
-    padding: 0 10px;
     height: 50px;
-
-    &:last-child {
-      padding-right: 0;
-    }
-
-    i {
-      margin-right: 5px;
-    }
 
     &.active {
       color: $primary;
+    }
+
+    svg {
+      fill: currentColor;
     }
 
     @media (max-width: 1200px) {
@@ -85,9 +80,6 @@
       margin-left: 0;
       height: auto;
 
-      i {
-        width: 14px;
-      }
 
       &.active {
         border-left-color: #FAFAFA;

@@ -1,13 +1,12 @@
 .package {
-  border: 1px solid rgba(#000, 0.05);
-  border-radius: 2px;
-  background: #FFF;
-  padding: 10px;
+  border: 1px solid #EEE;
+  border-radius: 3px;
 
   flex-direction: column;
   display: inline-flex;
 
   &__row {
+    padding: 15px;
     display: flex;
     flex: 1;
 
@@ -30,6 +29,8 @@
 
   &__name {
     margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 18px;
 
     a {
       text-decoration: none;
@@ -38,6 +39,7 @@
   }
 
   &__latest_version {
+    font-weight: normal;
     font-size: 14px;
     display: inline;
     color: #999;
@@ -62,22 +64,27 @@
     margin-right: 10px;
   }
 
+  &__stars,
+  &__pushed_at {
+    align-items: center;
+    display: flex;
+
+    svg {
+      fill: currentColor;
+      margin-right: 5px;
+    }
+  }
+
   &__infos {
-    border-top: 1px solid rgba(#000, 0.05);
-    padding-top: 5px;
-    margin-top: 10px;
-    height: 30px;
+    border-radius: 0 0 3px 3px;
+    background: #FAFAFA;
+    padding: 15px;
 
     align-items: center;
     font-size: 14px;
     display: flex;
 
     color: #999;
-
-    i.ion-android-time {
-      position: relative;
-      top: 1px;
-    }
 
     a {
       text-decoration: none;

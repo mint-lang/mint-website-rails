@@ -44,6 +44,8 @@ class VersionsController < ApplicationController
       .find_by_repository("#{params[:author]}/#{params[:repo]}")
       .versions
       .find_by_version params[:version]
+
+    @items = VersionEntities.run!(version: @version)
   rescue StandardError
     redirect_to repo_root_path(params[:author], params[:repo])
   end

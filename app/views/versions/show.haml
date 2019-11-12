@@ -1,118 +1,94 @@
 - package = @version.package
 - set_meta_tags description: @version.description
 
-.version-detail
-  .version-detail__content
-    - if @entity
-      .docs
-        %h1= @entity
-        != body_html
-    - else
-      .version-detail__readme
-        .markdown-body
-          != body_html
-
-  .version-detail__sidebar
-    .version-detail__sidebar__title Basic information
-    .version-detail__infos
-      %div
-        - if @version == package.latest_version
-          = link_to repo_root_path(package.author, package.repo) do
-            %i.ion-clipboard
-            README
-        - else
-          = link_to repo_version_path(package.author, package.repo, @version) do
-            %i.ion-clipboard
-            README
+.container
+  .version
+    .version__sidebar
+      %input(data-id="version-search")
 
       %div
-        = link_to "https://github.com/#{package.repository}/tree/#{@version.version}" do
-          %i.ion-social-github
-          Browse source on Github
+        - @items.to_a.each do |item|
+          %div(data-id="version-item")
+            = link_to item[:name],
+                    repo_entity_path(package.author,
+                                     package.repo,
+                                     @version,
+                                     item[:category],
+                                     item[:name]),
+                    class: 'version__entity'
 
-      %div
-      - if @version.experimental?
-        %div{ title: 'Experimental' }
-          %i.ion-ios-flask
-          Experimental
+            %div(data-id="version-entities" style="display: none")
+              - item[:entities].each do |entity|
+                %div(data-id="version-entity")
+                  = link_to repo_entity_path(package.author,
+                                           package.repo,
+                                           @version,
+                                           item[:category],
+                                           item[:name],
+                                           anchor: entity[:name]) do
+                    &nbsp;&nbsp;
+                    = entity[:type][0]
+                    = entity[:name]
 
-    - if components.any?
-      .version-detail__sidebar__title Components
-      -  components.each do |mod|
-        - if @entity == mod['name']
-          .version-detail__entity.version-detail__entity--active
-            = mod['name']
+      .version__sidebar__title Versions
+      - package.versions.each do |version|
+        - if version == @version
+          .version__tag.version__tag--active
+            = version.version
+        - elsif @entity
+          = link_to version.version,
+                    repo_entity_path(package.author,
+                                     package.repo,
+                                     version.version,
+                                     @category,
+                                     @entity),
+                    class: 'version__tag'
         - else
-          = link_to mod['name'],
-                  repo_entity_path(package.author,
-                                   package.repo,
-                                   @version,
-                                   'components',
-                                   mod['name']),
-                  class: 'version-detail__entity'
+          = link_to version.version,
+                    repo_version_path(package.author, package.repo, version.version),
+                    class: 'version__tag'
 
-    - if stores.any?
-      .version-detail__sidebar__title Stores
-      -  stores.each do |mod|
-        - if @entity == mod['name']
-          .version-detail__tag.version-detail__tag--active
-            = mod['name']
-        - else
-          = link_to mod['name'],
-                  repo_entity_path(package.author,
-                                   package.repo,
-                                   @version,
-                                   'stores',
-                                   mod['name']),
-                  class: 'version-detail__tag'
-
-    - if modules.any?
-      .version-detail__sidebar__title Modules
-      - modules.each do |mod|
-        - if @entity == mod['name']
-          .version-detail__tag.version-detail__tag--active
-            = mod['name']
-        - else
-          = link_to mod['name'],
-                  repo_entity_path(package.author,
-                                   package.repo,
-                                   @version,
-                                   'modules',
-                                   mod['name']),
-                  class: 'version-detail__tag'
-
-    .version-detail__sidebar__title Versions
-    - package.versions.each do |version|
-      - if version == @version
-        .version-detail__tag.version-detail__tag--active
-          = version.version
-      - elsif @entity
-        = link_to version.version,
-                  repo_entity_path(package.author,
-                                   package.repo,
-                                   version.version,
-                                   @category,
-                                   @entity),
-                  class: 'version-detail__tag'
-      - else
-        = link_to version.version,
-                  repo_version_path(package.author, package.repo, version.version),
-                  class: 'version-detail__tag'
-
-    - if @version.dependencies.any?
-      .version-detail__sidebar__title Dependencies
-      .version-detail__dependencies
-        - @version.dependencies.each do |repo, version|
-          - if Package.find_by_repository(repo)
-            - owner, name = repo.split('/')
-            = link_to repo_root_path(owner, name), class: 'version-detail__dependency' do
-              %strong
-                = repo
-              %span
-                = version['constraint']
+      .version__sidebar__title Basic information
+      .version__infos
+        %div
+          - if @version == package.latest_version
+            = link_to repo_root_path(package.author, package.repo) do
+              %i.ion-clipboard
+              README
           - else
-            .version-detail__dependency
-              %strong
-                = repo
-              %span
-                = version['constraint']
+            = link_to repo_version_path(package.author, package.repo, @version) do
+              %i.ion-clipboard
+              README
+
+        %div
+          = link_to "https://github.com/#{package.repository}/tree/#{@version.version}" do
+            %i.ion-social-github
+            Browse source on Github
+
+      - if @version.dependencies.any?
+        .version__sidebar__title Dependencies
+        .version__dependencies
+          - @version.dependencies.each do |repo, version|
+            - if Package.find_by_repository(repo)
+              - owner, name = repo.split('/')
+              = link_to repo_root_path(owner, name), class: 'version__dependency' do
+                %strong
+                  = repo
+                %span
+                  = version['constraint']
+            - else
+              .version__dependency
+                %strong
+                  = repo
+                %span
+                  = version['constraint']
+
+    .version__content
+      - if @entity
+        .version__docs
+          %h1= @entity
+          != body_html
+      - else
+        .version__readme
+          .markdown-body
+            != body_html

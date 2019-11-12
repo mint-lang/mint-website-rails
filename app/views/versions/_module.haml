@@ -1,7 +1,5 @@
 != docs['description']
 
-%h2.docs__title Functions
-
-- docs['functions'].each do |item|
-	= render partial: 'shared/entity', locals: { item: item }
+= render partial: 'shared/entities',
+  locals: { title: 'Functions', items: docs['functions'] }
 

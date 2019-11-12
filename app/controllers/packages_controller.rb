@@ -43,7 +43,6 @@ class PackagesController < ApplicationController
     @packages =
       Package
       .includes(:latest_version)
-      .visible
       .where('repository ILIKE ?', "#{params[:author]}%")
   end
 

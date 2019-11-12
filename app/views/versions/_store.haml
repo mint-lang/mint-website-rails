@@ -1,14 +1,7 @@
 != docs['description']
 
-- if docs['states'].any?
-  %h2.docs__title States
+= render partial: 'shared/entities',
+  locals: { title: 'States', items: docs['states'] }
 
-  - docs['states'].each do |item|
-    = render partial: 'shared/entity', locals: { item: item }
-
-- if docs['functions'].any?
-  %h2.docs__title Functions
-
-  - docs['functions'].each do |item|
-    = render partial: 'shared/entity', locals: { item: item }
-
+= render partial: 'shared/entities',
+  locals: { title: 'Functions', items: docs['functions'] }

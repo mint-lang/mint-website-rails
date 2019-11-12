@@ -9,23 +9,23 @@ Rails.application.routes.draw do
       to: 'packages#index',
       as: :packages
 
-  get '/package/:author',
+  get '/packages/:author',
       to: 'packages#by_author',
       as: :repo_author
 
-  get '/package/:author/:repo',
+  get '/packages/:author/:repo',
       to: 'versions#show',
       constraints: {
         repo:  %r{[^/]+}
       },
       as: :repo_root
 
-  get '/package/:author/:repo/:version',
+  get '/packages/:author/:repo/:version',
       to: 'versions#version',
       constraints: { version: /\d+\.\d+\.\d+/ },
       as: :repo_version
 
-  get '/package/:author/:repo/:version/:category/:entity',
+  get '/packages/:author/:repo/:version/:category/:entity',
       to: 'versions#entity',
       constraints: {
         version: /\d+\.\d+\.\d+/,

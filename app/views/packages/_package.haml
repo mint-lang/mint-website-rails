@@ -12,10 +12,6 @@
       .package__summary
         = search_highlighted version.mint_json['description']
 
-    .package__icons
-      - if version.experimental?
-        %i.ion-erlenmeyer-flask.package__icon{ title: 'Experimental package' }
-
   .package__infos
     = link_to repo_author_path(package.author) do
       %img{ src: "https://github.com/#{package.author}.png?size=20",
@@ -24,11 +20,11 @@
 
     - if package.pushed_at
       .package__pushed_at
-        %i.ion-android-time
+        = octicon "history"
         = distance_of_time_in_words(Time.now, package.pushed_at)
         ago
 
     .package__stars
-      %i.ion-star
+      = octicon "star"
       = package.stars
 

@@ -75,9 +75,12 @@
     %p
       In Mint you can
       %b style elements
-      directly using
+      directly
+      %b with CSS
+      using
       %code style
       blocks.
+
     %p
       Inside a
       %code style
@@ -86,12 +89,20 @@
       and
       %b media queries
       as you like.
-    %P
+
+    %p
+      Interpolate any
+      %b Mint expressions
+      in any value using the
+      %b interpolation syntax:
+      %code \#{...}
+    %p
       You can even use
       %code if
       and
       %code case
-      expressions inside any block to apply styles conditionally.
+      expressions inside any block to
+      %b apply styles conditionally.
 
     %hr
 
@@ -102,6 +113,7 @@
     %code.mint
       :escaped
         component TodoItem {
+          property color : String = "#333"
           property label : String = ""
           property done : Bool = false
 
@@ -112,6 +124,7 @@
 
           style label {
             font-weight: bold;
+            color: \#{color};
             flex: 1;
 
             if (done) {
@@ -268,7 +281,7 @@
 
       %li
         %code decode
-        convert a JavaScript object into a typed value
+        converts a JavaScript object into a typed value
 
     %p
       Interpolating Mint code in the inlined JavaScript can be done with the
@@ -295,7 +308,8 @@
           fun decode : Maybe(TodoItem) {
             try {
               object =
-                `{ label: "Check out Mint!", done: false }`
+                `{ label: "Check out Mint!",
+                   done: false }`
 
               result =
                 decode as TodoItem
