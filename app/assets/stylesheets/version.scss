@@ -2,3 +2,18 @@
   grid-template-columns: 300px 1fr;
   display: grid;
 }
+
+.sidebar {
+  a {
+    text-decoration: none;
+    color: #333;
+
+    align-items: center;
+    display: flex;
+
+    &.active,
+    &:hover {
+      color: $link;
+    }
+  }
+}

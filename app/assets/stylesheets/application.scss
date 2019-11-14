@@ -453,3 +453,88 @@ article {
     }
   }
 }
+
+.type-badge {
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 7px;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  height: 20px;
+  width: 20px;
+  color: #FFF;
+
+  &[data-type="property"] {
+    background: #23aaaa;
+
+    &::before {
+      content: "P"
+    }
+  }
+
+  &[data-type="state"] {
+    background: black;
+
+    &::before {
+      content: "S"
+    }
+  }
+
+  &[data-type="function"] {
+    background: black;
+
+    &::before {
+      content: "F"
+    }
+  }
+
+  &[data-type="component"] {
+    background: #369e58;
+
+    &::before {
+      content: "C"
+    }
+  }
+
+  &[data-type="provider"] {
+    background: #ff7b00;
+
+    &::before {
+      content: "C"
+    }
+  }
+
+  &[data-type="record"] {
+    background: #673ab7;
+
+    &::before {
+      content: "R"
+    }
+  }
+
+  &[data-type="module"] {
+    background: #be08d0;
+
+    &::before {
+      content: "M"
+    }
+  }
+
+  &[data-type="store"] {
+    background: #d02e2e;
+
+    &::before {
+      content: "S"
+    }
+  }
+
+   &[data-type="enum"] {
+    background: #00bbb5;
+
+    &::before {
+      content: "M"
+    }
+  }
+}

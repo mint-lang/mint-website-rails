@@ -1,0 +1,14 @@
+.sidebar
+  - @items.to_a.each do |item|
+    %div(data-id="version-item")
+      = active_link_to item[:link] do
+        .type-badge{data: { type: item[:type] } }
+        = item[:name]
+
+      %div(data-id="version-entities")
+        - item[:entities].each do |entity|
+          %div(data-id="version-entity")
+            = link_to entity[:link] do
+              &nbsp;&nbsp;
+              .type-badge{data: { type: entity[:type] } }
+              = entity[:name]

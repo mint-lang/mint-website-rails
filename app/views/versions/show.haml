@@ -4,31 +4,10 @@
 .container
   .version
     .version__sidebar
-      %input(data-id="version-search")
+      %input{ "data-id": "version-search", value: params[:search] }
 
-      %div
-        - @items.to_a.each do |item|
-          %div(data-id="version-item")
-            = link_to item[:name],
-                    repo_entity_path(package.author,
-                                     package.repo,
-                                     @version,
-                                     item[:category],
-                                     item[:name]),
-                    class: 'version__entity'
-
-            %div(data-id="version-entities" style="display: none")
-              - item[:entities].each do |entity|
-                %div(data-id="version-entity")
-                  = link_to repo_entity_path(package.author,
-                                           package.repo,
-                                           @version,
-                                           item[:category],
-                                           item[:name],
-                                           anchor: entity[:name]) do
-                    &nbsp;&nbsp;
-                    = entity[:type][0]
-                    = entity[:name]
+      %div#sidebar
+        = render partial: 'sidebar'
 
       .version__sidebar__title Versions
       - package.versions.each do |version|

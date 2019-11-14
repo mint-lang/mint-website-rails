@@ -1,12 +1,48 @@
 class VersionEntities < ActiveInteraction::Base
+  include Rails.application.routes.url_helpers
+
   object :version, class: Version
+  string :current, default: nil
+  string :search, default: nil
 
   def execute
-    (process('components') +
-      process('modules') +
-      process('stores'))
-      .sort_by! { |item| item[:name] }
-      .each { |item| item[:entities].sort_by! { |item| item[:name] } }
+    all =
+      process('components') +
+        process('modules') +
+        process('stores')
+
+    filtered = []
+
+    all.each do |item|
+      entities =  []
+
+      if search.present?
+        matches =
+          item[:name].downcase.include?(search.downcase)
+
+        item[:entities].each do |item|
+          if item[:name].downcase.include?(search.downcase)
+            entities << item
+          end
+        end
+
+        if matches || entities.any?
+          filtered << item
+        end
+      else
+        if current == item[:name]
+          filtered << item
+          entities = item[:entities]
+        else
+          filtered << item
+        end
+      end
+
+      item[:entities] = entities
+
+    end
+
+    filtered.sort_by { |item| item[:name] }
   end
 
 
@@ -35,10 +71,28 @@ class VersionEntities < ActiveInteraction::Base
         }
       end
 
+      entities =
+        entities
+          .each do |entity|
+            entity[:link] =
+              repo_entity_path(version.package.author,
+                             version.package.repo,
+                             version,
+                             category,
+                             item['name'],
+                             anchor: entity[:name])
+          end
+
       {
         name: item['name'],
+        type: category.singularize,
         entities: entities,
-        category: category
+        category: category,
+        link: repo_entity_path(version.package.author,
+                               version.package.repo,
+                               version,
+                               category,
+                               item['name']),
       }
     end
   end

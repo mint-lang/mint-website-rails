@@ -1,15 +1,19 @@
 class VersionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :find_version, only: [:version, :entity]
   before_action :set_title
 
   def entity
     @category = params[:category]
     @entity = params[:entity]
-    render :show
-  # rescue StandardError
-  #   redirect_to repo_version_path(params[:author],
-  #                                 params[:repo],
-  #                                 params[:version])
+
+    find_entities
+
+    respond_to do |format|
+      format.html { render :show }
+      format.js { render partial: 'sidebar' }
+    end
   end
 
   def show
@@ -17,14 +21,22 @@ class VersionsController < ApplicationController
       Package
       .find_by_repository("#{params[:author]}/#{params[:repo]}")
       .latest_version
-  rescue StandardError
-    redirect_to repo_author_path(params[:author])
+
+    find_entities
+
+    respond_to do |format|
+      format.html { render :show }
+      format.js { render partial: 'sidebar' }
+    end
   end
 
   def version
-    render :show
-  #rescue StandardError
-  #  redirect_to repo_root_path(params[:author], params[:repo])
+    find_entities
+
+    respond_to do |format|
+      format.html { render :show }
+      format.js { render partial: 'sidebar' }
+    end
   end
 
   def set_title
@@ -44,9 +56,9 @@ class VersionsController < ApplicationController
       .find_by_repository("#{params[:author]}/#{params[:repo]}")
       .versions
       .find_by_version params[:version]
+  end
 
-    @items = VersionEntities.run!(version: @version)
-  rescue StandardError
-    redirect_to repo_root_path(params[:author], params[:repo])
+  def find_entities
+    @items = VersionEntities.run!(version: @version, search: params[:search], current: params[:entity])
   end
 end
