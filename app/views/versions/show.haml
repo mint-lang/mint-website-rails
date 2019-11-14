@@ -4,7 +4,9 @@
 .container
   .version
     .version__sidebar
-      %input{ "data-id": "version-search", value: params[:search] }
+      .input-search
+        = octicon 'search'
+        %input{ "data-id": "version-search", value: params[:search] }
 
       %div#sidebar
         = render partial: 'sidebar'

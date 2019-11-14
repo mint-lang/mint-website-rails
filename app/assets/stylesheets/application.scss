@@ -30,7 +30,6 @@ body {
 }
 
 article {
-  display: grid;
   flex: 1;
 }
 
@@ -240,9 +239,10 @@ article {
   background: linear-gradient(#FFF, #EEE);
   padding: 40px 60px;
 
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: minmax(200px, 800px) min-content;
   grid-gap: 100px;
 
+  justify-content: center;
   align-items: center;
   display: grid;
   flex: 1;
@@ -336,7 +336,8 @@ article {
   position: relative;
   min-height: 60vh;
 
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: minmax(0, 800px) min-content;
+  justify-content: center;
   align-items: center;
   grid-gap: 100px;
   display: grid;
