@@ -7,7 +7,7 @@ gem 'rails', '~> 6.0.0'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rack-cors', '~> 1.0', '>= 1.0.3'
+gem 'rack-cors', '~> 1.0'
 gem 'active_interaction', '~> 3.7', '>= 3.7.1'
 gem 'annotate', '~> 3.0', '>= 3.0.2'
 gem 'semantic', '~> 1.6', '>= 1.6.1'
