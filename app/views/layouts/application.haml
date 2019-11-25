@@ -20,44 +20,42 @@
 
   %body
     .nav
-      = link_to root_path, class: :nav__brand do
-        = render partial: 'shared/logo', locals: { size: 20 }
+      .nav__wrapper
+        = link_to root_path, class: :nav__brand do
+          = render partial: 'shared/logo', locals: { size: 20 }
 
-      = link_to 'https://sandbox.mint-lang.com',
-                class: :nav__item,
-                target: '_blank',
-                active: :exact do
-        = octicon "terminal"
-        %span Try
+        = link_to 'https://sandbox.mint-lang.com',
+                  class: :nav__item,
+                  target: '_blank',
+                  active: :exact do
+          = octicon "terminal"
+          %span Try
 
-      .nav__separator
+        .nav__separator
 
-      = link_to '',
-                class: :nav__item,
-                active: :exact do
-        = octicon "cloud-download"
-        %span Install
+        = active_link_to install_path,
+                  class: :nav__item,
+                  active: :exact do
+          = octicon "cloud-download"
+          %span Install
 
-      .nav__separator
+        .nav__separator
 
-      = link_to 'https://guide.mint-lang.com',
-                target: '_blank',
-                class: :nav__item,
-                active: :exact do
-        = octicon "book"
-        %span Learn
+        = active_link_to '/guide', class: :nav__item do
+          = octicon "book"
+          %span Learn
 
-      .nav__separator
+        .nav__separator
 
-      = active_link_to packages_path, class: :nav__item do
-        = octicon "archive"
-        %span Packages
+        = active_link_to packages_path, class: :nav__item do
+          = octicon "archive"
+          %span Packages
 
-      .nav__separator
+        .nav__separator
 
-      = link_to '', class: :nav__item, active: :exact do
-        = octicon "mark-github"
-        %span Github
+        = link_to '', class: :nav__item, active: :exact do
+          = octicon "mark-github"
+          %span Github
 
     - if breadcrumbs.length > 1
       .breadcrumbs
@@ -68,10 +66,11 @@
       = yield
 
 
+    %svg{:viewbox => "0 0 1440 64", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0l120 16c120 16 360 32 600 37.3C960 59 1200 37 1320 26.7L1440 16v48H0z", :fill => "#333"}
+
     .footer
       .footer__content
-        %span
-          = link_to '@gdotdesign', 'https://github.com/gdotdesign', target: '_blank'
 
     = javascript_include_tag 'application'
 

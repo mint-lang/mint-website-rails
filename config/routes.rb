@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
   root 'landings#index'
 
+  get '/guide',
+      to: 'guides#index'
+
+  get '/guide/:page',
+      to: 'guides#page',
+      constraints: {
+        page: /.*/
+      }
+
+  get '/install',
+      to: 'landings#install',
+      as: :install
+
   get '/recently-updated',
       to: 'packages#recent',
       as: :recently_updated

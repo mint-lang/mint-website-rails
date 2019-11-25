@@ -50,6 +50,8 @@ class PackagesController < ApplicationController
     set_meta_tags title: 'All packages'
 
     @packages =
-      Package.includes(:latest_version)
+      Package
+        .includes(:latest_version)
+        .order(stars: :desc)
   end
 end

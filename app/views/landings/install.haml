@@ -1,0 +1,60 @@
+.container
+  %h1.page__title Install Mint
+  %p.page__description This page will guide you on how to install Mint on different operating systems.
+
+  .install__grid
+    .install__section
+      .install__title
+        = render partial: 'icons/apple'
+        %span Install on Mac OSX
+
+      .install__instructions
+        To easily install Crystal on MacOSX you can use
+
+        = succeed '.' do
+          %a(href="http://brew.sh/" target="_blank") Homebrew
+
+        %pre.install__snippet
+          %code
+            brew tap acciaiodigitale/homebrew-mint-lang
+            brew install mint-lang
+
+    .install__section
+      .install__title
+        = octicon "mark-github", height: 24
+        %span Install from source
+
+      .install__instructions
+        %p
+          To install Mint from source you will need to install the
+
+          = succeed '.' do
+            %a(href="https://crystal-lang.org/" target="_blank") Crystal programming language
+
+        %p
+          After installing Crystal just follow these commands:
+
+        %pre.install__snippet
+          %code
+            git clone https://github.com/mint-lang/mint
+            cd mint
+            shards install
+            crystal build src/mint.cr -o mint -p --release --no-debug
+            chmod +x ./mint
+            sudo mv /mint /usr/local/bin/mint
+
+    .install__section
+      .install__title
+        = render partial: 'icons/linux'
+        %span Install on Linux
+
+      .install__instructions
+        Since Mint is just a binary you can download the pre build binaries and
+        use them.
+
+        %pre.install__snippet
+          %code
+            wget --no-verbose -O mint https://mint-lang.s3-eu-west-1.amazonaws.com/mint-latest-linux
+            chmod +x ./mint
+            sudo mv /mint /usr/local/bin/mint
+

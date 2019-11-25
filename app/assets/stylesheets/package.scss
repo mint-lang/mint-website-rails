@@ -1,5 +1,6 @@
 .package {
-  border: 1px solid #EEE;
+  color: rgba(#FFF, 0.8);
+  background: #252d3c;
   border-radius: 3px;
 
   flex-direction: column;
@@ -39,29 +40,25 @@
   }
 
   &__latest_version {
+    color: rgba(#FFF, 0.5);
     font-weight: normal;
     font-size: 14px;
     display: inline;
-    color: #999;
-  }
-
-  &__icons {
-    flex-direction: column;
-    align-items: flex-end;
-    margin-left: 10px;
-    display: flex;
-
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__icon {
-    font-size: 20px;
   }
 
   &__pushed_at {
     margin-right: 10px;
+    margin-left: 10px;
+
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &__stars {
+    flex: 0 0 auto;
   }
 
   &__stars,
@@ -72,25 +69,26 @@
     svg {
       fill: currentColor;
       margin-right: 5px;
+      flex: 0 0 auto;
     }
   }
 
   &__infos {
-    border-radius: 0 0 3px 3px;
-    background: #FAFAFA;
+    border-top: 1px solid rgba(#FFF, 0.1);
     padding: 15px;
+
+    white-space: nowrap;
 
     align-items: center;
     font-size: 14px;
     display: flex;
-
-    color: #999;
 
     a {
       text-decoration: none;
       margin-right: auto;
       color: inherit;
       display: flex;
+      flex: 0 0 auto;
     }
   }
 }

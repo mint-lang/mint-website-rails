@@ -10,6 +10,7 @@ $tertiary: #6761a8;
 @import 'packages';
 @import 'package';
 @import 'version';
+@import 'install';
 @import 'hero';
 @import 'nav';
 
@@ -327,6 +328,9 @@ article {
 
 .hljs {
   filter: saturate(2);
+
+  scrollbar-color: #878d99 #282c34;
+  scrollbar-width: thin;
 }
 
 .landing-section {
@@ -537,5 +541,23 @@ article {
     &::before {
       content: "M"
     }
+  }
+}
+
+.page {
+  &__title {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  &__description {
+    margin: 0;
+    margin-bottom: 40px;
+
+    color: #666;
   }
 }

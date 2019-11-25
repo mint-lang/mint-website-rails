@@ -21,8 +21,9 @@
     - if package.pushed_at
       .package__pushed_at
         = octicon "history"
-        = distance_of_time_in_words(Time.now, package.pushed_at)
-        ago
+        %span
+          = distance_of_time_in_words(Time.now, package.pushed_at)
+          ago
 
     .package__stars
       = octicon "star"
