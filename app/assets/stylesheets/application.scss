@@ -561,3 +561,33 @@ article {
     color: #666;
   }
 }
+
+.toc {
+  &__page {
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    color: #333;
+
+    &.active {
+      color: $primary;
+    }
+  }
+
+  &__pages > &__pages {
+    padding-left: 15px;
+  }
+
+  &__section {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    margin-bottom: 5px;
+
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}

@@ -6,12 +6,16 @@ class GuidesController < ApplicationController
         File.join(Rails.root, 'app', 'guides', params[:page] + ".md")
 
       if File.exist?(path)
-        contents =
-          File.read(path)
-
-        GitHub::Markup.render('page.md', contents).html_safe
+        GitHub::Markup.render('page.md', File.read(path)).html_safe
       else
-        redirect_to '/guide'
+        index =
+          File.join(Rails.root, 'app', 'guides', params[:page], "index.md")
+
+        if File.exist?(index)
+          GitHub::Markup.render('page.md', File.read(index)).html_safe
+        else
+          redirect_to '/guide'
+        end
       end
     end
   end

@@ -1,0 +1,16 @@
+.toc
+  .toc__section
+    Getting Started
+
+  .toc__pages
+    = active_link_to "Tools", "/guide/getting-started/tools", class: :toc__page, active: :exact
+
+  .toc__section
+    Reference
+
+  .toc__pages
+    = active_link_to "Literals", "/guide/reference/literals", class: :toc__page, active: :exact
+    = active_link_to "Components", "/guide/reference/components", class: :toc__page, active: :exact
+
+    .toc__pages
+      = active_link_to "Properties", "/guide/reference/components/properties", class: :toc__page, active: :exact
