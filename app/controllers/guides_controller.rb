@@ -1,21 +1,20 @@
 class GuidesController < ApplicationController
   def page
-    @cache ||= {}
-    @cache[params[:page]] ||= begin
-      path =
-        File.join(Rails.root, 'app', 'guides', params[:page] + ".md")
+    path =
+      File.join(Rails.root, 'app', 'views', 'guides', 'pages', params[:page] + ".haml")
 
-      if File.exist?(path)
-        GitHub::Markup.render('page.md', File.read(path)).html_safe
+    if File.exist?(path)
+      @page = 'guides/pages/' + params[:page]
+    else
+      index =
+        File.join(Rails.root, 'app', 'views', 'guides', 'pages', params[:page], "index.haml")
+
+      puts index
+
+      if File.exist?(index)
+        @page = 'guides/pages/' + params[:page] + '/index'
       else
-        index =
-          File.join(Rails.root, 'app', 'guides', params[:page], "index.md")
-
-        if File.exist?(index)
-          GitHub::Markup.render('page.md', File.read(index)).html_safe
-        else
-          redirect_to '/guide'
-        end
+        redirect_to '/guide'
       end
     end
   end

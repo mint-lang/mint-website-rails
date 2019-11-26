@@ -2,28 +2,28 @@
 .entity
   .entity__signature
     %a.entity__name{href: "##{item['name']}"}
-      %pre= item['name']
+      %div= item['name']
 
     - if item['arguments'].to_a.any?
       = "("
       - item['arguments'].each do |argument|
-        %pre= argument['name']
-        %pre= ":"
-        %pre= argument['type']
+        %div= argument['name']
+        %div= ":"
+        %div= argument['type']
       = ")"
-    %pre= ":"
+    %div= ":"
 
-    %pre.entity__type
+    %div.entity__type
       = item['type']
 
     - if item['default']
-      %pre= "="
+      %div= "="
 
     - if item['default'] && item['default'].size < 50
-      %pre.entity__default= item['default']
+      %div.entity__default= item['default']
 
   - if item['default'] && item['default'].size > 50
-    %pre.entity__default.entity__default--block= item['default']
+    %div.entity__default.entity__default--block= item['default']
 
   .entity__body
     != item['description']

@@ -1,0 +1,227 @@
+%h1 Handling Events
+
+%p
+  In web applications there are a lot of interactive parts, and all of these
+  parts are handling some input from the users. Inputs can come from a variety
+  of sources such as keyboard, and mouse. An instance of these inputs is called
+  an
+
+  = succeed "." do
+    %b event
+
+%p
+  You can handle events coming from the DOM using
+
+  = succeed "." do
+    %b event attributes
+
+  An event attribute is always starts with
+  %code on
+  followed by the name of the event (capitalized), for example:
+  %code onClick
+  or
+  %code onInput
+
+%p
+  In this example we are listening on a click event:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <button
+            onClick={(event : Html.Event) : String {
+              Debug.log("Hello")
+            }}>
+
+            "Click Me!"
+
+          </button>
+        }
+      }
+
+%p
+  Every time the users clicks on this button the
+  %code "Hello"
+  string is printed in the console.
+
+%p
+  Event attributes should match a specific type signature
+  %code Function(Html.Event, a)
+  which means that only functions which take an
+  %code Html.Event
+  and return something can be passed to these attributes.
+
+%p
+  Alternatively you can just pass a
+  %code Function(a)
+  if you don't care about the event.
+
+%h2 Html.Event
+
+%p
+  An Html.Event is a
+  %a(href="../reference/records")
+    record
+  with the following fields:
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Type
+  %tbody
+    %tr
+      %td
+        %b bubbles
+      %td Bool
+    %tr
+      %td
+        %b cancelable
+      %td Bool
+    %tr
+      %td
+        %b currentTarget
+      %td Dom |
+    %tr
+      %td
+        %b defaultPrevented
+      %td Bool
+    %tr
+      %td
+        %b eventPhase
+      %td Number
+    %tr
+      %td
+        %b isTrusted
+      %td Bool
+    %tr
+      %td
+        %b target
+      %td Dom |
+    %tr
+      %td
+        %b timeStamp
+      %td Number
+    %tr
+      %td
+        %b type
+      %td String
+    %tr
+      %td
+        %b data
+      %td String
+    %tr
+      %td
+        %b altKey
+      %td Bool
+    %tr
+      %td
+        %b charCode
+      %td Number
+    %tr
+      %td
+        %b ctrlKey
+      %td Bool
+    %tr
+      %td
+        %b key
+      %td String
+    %tr
+      %td
+        %b keyCode
+      %td Number
+    %tr
+      %td
+        %b locale
+      %td String
+    %tr
+      %td
+        %b location
+      %td Number
+    %tr
+      %td
+        %b metaKey
+      %td Bool
+    %tr
+      %td
+        %b repeat
+      %td Bool
+    %tr
+      %td
+        %b shiftKey
+      %td Bool
+    %tr
+      %td
+        %b which
+      %td Number
+    %tr
+      %td
+        %b button
+      %td Number
+    %tr
+      %td
+        %b buttons
+      %td Number
+    %tr
+      %td
+        %b clientX
+      %td Number
+    %tr
+      %td
+        %b clientY
+      %td Number
+    %tr
+      %td
+        %b pageX
+      %td Number
+    %tr
+      %td
+        %b pageY
+      %td Number
+    %tr
+      %td
+        %b screenX
+      %td Number
+    %tr
+      %td
+        %b screenY
+      %td Number
+    %tr
+      %td
+        %b detail
+      %td Number
+    %tr
+      %td
+        %b deltaMode
+      %td Number
+    %tr
+      %td
+        %b deltaX
+      %td Number
+    %tr
+      %td
+        %b deltaY
+      %td Number
+    %tr
+      %td
+        %b deltaZ
+      %td Number
+    %tr
+      %td
+        %b animationFrame
+      %td String
+    %tr
+      %td
+        %b pseudoElement
+      %td String
+    %tr
+      %td
+        %b propertyName
+      %td String
+    %tr
+      %td
+        %b elapsedTime
+      %td Number
+

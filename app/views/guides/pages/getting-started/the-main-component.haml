@@ -1,0 +1,23 @@
+%h1 The Main Component
+
+%p
+  To display anything on the screen you need to define the
+  %code Main
+  component. Anything it returns from its
+  %code render
+  function will be shown.
+
+%p
+  Here we render a button on the screen:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <button>
+            "Click ME!"
+          </button>
+        }
+      }
+

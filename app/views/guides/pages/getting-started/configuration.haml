@@ -1,0 +1,137 @@
+%h1 Configuration
+
+%p
+  Your application / package is configured with the
+  %code mint.json
+  file (which is a
+  %a(href="https://en.wikipedia.org/wiki/JSON")
+    JSON
+  file).
+
+%p
+  An example
+  %code mint.json
+  file of looks like this:
+
+%pre
+  %code.json
+    :plain
+      {
+        "source-directories": [
+          "source"
+        ],
+        "dependencies": [
+          {
+            "repository": "https://github.com/mint-lang/mint-codemirror",
+            "constraint": "5.0.0 <= v < 6.0.0"
+          }
+        ]
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+
+  %span
+    All the fields are validated so if something is not right you will get a nice error message!
+
+%p
+  Here are all the possible fields (dot notation denotes a nested object):
+
+%table
+  %thead
+    %tr
+      %th Path
+      %th Purpose
+  %tbody
+    %tr
+      %td
+        %code source-directories
+        %td The directories which contains source files of your application.
+    %tr
+      %td
+        %code test-directories
+        %td The directories which contains tests for your application.
+    %tr
+      %td
+        %code dependencies
+        %td Contains the dependencies.
+    %tr
+      %td
+        %code application
+        %td Contains application specific information (can be omitted in packages)
+    %tr
+      %td
+        %code application.head
+        %td A path to an HTML file which can contain links to external resources.
+    %tr
+      %td
+        %code application.title
+        %td The initial title of the application.
+    %tr
+      %td
+        %code application.meta
+        %td An object which contains informations which is converted to META tags.
+    %tr
+      %td
+        %code application.icon
+        %td A path to an image file which is converted to different icons like [favicons](https://en.wikipedia.org/wiki/Favicon).
+    %tr
+      %td
+        %code application.orientation
+        %td
+          [PWA] The orientation of the application, either
+          %code portrait
+          or
+          %code landscape
+    %tr
+      %td
+        %code application.name
+        %td [PWA] The name of the application.
+    %tr
+      %td
+        %code application.theme-color
+        %td [PWA] The theme color of the application.
+    %tr
+      %td
+        %code application.display
+        %td
+          [PWA] The display property of the application, one of:
+          %code fullscreen
+          %code standalone
+          %code minimal-ui
+          %code browser
+    %tr
+      %td
+        %code formatter-config.indent-size
+        %td Specifies how many spaces is used to intend code locks.
+
+%h2 Dependencies
+
+%p
+  The dependencies array contains all the packages that your application needs.
+
+%p
+  Each is an object that has a:
+
+%ul
+  %li
+    %code repository
+    field pointing to Git repository which uniquely identifies it
+
+  %li
+    %code constraint
+    field that is the version information in one of two formats:
+
+    %ul
+      %li
+        %code 0.0.0 <= v < 1.0.0
+        where the
+        %code v
+        is the resolvable version
+
+      %li
+        %code master:1.0.0
+        where the first part is the Git reference (of a branch, commit hash or tag)
+        followed by a colon and the version the package should resolve as this is
+        necessary because the version is only specified by tags.
+

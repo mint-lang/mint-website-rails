@@ -24,5 +24,3 @@ module MintWebsiteBackend
     config.autoload_paths += Dir.glob("#{config.root}/app/interactions/*")
   end
 end
-
-Rails.autoloaders.main.ignore(Rails.root.join('app/guides'))

@@ -1,3 +1,6 @@
 .container
-  = render partial: 'toc'
-  = @cache[params[:page]]
+  .guide
+    = render partial: 'toc'
+
+    .guide-content
+      = render template: @page, layout: false

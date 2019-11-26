@@ -23,6 +23,7 @@ $tertiary: #6761a8;
 body {
   font-family: Open Sans;
   flex-direction: column;
+  overflow-y: scroll;
   background: #FFF;
   min-height: 100vh;
   display: flex;
@@ -34,7 +35,7 @@ article {
   flex: 1;
 }
 
-.footer {
+.ffooter {
   flex-direction: column;
   display: flex;
   color: #EEE;
@@ -51,19 +52,6 @@ article {
 .docs {
   background: #FFF;
   flex: 1;
-
-  &__title {
-    text-transform: uppercase;
-    font-size: 16px;
-    color: #666;
-
-    margin: 0;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-
-    border-bottom: 3px solid #EEE;
-  }
 }
 
 .entity {
@@ -125,12 +113,12 @@ article {
     font-size: 18px;
     display: flex;
 
-    pre {
+    div {
       margin: 0;
     }
 
-    > pre + pre,
-    > a + pre {
+    > div + div,
+    > a + div {
       margin-left: 10px;
     }
   }
@@ -562,6 +550,146 @@ article {
   }
 }
 
+%content {
+  line-height: 1.75;
+  color: #444;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #333;
+
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    border-bottom: 4px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.3em;
+    font-size: 2em;
+  }
+
+  h2 {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.3em;
+
+    margin-top: 2em;
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+
+  li > ul {
+    margin-top: 10px;
+  }
+
+  pre {
+    background: #252d3c;
+    border-radius: 5px;
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  b, strong {
+    color: #333;
+  }
+
+  p, ul, ol, pre {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary;
+  }
+
+  code:not(.hljs) {
+    white-space: pre;
+    background: #EEE;
+    padding: 3px 6px;
+    border-radius: 2px;
+  }
+
+  code {
+    font-family: Source Code Pro;
+  }
+
+  p.hint {
+    grid-template-columns: min-content 1fr;
+    grid-gap: 10px;
+    display: grid;
+
+    background: #EEE;
+    padding: 20px;
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    &--warning {
+      border-left: 4px solid orangered;
+
+      & svg {
+        fill: orangered;
+      }
+    }
+    &--info {
+      border-left: 4px solid rgb(56, 132, 255);
+
+      & svg {
+        fill: rgb(56, 132, 255);
+      }
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr + tr td {
+      border-top: 1px solid #EEE;
+    }
+
+    thead th {
+      border-bottom: 2px solid rgb(230, 236, 241);
+      font-weight: bold;
+      color: #999;
+    }
+  }
+}
+
+.guide {
+  grid-template-columns: 250px 900px;
+  display: grid;
+
+  .guide-content {
+    @extend %content;
+  }
+}
+
 .toc {
   &__page {
     text-decoration: none;
@@ -574,8 +702,15 @@ article {
     }
   }
 
+  &__page + &__page {
+    margin-top: 5px;
+  }
+
   &__pages > &__pages {
-    padding-left: 15px;
+    padding-left: 10px;
+    margin-left:5px;
+    margin-top: 5px;
+    border-left: 1px dashed #CCC;
   }
 
   &__section {
