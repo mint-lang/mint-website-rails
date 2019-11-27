@@ -1,0 +1,106 @@
+%h1 Records
+
+%p Records are data structures that have a fixed set of keys.
+
+%p
+  You can define a
+  %b record type
+  with the
+  %code record
+  keyword:
+
+%pre
+  %code
+    :escaped
+      record User {
+        email : String,
+        name : String,
+        id : Number
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    Records cannot have types which have type variables.
+
+%p.hint.hint--warning
+  = octicon "alert"
+  %span
+    Record definitions are globally unique, so defining a record with the same
+    structure but a different name will raise an error.
+
+%h2 Nested records
+
+%p
+  Records can be nested in each other, using
+  %b nested type definitions.
+
+%pre
+  %code
+    :escaped
+      record Position {
+        x : Number,
+        y : Number
+      }
+
+      record Entity {
+        position : Position,
+        id : String
+      }
+
+%p
+  Creating a nested record is straightforward:
+
+%pre
+  %code
+    :escaped
+      entity =
+        {
+          position = {
+            x = 0,
+            y = 0
+          },
+          id = "0"
+        }
+
+%h2 Working with records
+
+%p Records can be created like this:
+
+%pre
+  %code
+    :escaped
+      {
+        email = "john.doe@gmail.com",
+        name = "John Doe",
+        id = 0
+      }
+
+%p
+  You can create a new record by copying from an existing one and changing only
+  some of the fields, like this:
+
+%pre
+  %code
+    :escaped
+      user =
+        {
+          email = "john.doe@gmail.com",
+          name = "John Doe",
+          id = 0
+        }
+
+      updatedUser =
+        { user | name = "Stuart" }
+
+      {
+        email = "john.doe@gmail.com",
+        name = "Stuart",
+        id = 0
+      }
+
+%p.hint.hint--warning
+  = octicon "alert"
+  %span
+    Trying to set fields to a record which doesn't have it in it's definition
+    will raise an error.

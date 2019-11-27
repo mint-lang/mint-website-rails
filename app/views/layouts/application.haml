@@ -76,8 +76,9 @@
 
     :javascript
       hljs.registerLanguage('mint',() => {
+        console.log(hljs)
         const MINT_CONTAINS = []
-        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel style record connect enum routes try catch'
+        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel style record connect enum routes try catch case where when use for of true false then finally get exposing as decode encode'
 
          var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
          var TAG_INTERNALS = {
@@ -116,6 +117,12 @@
 
         MINT_CONTAINS.push(
           ...[
+            hljs.COMMENT("/\\*", "\\*/"),
+            {
+              className: 'number',
+              begin: "\\b\\d+(\\.\\d+)?",
+              end: "\\B|\\b"
+            },
             {
               className: 'string',
               begin: '"',

@@ -1,0 +1,52 @@
+%h1 Using Providers
+
+%p
+  A Provider represents a source of asynchronous events. To subscribe to a
+  Provider, you
+  %code use
+  it and pass it a record that contains the subscription data.
+
+%pre
+  %code
+    :escaped
+      component Main {
+        state counter : Number = 0
+
+        use Provider.Tick {
+          ticks = () : Promise(Never, Void) {
+            next { counter = counter + 1 }
+          }
+        }
+
+        fun render : Html {
+          <div>
+            <{ Number.toString(counter) }>
+          </div>
+        }
+      }
+
+%p
+  In the above example we will update
+  %code counter
+  every second using the
+
+  = succeed "." do
+    %a(href="https://github.com/mint-lang/mint/blob/master/core/source/Provider/Tick.mint")
+      Tick Provider
+
+%p
+  Other available Providers:
+
+%ul
+  %li
+    %a(href="https://github.com/mint-lang/mint-core/blob/master/source/Provider/AnimationFrame.mint")
+      AnimationFrame
+
+  %li
+    %a(href="https://github.com/mint-lang/mint/blob/master/core/source/Provider/Mouse.mint")
+      Mouse
+
+  %li
+    %a(href="https://github.com/mint-lang/mint-core/blob/master/source/Provider/Scroll.mint")
+      Scroll
+

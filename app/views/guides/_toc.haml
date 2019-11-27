@@ -3,19 +3,68 @@
     Getting Started
 
   .toc__pages
-    = active_link_to "Tools", "/guide/getting-started/tools", class: :toc__page, active: :exact
-    = active_link_to "Using the CLI", "/guide/getting-started/using-the-cli", class: :toc__page, active: :exact
-    = active_link_to "Configuration", "/guide/getting-started/configuration", class: :toc__page, active: :exact
-    = active_link_to "The Main Component", "/guide/getting-started/the-main-component", class: :toc__page, active: :exact
-    = active_link_to "Styling with CSS", "/guide/getting-started/styling-with-css", class: :toc__page, active: :exact
-    = active_link_to "Handling Events", "/guide/getting-started/handling-events", class: :toc__page, active: :exact
+    = toc_link "Tools", "getting-started/tools"
+    = toc_link "Using the CLI", "getting-started/using-the-cli"
+    = toc_link "Configuration", "getting-started/configuration"
+    = toc_link "The Main Component", "getting-started/the-main-component"
+    = toc_link "Styling with CSS", "getting-started/styling-with-css"
+    = toc_link "Handling Events", "getting-started/handling-events"
+
+  .toc__section
+    Recipies
+
+  .toc__pages
+    = toc_link "Using thirdy party CSS", "recipies/using-third-party-css"
 
   .toc__section
     Reference
 
   .toc__pages
-    = active_link_to "Literals", "/guide/reference/literals", class: :toc__page, active: :exact
-    = active_link_to "Components", "/guide/reference/components", class: :toc__page, active: :exact
+    = toc_link "Literals", "reference/literals"
+    = toc_link "Functions", "reference/functions"
+    = toc_link "Records", "reference/records"
+    = toc_link "Enums", "reference/enums"
+    = toc_link "Built in Types", "reference/built-in-types"
+    = toc_link "Equality", "reference/equality"
+    = toc_link "Stores", "reference/stores"
+    = toc_link "Routing", "reference/routing"
+
+    .toc__spacer
+
+    = toc_link "Control Expressions", "reference/control-expressions"
 
     .toc__pages
-      = active_link_to "Properties", "/guide/reference/components/properties", class: :toc__page, active: :exact
+      = toc_link "if...else", "reference/control-expressions/if-else"
+      = toc_link "case", "reference/control-expressions/case"
+      = toc_link "for", "reference/control-expressions/for"
+      = toc_link "try", "reference/control-expressions/try"
+      = toc_link "sequence", "reference/control-expressions/sequence"
+      = toc_link "parallel", "reference/control-expressions/parallel"
+
+    .toc__spacer
+
+    = toc_link "Components", "reference/components"
+
+    .toc__pages
+      = toc_link "Properties", "reference/components/properties"
+      = toc_link "Computed Properties", "reference/components/computed-properties"
+      = toc_link "Styling Elements", "reference/components/styling-elements"
+      = toc_link "Connecting Stores", "reference/components/connecting-stores"
+      = toc_link "Using Providers", "reference/components/using-providers"
+      = toc_link "Internal State", "reference/components/internal-state"
+      = toc_link "Referencing Elements and Components", "reference/components/referencing-elements-and-components"
+
+    .toc__spacer
+
+    = toc_link "JavaScript Interop", "reference/javascript-interop"
+
+    .toc__pages
+      = toc_link "Inlining", "reference/javascript-interop/inlining"
+      = toc_link "Decode Expression", "reference/javascript-interop/decode-expression"
+      = toc_link "Encode Expression", "reference/javascript-interop/encode-expression"
+
+    .toc__spacer
+
+    = toc_link "Environment Variables", "reference/environment-variables"
+    = toc_link "Packages", "reference/packages"
+

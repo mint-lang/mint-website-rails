@@ -1,0 +1,54 @@
+%h1 Environment Variables
+
+%p
+  When building web applications usually the same application needs to working
+  in different environments (development, staging, production). There are some
+  %a(href="https://en.wikipedia.org/wiki/Environment_variable")
+    variables
+  like API endpoints that are different between these environments.
+
+%p
+  Mint offers a simple feature for managing these variables. You can create
+  different files
+  %code .env
+  %code .env.production
+  which have contents like this:
+
+%pre
+  %code.plaintext
+    :escaped
+      ENDPOINT=http://localhost:3001
+      WSENDPOINT=ws://localhost:3001
+
+%p
+  Then in Mint code you can inline them:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <div>
+            <{ @ENDPOINT }>
+          </div>
+        }
+      }
+
+%h2 Specifying .env file
+
+%p
+  %a(href="/guide/getting-started/using-the-cli")
+    The Mint CLI
+  has a global flag
+  %code -e
+  or
+  %code --env
+  which takes the path to the
+  %code .env
+  file:
+
+%pre
+  %code.plaintext
+    :escaped
+      mint start --env .env.production
+

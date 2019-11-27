@@ -1,0 +1,53 @@
+%h1 for
+
+%p
+  %code for
+  is useful for iterating over either an
+  %code Array(a)
+  or a
+  %code Set(a)
+  or a
+  %code Map(a,b)
+
+%p
+  The result if the iteration is always an array where the type of it's items
+  is from the type of the expression.
+
+%p In the next example we iterate over an array of Strings and making them uppercase:
+
+%pre
+  %code
+    :escaped
+      for (item of ["bob", "joe"]) {
+        String.toUpperCase(item)
+      }
+      /* The result will be ["BOB", "JOE"] */
+
+%p
+  The return type of this
+  %code for
+  expression is
+  %code Array(String)
+
+%h2 Selecting items
+
+%p
+  You can limit the items for which the iteration should take place with an
+  optional
+  %code when
+  block:
+
+%pre
+  %code
+    :escaped
+      for (item of ["bob", "joe"]) {
+        String.toUpperCase(item)
+      } when {
+        item == "bob"
+      }
+      /* The result will be ["BOB"] */
+
+%p
+  In the example we specified that the expression should only run (and return)
+  for items  which equals "bob".
+

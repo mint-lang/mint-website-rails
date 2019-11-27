@@ -1,0 +1,179 @@
+%h1 Decode Expression
+
+%p
+  In order to process data from JavaScript in Mint, you must convert it from
+  JavaScript:
+
+%ul
+  %li
+    object
+    %code { name: "Joe" }
+
+  %li
+    array
+    %code [1, 2, 3]
+
+  %li
+    number
+    %code 0
+
+  %li
+    string
+    %code "Joe"
+
+  %li
+    %code null
+
+  %li
+    %code undefined
+
+
+%p
+  \...to a Mint typed value.
+
+%p
+  The
+  %code decode
+  expression:
+
+%pre
+  %code
+    :escaped
+      decode object as String
+
+%p
+  \...will try to convert the untyped value to a typed value. it returns a
+  %code Result(Object.Error, ...)
+  , which can be used in a
+
+  = succeed "." do
+    %a(href="/guide/reference/control-expressions/try")
+      try expression
+
+%p
+  You can decode JavaScript values into Mint
+  %b primitive values
+  (
+  %code String
+  ,
+  %code Bool
+  ,
+  %code Number
+  ,
+  %code Time
+  )
+  %b simple structures
+  (
+  %code Maybe(a)
+  ,
+  %code Set(a)
+  ,
+  %code Map(a,b)
+  ,
+  %code Array(a)
+  ) and
+  %b records
+  which only have
+
+  = succeed "." do
+    %b decodable values
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    If you try to decode a type which is not supported or try to decode
+    something that is not an
+    %code Object
+    , you will get a nice error message.
+
+%p
+  An example of decoding a simple record:
+
+%pre
+  %code
+    :escaped
+      record User {
+        name : String,
+        age : Number
+      }
+
+      component Main {
+        fun render : Html {
+          try {
+            object =
+              Json.parse("{\"name\": \"John\", \"age\": 30 }")
+              |> Maybe.toResult("Decode Error")
+
+            user =
+              decode object as User
+
+            <div>
+              <{ user.name }>
+            </div>
+          } catch Object.Error => error {
+            <div>
+              <{ "Could not decode!" }>
+            </div>
+          } catch String => error {
+            <div>
+              <{ "Invalid JSON!" }>
+            </div>
+          }
+        }
+      }
+
+%p
+  In this case,
+  %code user
+  is a
+  %code Result(Object.Error, User)
+
+%h2 Decoding not supported names
+
+%p
+  There are times when we want to decode a key from an object into a record
+  whats name is not supported as a record key for example
+  %code tag_list
+  \. In this case we can use the
+  %code using
+  keyword to specify the mapping between the object and the record.
+
+%p
+  Here is an example:
+
+%pre
+  %code
+    :escaped
+      record Post {
+        tagList: Array(String) using "tag_list"
+      }
+
+%p
+  When decoding an object as a
+  %code Post
+  it will look for the
+  %code tag_list
+  field instead of the
+  %code tagList
+  field in the object, so this JavaScript Object:
+
+%pre
+  %code.javascript
+    :escaped
+      {
+        tag_list: ["a", "b"]
+      }
+
+%p
+  will decode into this record:
+
+%pre
+  %code
+    :escaped
+      {
+        tagList = ["a", "b"]
+      }
+
+%p
+  \...it will use this key for the encoding as well.
+

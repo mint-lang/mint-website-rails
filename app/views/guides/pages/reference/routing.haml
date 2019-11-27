@@ -1,0 +1,94 @@
+%h1 Routing
+
+%p
+  In Mint, routes of an application are defined at the top level with the
+  %code routes
+  block.
+
+%p
+  Here is an example of an application where you can list users on one route and
+  show a single user on another route:
+
+%pre
+  %code
+    :escaped
+      routes {
+        / {
+          Application.setPage("index")
+        }
+
+        /users/:id (id: Number) {
+          sequence {
+            Application.setPage("show")
+            Application.loadUser(id)
+          }
+        }
+      }
+
+%p
+  Keep in mind the following things:
+
+%ul
+  %li
+    Routes are matched in the order they are defined from
+    %b top to bottom
+
+  %li Routes can only have one routes block per application
+  %li Routes are used to set the state, not to render things
+
+%h2 Matching parameters
+
+%p
+  You can use
+  %b URL parameters
+  to match on varied routes.
+
+%p
+  Parameters are typed checked and if it can't convert the
+  %code String
+  into the desired type it means that the route will not be matched.
+
+%p
+  This is an example of matching blog posts:
+
+%pre
+  %code
+    :escaped
+      routes {
+        /blog {
+          Application.setPage("blog")
+        }
+
+        /blog/:slug (slug: String) {
+          sequence {
+            Application.setPage("post")
+            Application.loadPost(slug)
+          }
+        }
+      }
+
+%h2 Matching everything
+
+%p
+  You can use the
+  %code *
+  to match every not matched route.
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    The position of the route does not matter, it will be matched after every
+    other route.
+
+%pre
+  %code
+    :escaped
+      routes {
+        / {
+          Application.setPage("index")
+        }
+
+        * {
+          Application.setPage("not_found")
+        }
+      }

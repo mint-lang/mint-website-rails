@@ -590,12 +590,17 @@ article {
     font-size: 1.25em;
   }
 
-  li + li {
-    margin-top: 10px;
+  li > ul {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
-  li > ul {
-    margin-top: 10px;
+  li > pre {
+    margin-top: 7px;
+  }
+
+  ul {
+    padding-left: 30px;
   }
 
   pre {
@@ -610,9 +615,9 @@ article {
     color: #333;
   }
 
-  p, ul, ol, pre {
+  p, ul, ol, pre, blockqoute {
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   a {
@@ -640,8 +645,14 @@ article {
     padding: 20px;
 
     svg {
+      align-self: center;
+      margin-right: 10px;
       height: 24px;
       width: 24px;
+    }
+
+    code:not(.hljs) {
+      background: #DDD;
     }
 
     &--warning {
@@ -679,10 +690,17 @@ article {
       color: #999;
     }
   }
+
+  blockqoute {
+    border-left: 4px solid #EEE;
+    display: block;
+    padding: 20px;
+    color: #666;
+  }
 }
 
 .guide {
-  grid-template-columns: 250px 900px;
+  grid-template-columns: 1fr 900px 1fr;
   display: grid;
 
   .guide-content {
@@ -691,25 +709,28 @@ article {
 }
 
 .toc {
+  &__spacer {
+    margin-top: 20px;
+  }
+
   &__page {
     text-decoration: none;
     font-weight: 600;
     display: block;
     color: #333;
 
-    &.active {
+    margin-top: 5px;
+
+    &.active,
+    &:hover {
       color: $primary;
     }
   }
 
-  &__page + &__page {
-    margin-top: 5px;
-  }
-
   &__pages > &__pages {
-    padding-left: 10px;
+    padding-left: 15px;
     margin-left:5px;
-    margin-top: 5px;
+    margin-top: 7px;
     border-left: 1px dashed #CCC;
   }
 

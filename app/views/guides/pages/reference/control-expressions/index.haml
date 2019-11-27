@@ -1,0 +1,40 @@
+%h1 Control Expressions
+
+%p
+  In Mint, control structures are expressions that return a value, so they are called
+
+  = succeed "." do
+    %b control expressions
+
+%p Here are the control expressions:
+
+%ul
+  %li
+    %b if...else
+    \- basic, 2 way conditional expression
+  %li
+    %b case
+    \- extended, N-way conditional expression
+  %li
+    %b for
+    \- iteration over
+    %code Array(a)
+    %code Set(a)
+    and
+    %code Map(a,b)
+  %li
+    %b try
+    \- executes a sequence of
+    %b synchronous
+    expressions, including failure handling
+  %li
+    %b sequence
+    \- executes
+    %b asynchronous
+    expressions in sequence, including failure handling
+  %li
+    %b parallel
+    \- executes
+    %b asynchronous
+    expressions in parallel, including failure handling
+

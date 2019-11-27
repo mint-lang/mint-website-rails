@@ -1,0 +1,120 @@
+%h1 sequence
+
+%p
+  %code sequence
+  expressions allows you to do things in sequence.
+
+%p
+  A
+  %code sequence
+  expression is built up from multiple parts:
+
+%ul
+  %li
+    expressions or statements that return a
+    %code Promise
+    or a
+    %code Result
+
+  %li
+    %code catch
+    branches
+
+  %li
+    an optional
+    %code finally
+    branch
+
+%p
+  An example of handling loading something with a request:
+
+%pre
+  %code
+    :escaped
+      sequence {
+        /* Started to load the users */
+        next { loading = true }
+
+        /*
+        Make the request and wait for it to complete
+        and store in the "response" variable
+        */
+        response =
+          Http.get('/users.json')
+          |> Http.send()
+
+        /* Parse the body of the response as JSON */
+        body =
+          Json.parse(response.body)
+          |> Maybe.toResult("Json Parse Error")
+
+        /*
+        Try to decode the list of users and convert the
+        result into a Promise so we can handle it here then
+        store it in the "users" variable
+        */
+        users =
+          decode response.body as Array(User)
+
+        /* If everything went well store the users */
+        next { users = users }
+      } catch Http.Error => error {
+        /* If the request fails handle it here */
+        next { error = "Something went wrong loading the request." }
+
+      } catch Object.Error => error {
+        /* If the decoding fails handle it here */
+        next { error = Object.Error.toString(error) }
+
+      } catch {
+        /* Catch everything else */
+        next { error = "Could not decode the response." }
+
+      } finally {
+        /* After everything it's not loading anymore */
+        next { loading = false }
+      }
+
+%p
+  Keep in mind that
+  %b you need to handle all possible errors
+  that can be returned from a statement, although the compiler has your back
+  here and will show an error if you forget one.
+
+%p
+  The return value of a
+  %code sequence
+  expression is always a
+  %code Promise(error, result)
+  \:
+
+%ul
+  %li
+    If the last statement is a
+    %code Promise
+    then it will be returned as is
+
+  %li
+    If the last statement is not a
+    %code Promise
+    then it will return a promise which never fails
+    %code Promise(Never, result)
+    where the
+    %code result
+    is the value of the last statement
+
+%p
+  A few notable things to keep in mind:
+
+%ul
+  %li
+    All of the catches must match the return value of the last statement
+
+  %li
+    Results and unwrapped into variables
+
+  %li
+    Promises are
+    %code await
+    \-ed and unwrapped into variables
+

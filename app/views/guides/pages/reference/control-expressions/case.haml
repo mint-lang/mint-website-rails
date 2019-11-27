@@ -1,0 +1,60 @@
+%h1 case
+
+%p
+  A case expression looks like this:
+
+%pre
+  %code
+    :escaped
+      case (condition) {
+        match1 => value1
+        match2 => value2
+        match3 => value3
+        => defaultValue
+      }
+
+%p
+  It returns the value of the first branch that matches the condition, or the
+  default if none matched.
+
+%p
+  There are some rules that will be enforced by either the parser or the
+  compiler:
+
+%ul
+  %li
+    the
+    %code condition
+    can be any type
+
+  %li
+    the matches of branches must be the same type as the
+    %code condition
+
+  %li
+    the values of the branches must be the same type
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    %code case
+    expressions are compiled to JavaScript
+    %code if...else
+    statements under the hood.
+
+%h2 Matching an enum
+
+%p
+  %a(href="/guide/reference/enums") Enums
+  can be matched using a case expression to destructure it's variants values like so:
+
+%pre
+  %code
+    :escaped
+      case (result) {
+        Result::Err error => /* do something with the error */
+        Result::Ok value => /* do something with the value */
+      }
+
+
+
