@@ -1,4 +1,88 @@
 .container
   .guide
     = render partial: 'toc'
-    %a(href="/guide/reference/literals") Literals
+
+    .guide-content
+      %h1
+        What & Why
+
+      %p This page is an introduction on what Mint is.
+
+      %h2
+        What Is Mint?
+
+      %p
+        Mint is a language specifically created for writing
+
+        = succeed "." do
+          %b single page applications
+
+        It is basically compiler and a framework combined to provide great
+        developer exprience while allowing to write safe, readable and
+        maintainable code.
+
+      %p
+        It was born out of the frustration of the JavaScript language and
+        ecosystem (NPM) and the Elm language and it's not that so open
+        development pratices.
+
+      %h3
+        What is wrong with JavaScript?
+
+      %p
+        JavaScript is not a strongly typed language which makes it difficult to
+        write error free web applications in and leads to a not so great developer
+        experience. Also it does not have the tools to build web applications
+        in out of the box, you need frameworks and compilers and build tools
+        which increases complexity.
+
+      %h3
+        What is wrong with Elm?
+
+      %p
+        Elm has great developer experience, but it being purely functional
+        language leads to some boilerplate code and makes it harder to learn.
+        Also it's not possible to contribute or influence the language in any
+        meaningful way.
+
+      %h2
+        Why Mint?
+
+      %p
+        Mint aims to combine the developer expreience of Elm and the
+        expressiveness of React to create the perfect lanugage for building
+        single page applciations.
+
+      %p
+        After one year of development Mint has the following features:
+
+      %ul
+        %li
+          A good type system
+
+        %li
+          Nice error messages
+
+        %li
+          Formatter
+
+        %li
+          Components for composition
+
+        %li
+          Stores for data storage
+
+        %li
+          Built in styling
+
+        %li
+          Built in routing
+
+        %li
+          Great JavaScript interopablity
+
+        %li
+          Immutable data structures
+
+        %li
+          And much more...
