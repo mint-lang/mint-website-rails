@@ -1,23 +1,28 @@
 %a{name: item['name']}
 .entity
-  .entity__signature
+  .entity__signature<
     %a.entity__name{href: "##{item['name']}"}
       %div= item['name']
 
     - if item['arguments'].to_a.any?
-      = "("
+      %div.entity__operator= "("
+
       - item['arguments'].each do |argument|
-        %div= argument['name']
-        %div= ":"
-        %div= argument['type']
-      = ")"
-    %div= ":"
+        %div.entity__argument<
+          = argument['name']
+          %div.entity__operator= ":"
+          %div.entity__type= argument['type']
+
+      %div.entity__operator= ")"
+
+    %div.entity__operator
+      = ":"
 
     %div.entity__type
       = item['type']
 
     - if item['default']
-      %div= "="
+      %div.entity__operator= "="
 
     - if item['default'] && item['default'].size < 50
       %div.entity__default= item['default']

@@ -1,0 +1,14 @@
+.footer {
+  flex-direction: column;
+  display: flex;
+  color: #EEE;
+
+  a {
+    color: inherit;
+  }
+
+  &__content {
+    background: #333;
+    height: 300px;
+  }
+}

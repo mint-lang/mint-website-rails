@@ -1,0 +1,135 @@
+.landing-section {
+  background: image-url('dot-grid.png');
+  padding: 120px 60px;
+
+  position: relative;
+
+  grid-template-columns: minmax(0, 800px) min-content;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 100px;
+  display: grid;
+
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(0,0,0,0.2);
+
+  h3 {
+    font-family: 'M PLUS Rounded 1c';
+    font-size: 36px;
+    margin: 0;
+  }
+
+  hr {
+    margin: 20px 0;
+
+    border: 0;
+    border-bottom: 1px dashed rgba(#000, 0.3);
+  }
+
+  p, ul {
+    line-height: 1.6;
+    font-size: 18px;
+    color: #666;
+  }
+
+  b {
+    color: #333;
+  }
+
+  li + li {
+    margin-top: 12px;
+  }
+
+  > * {
+    direction: ltr;
+  }
+
+  &__content {
+    background: radial-gradient(closest-side, #FFF 65%, transparent);
+
+    .btn {
+      margin-top: 10px;
+    }
+
+    code {
+      background: #282c34;
+      border-radius: 2px;
+      font-weight: 400;
+      padding: 3px 6px;
+      color: #EEE;
+    }
+  }
+
+  &--inverse {
+    direction: rtl;
+  }
+
+  &--green {
+    background: #459f56 image-url('interlaced.png');
+    color: white;
+
+    p, ul {
+      color: rgba(#FFF, 0.9);
+    }
+
+    b {
+      color: #FFF;
+    }
+
+    hr {
+      border-color: rgba(#FFF, 0.5);
+    }
+  }
+
+  &--green &__content {
+    background: radial-gradient(closest-side, rgba(#459f56,0.8) 65%, transparent);
+    text-shadow: 0 0 2px rgba(#000,0.1);
+  }
+
+  &--orange {
+    background: #db6a41 image-url('interlaced.png');
+    color: white;
+
+    p, ul {
+      color: rgba(#FFF, 0.9);
+    }
+
+    b {
+      color: #FFF;
+    }
+
+    hr {
+      border-color: rgba(#FFF, 0.5);
+    }
+  }
+
+  &--orange &__content {
+    background: radial-gradient(closest-side, rgba(#db6a41,0.8) 65%, transparent);
+    text-shadow: 0 0 2px rgba(#000,0.1)
+  }
+
+  @media (max-width: 1200px) {
+    padding: 80px 40px;
+    grid-gap: 50px;
+  }
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+
+    padding: 60px 20px;
+    direction: rtl;
+
+    .btn {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    p, ul {
+      font-size: 14px;
+    }
+  }
+}

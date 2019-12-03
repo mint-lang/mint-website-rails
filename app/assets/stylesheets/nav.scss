@@ -2,6 +2,8 @@
   border-bottom: 1px solid #E9E9E9;
   background: #FFF;
   color: #333;
+
+  overflow: hidden;
   width: 100%;
 
   &__wrapper {
@@ -42,6 +44,7 @@
   &__brand {
     margin-right: auto;
     font-size: 24px;
+    flex: 0 0 auto;
   }
 
   &__separator {

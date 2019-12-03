@@ -1,7 +1,4 @@
 .landing-hero
-  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,128L120,149.3C240,171,480,213,720,218.7C960,224,1200,192,1320,176L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#459f56", "fill-opacity" => "1"}
-
   .landing-hero__left
     = render partial: 'shared/logo', locals: { size: 40 }
 
@@ -64,9 +61,6 @@
           }
 
 .landing-section.landing-section--green.landing-section--inverse
-  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,288L120,288C240,288,480,288,720,261.3C960,235,1200,181,1320,154.7L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#FFF", "fill-opacity" => "1"}
-
   .landing-section__content
     %h3 Styling
 
@@ -145,9 +139,6 @@
         }
 
 .landing-section
-  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,128L120,154.7C240,181,480,235,720,256C960,277,1200,267,1320,261.3L1440,256L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#db6a41", "fill-opacity" => "1"}
-
   .landing-section__content
     %h3 Data Management
 
@@ -201,9 +192,6 @@
         }
 
 .landing-section.landing-section--inverse.landing-section--orange
-  %svg.wave{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,256L120,240C240,224,480,192,720,197.3C960,203,1200,245,1320,266.7L1440,288L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z", :fill => "#FFF", "fill-opacity" => "1"}
-
   .landing-section__content
     %h3 Routing
 
@@ -320,3 +308,55 @@
             }
           }
         }
+
+.landing-batteries
+  .landing-batteries__content
+    %h3 Batteries Included
+
+    %p Mint has all the features you need, built in.
+
+    .landing-batteries__grid
+      %div
+        = octicon "browser"
+        %span Development Server
+
+      %div
+        = octicon "code"
+        %span Code Formatter
+
+      %div
+        = octicon "zap"
+        %span Test Runner
+
+      %div
+        = octicon "archive"
+        %span Package Manager
+
+      %div
+        = octicon "book"
+        %span Documentation Generator
+
+      %div
+        = octicon "package"
+        %span Build Tool
+
+.landing-cta
+  %h3
+    What are you waiting for?
+
+  %p
+    Getting started with Mint is easy!
+
+  .btn-group
+    %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
+      = octicon 'terminal', height: 22
+      Try
+
+    %a.btn.btn--big.btn--secondary(href="/install")
+      = octicon 'cloud-download', height: 22
+      Install
+
+    %a.btn.btn--big.btn--tertiary(href="/guide")
+      = octicon 'book', height: 22
+
+      Learn
