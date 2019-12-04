@@ -35,6 +35,11 @@ $tertiary: #6761a8;
   min-width: 0;
 }
 
+html {
+  scrollbar-color: $primary #DDD;
+  scrollbar-width: thin;
+}
+
 body {
   font-family: Open Sans;
   flex-direction: column;
@@ -47,6 +52,7 @@ body {
 }
 
 article {
+  min-height: calc(100vh - 100px);
   flex: 1;
 }
 
