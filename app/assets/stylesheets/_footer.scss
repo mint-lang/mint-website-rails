@@ -15,10 +15,35 @@
     max-width: 1620px;
     margin: 0 auto;
 
+    grid-template-columns: 1fr minmax(600px, 1fr);
+    grid-gap: 100px;
+    display: grid;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: 1fr;
+      grid-gap: 60px;
+    }
+  }
+
+  &__infos {
+    align-self: center;
+    font-size: 14px;
+
+    p {
+      line-height: 1.75;
+      margin: 20px 0;
+      color: #444;
+    }
+
+    span {
+      color: #777;
+    }
+  }
+
+  &__columns {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 40px;
     display: grid;
-
   }
 
   &__column {

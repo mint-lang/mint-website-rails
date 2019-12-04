@@ -1,53 +1,65 @@
 .footer
   .footer__content
-    .footer__column
-      %strong Site
+    .footer__infos
+      = render partial: 'shared/logo', locals: { size: 25 }
 
-      = link_to root_path do
-        = octicon 'home'
-        Home
+      %p
+        Mint aims to deliver developer happiness and productivity by offering a
+        set of tools like build tool, code formatter, documentation generator,
+        playground and package manager.
 
-      = link_to 'https://sandbox.mint-lang.com' do
-        = octicon 'terminal'
-        Try
+      %span
+        Copyright © 2020 Mint. All rights reserved.
 
-      = link_to install_path do
-        = octicon 'cloud-download'
-        Install
+    .footer__columns
+      .footer__column
+        %strong Site
 
-      = link_to guide_path do
-        = octicon 'book'
-        Guide
+        = link_to root_path do
+          = octicon 'home'
+          Home
 
-      = link_to packages_path do
-        = octicon 'archive'
-        Packages
+        = link_to 'https://sandbox.mint-lang.com' do
+          = octicon 'terminal'
+          Try
 
-    .footer__column
-      %strong Source
+        = link_to install_path do
+          = octicon 'cloud-download'
+          Install
 
-      %a(href="https://github.com/mint-lang/mint" target="_blank")
-        = octicon 'mark-github'
-        Github
+        = link_to guide_path do
+          = octicon 'book'
+          Guide
 
-      %a(href="https://github.com/mint-lang/mint/releases" target="_blank")
-        = octicon 'tag'
-        Releases
+        = link_to packages_path do
+          = octicon 'archive'
+          Packages
 
-    .footer__column
-      %strong Community
+      .footer__column
+        %strong Source
 
-      %a(href="https://gitter.im/mint-lang/Lobby" target="_blank")
-        = render partial: 'icons/gitter'
-        Gitter
+        %a(href="https://github.com/mint-lang/mint" target="_blank")
+          = octicon 'mark-github'
+          Github
 
-      %a(href="https://spectrum.chat/mint-lang" target="_blank")
-        = render partial: 'icons/spectrum'
-        Spectrum
+        %a(href="https://github.com/mint-lang/mint/releases" target="_blank")
+          = octicon 'tag'
+          Releases
 
-    .footer__column
-      %strong Social
+      .footer__column
+        %strong Community
 
-      %a(href="https://twitter.com/mint_lang" target="_blank")
-        = render partial: 'icons/twitter'
-        Twitter
+        %a(href="https://gitter.im/mint-lang/Lobby" target="_blank")
+          = render partial: 'icons/gitter'
+          Gitter
+
+        %a(href="https://spectrum.chat/mint-lang" target="_blank")
+          = render partial: 'icons/spectrum'
+          Spectrum
+
+      .footer__column
+        %strong Social
+
+        %a(href="https://twitter.com/mint_lang" target="_blank")
+          = render partial: 'icons/twitter'
+          Twitter
