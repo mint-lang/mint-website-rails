@@ -1,9 +1,4 @@
 .install {
-  a {
-    text-decoration: none;
-    color: $primary;
-  }
-
   &__grid {
     grid-template-columns: 1fr 1fr;
     grid-gap: 30px 60px;
@@ -13,6 +8,13 @@
   &__section {
     &:nth-child(2) {
       grid-row: span 2;
+    }
+  }
+
+  &__instructions {
+    a {
+      text-decoration: none;
+      color: $primary;
     }
   }
 

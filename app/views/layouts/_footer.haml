@@ -1,0 +1,53 @@
+.footer
+  .footer__content
+    .footer__column
+      %strong Site
+
+      = link_to root_path do
+        = octicon 'home'
+        Home
+
+      = link_to 'https://sandbox.mint-lang.com' do
+        = octicon 'terminal'
+        Try
+
+      = link_to install_path do
+        = octicon 'cloud-download'
+        Install
+
+      = link_to guide_path do
+        = octicon 'book'
+        Guide
+
+      = link_to packages_path do
+        = octicon 'archive'
+        Packages
+
+    .footer__column
+      %strong Source
+
+      %a(href="https://github.com/mint-lang/mint" target="_blank")
+        = octicon 'mark-github'
+        Github
+
+      %a(href="https://github.com/mint-lang/mint/releases" target="_blank")
+        = octicon 'tag'
+        Releases
+
+    .footer__column
+      %strong Community
+
+      %a(href="https://gitter.im/mint-lang/Lobby" target="_blank")
+        = render partial: 'icons/gitter'
+        Gitter
+
+      %a(href="https://spectrum.chat/mint-lang" target="_blank")
+        = render partial: 'icons/spectrum'
+        Spectrum
+
+    .footer__column
+      %strong Social
+
+      %a(href="https://twitter.com/mint_lang" target="_blank")
+        = render partial: 'icons/twitter'
+        Twitter

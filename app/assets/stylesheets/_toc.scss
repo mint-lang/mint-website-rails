@@ -1,0 +1,43 @@
+.toc {
+  border-right: 1px solid #EEE;
+  padding-right: 50px;
+  margin-right: 50px;
+
+  &__spacer {
+    margin-top: 20px;
+  }
+
+  &__page {
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    color: #333;
+
+    margin-top: 5px;
+
+    &.active,
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__pages > &__pages {
+    padding-left: 15px;
+    margin-left:5px;
+    margin-top: 7px;
+    border-left: 1px dashed #CCC;
+  }
+
+  &__section {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    margin-bottom: 5px;
+
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}

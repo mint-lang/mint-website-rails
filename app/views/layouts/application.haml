@@ -1,18 +1,18 @@
 !!!
-%html
+%html(lang="en")
   %head
     = display_meta_tags site: 'Mint',
                         keywords: %w(mint mint-lang packages),
-                        description: 'A refreshing programming language for the modern web.',
+                        description: 'The programming language for writing single page applications.',
                         canonical: request.path,
                         charset: 'utf-8'
+
     = csrf_meta_tags
 
     %meta{ content: 'width=device-width; initial-scale=1.0; maximum-scale=1.0;',
            name: 'viewport' }
 
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:400,600,700|Source+Code+Pro:400,600|M+PLUS+Rounded+1c:700&display=swap'
-    = stylesheet_link_tag 'https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'
     = stylesheet_link_tag 'application', media: 'all'
 
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css'
@@ -41,7 +41,7 @@
 
         .nav__separator
 
-        = active_link_to '/guide', class: :nav__item do
+        = active_link_to guide_path, class: :nav__item do
           = octicon "book"
           %span Learn
 
@@ -65,9 +65,7 @@
     %article
       = yield
 
-    .footer
-      .footer__content
-
+    = render partial: 'layouts/footer'
 
     = javascript_include_tag 'application'
 

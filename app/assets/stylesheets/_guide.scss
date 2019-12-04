@@ -1,0 +1,13 @@
+.guide {
+  grid-template-columns: minmax(330px, 1fr) 900px 1fr;
+  padding-bottom: 100px;
+  display: grid;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .guide-content {
+    @extend %content;
+  }
+}

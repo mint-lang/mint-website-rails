@@ -1,0 +1,30 @@
+.page {
+  padding: 40px 60px;
+  max-width: 1620px;
+  margin: 0 auto;
+
+  &__title {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  &__description {
+    margin: 0;
+    margin-bottom: 40px;
+
+    color: #666;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 40px;
+  }
+
+  @media (max-width: 960px) {
+    padding: 20px;
+    padding-bottom: 60px;
+  }
+}

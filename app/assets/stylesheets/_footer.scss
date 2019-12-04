@@ -1,14 +1,50 @@
 .footer {
-  flex-direction: column;
-  display: flex;
-  color: #EEE;
+  background: linear-gradient(rgba(#FFF,0.35), rgba(#FFF,0.35)), image-url('interlaced.png');
+  border-top: 1px solid #EEE;
+  padding: 60px;
+
+  @media (max-width: 800px) {
+    padding: 30px;
+  }
 
   a {
     color: inherit;
   }
 
   &__content {
-    background: #333;
-    height: 300px;
+    max-width: 1620px;
+    margin: 0 auto;
+
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 40px;
+    display: grid;
+
+  }
+
+  &__column {
+    line-height: 1.7;
+
+    strong {
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      align-items: center;
+      display: flex;
+
+      svg {
+        margin-right: 7px;
+        height: 16px;
+        width: 16px;
+
+        fill: currentColor;
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
   }
 }
