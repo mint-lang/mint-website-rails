@@ -3,6 +3,20 @@
   padding-right: 50px;
   margin-right: 50px;
 
+  @media (max-width: 1200px) {
+    background: white;
+    position: fixed;
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    top: 0;
+
+    transform: translateX(-330px);
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 0;
+  }
+
   &__spacer {
     margin-top: 20px;
   }
