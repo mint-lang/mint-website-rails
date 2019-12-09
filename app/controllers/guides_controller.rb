@@ -9,8 +9,6 @@ class GuidesController < ApplicationController
       index =
         File.join(Rails.root, 'app', 'views', 'guides', 'pages', params[:page], "index.haml")
 
-      puts index
-
       if File.exist?(index)
         @page = 'guides/pages/' + params[:page] + '/index'
       else

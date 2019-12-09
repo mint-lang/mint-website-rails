@@ -18,6 +18,14 @@ Rails.application.routes.draw do
       to: 'packages#recent',
       as: :recently_updated
 
+  get '/blog',
+      to: 'blog#index',
+      as: :blog
+
+  get '/blog/:slug',
+      to: 'blog#post',
+      as: :blog_post
+
   get '/packages',
       to: 'packages#index',
       as: :packages

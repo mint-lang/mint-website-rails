@@ -1,5 +1,6 @@
 %content {
   line-height: 1.75;
+  font-size: 18px;
   color: #444;
 
   > *:first-child {
@@ -8,6 +9,10 @@
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
   }
 
   h1, h2, h3, h4, h5 {
@@ -24,6 +29,13 @@
     border-bottom: 4px solid rgba(0,0,0,0.1);
     padding-bottom: 0.3em;
     font-size: 2em;
+
+    small {
+      font-weight: 500;
+      font-size: 14px;
+      display: block;
+      color: #999;
+    }
   }
 
   h2 {

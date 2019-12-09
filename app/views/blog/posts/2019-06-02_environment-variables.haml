@@ -1,0 +1,94 @@
+%p
+  In any application, being able to define variables which are
+  %a(href="https://en.wikipedia.org/wiki/Deployment_environment") deployment environment
+  specific is a necessity. Let's say you might want to connect to a local API
+  endpoint during development and remote API on production.
+
+%h2 Defining environment variables
+
+%p
+  Mint uses
+  %code .env
+  files to store variables specific to the environment, which usually looks like
+  this:
+
+%pre
+  %code.plaintext
+    ENDPOINT=http://localhost:3001
+    WSENDPOINT=ws://localhost:3001
+    GATRACKINGID=google-analytics-tracking-id
+
+%p
+  Here we declared three variables
+  %code WSENDPOINT
+  ,
+  %code ENDPOINT
+  and
+  %code GATRACKINGID
+  that we want to use in our code.
+
+%h2 Using environment variables
+
+%p
+  In Mint you can use the at (
+  %code @
+  symbol followed by the name of the variable to refer to it:
+
+%pre
+  %code
+    :escaped
+      module Main {
+        fun render : Html {
+          <div>
+           <{ @ENDPOINT }>
+          </div>
+        }
+      }
+
+%p
+  Essentially the value of the variable will be inlined during compilation with the type of
+  = succeed "." do
+    %code String
+
+%p
+  In an other example you can see how to use it when making a request:
+
+%pre
+  %code
+    :escaped
+      ...
+
+      response =
+       @ENDPOINT + "/api/planets"
+       |> Http.get()
+       |> Http.send()
+
+      ...
+
+%p
+  If an environment variable is not defined in the application, then a nice error message is shown:
+
+= image_tag 'environment_variable_error.png'
+
+%h2
+  Using a different
+  %code .env
+  file
+
+%p
+  By default the
+  %code .env
+  file in the root of the application is loaded, but you can specify a
+  different file by using the
+  %code --env
+  (or
+  %code -e
+  ) flag like this:
+
+%pre
+  %code.plaintext
+    :escaped
+      mint build --env .env.production
+
+%p
+  That's it for today, thank you for reading 🙏

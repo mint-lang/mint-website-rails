@@ -19,6 +19,11 @@
     &:hover {
       color: $primary;
     }
+
+    small {
+      display: block;
+      color: #AAA;
+    }
   }
 
   &__pages > &__pages {

@@ -1,0 +1,20 @@
+.page
+  .guide
+    .toc
+      .toc__section
+        Posts
+
+      .toc__pages
+        - @posts.each do |post|
+          = active_link_to blog_post_path(slug: post[:slug]), class: :toc__page, active: :exact do
+            = post[:title]
+            %small
+              = post[:formatted_date]
+
+    .guide-content
+      %h1.page__title
+        = @post[:title]
+        %small
+          = @post[:formatted_date]
+
+      = render template: @post[:path], layout: false
