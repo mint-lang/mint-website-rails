@@ -1,0 +1,201 @@
+%p
+  In this post I will show you how to use Components 🙂
+
+%p
+  Components are the main building blocks of an application because they provide
+
+  = succeed "," do
+    %a(href="https://en.wikipedia.org/wiki/Object_composition") composition
+
+  can have their own state, their own styles, connect to a Store to use some
+  global state and more...
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    If you are familiar with
+    %a(href="https://reactjs.org/docs/react-component.html")
+      class components in React
+    this will feel familiar.
+
+%h2 Defining a Component
+
+%p
+  The minimal definition of a Component looks like this:
+
+%pre
+  %code
+    :escaped
+      component MyComponent {
+        fun render : Html {
+          <div>
+            "Hello World"
+          </div>
+        }
+      }
+
+%p
+  The
+  %code component
+  keyword is used to define a component (the name must start with an uppercase
+  letter).
+
+%p
+  In the body of the component a
+  %coce render
+  function must be defined (you will get a nice compiler error if it is not
+  there) which must return HTML or a string or an array of either (the type
+  should match one of
+  %code Html
+  ,
+  %code String
+  ,
+  %code Array(Html)
+  or
+  %code Array(String)
+  )
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    You might notice there is no
+    %code return
+    keyword, in Mint everything is an expression like the body of a function
+    which is returned implicitly.
+
+%h2 Composition
+
+%p
+  Now that we have our component we want to use it so we will add it to the
+  %code Main
+  component (it is the component which gets rendered by the application, you can
+  think of it as the
+  %b root component
+  ).
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <MyComponent/>
+        }
+      }
+
+%p
+  As you can see it's similar to an HTML tag but instead of an lowercase tag, the
+  name of the component is used.
+
+%p
+  Since
+  %code Main
+  is a component, this shows that components can be composed in each other, even
+  recursively.
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    As you can see the component is
+    %b self closing
+    which means it does not have a closing tag, it can have a closing tag but
+    it's not necessary if it does not have children.
+
+%h2 Properties
+
+%p
+  Just like HTML tags, components can have properties (or attributes if you like
+  that word better).
+
+%p
+  Properties can be defined in the body of a component with the
+  %code property
+  keyword:
+
+%pre
+  %code
+    :escaped
+      component MyComponent {
+        property target : String = "Word"
+
+        fun render : Html {
+         <div>
+           "Hello "
+           <{ target }>
+         </div>
+        }
+      }
+
+%p
+  Properties must have a
+  %b type
+  and a
+  %b default value
+  it is so for the compiler can help you when they are used.
+
+%p
+  You can reference a property inside the component with it's name, like in the HTML expression inside the
+  %code div
+  (
+  %code
+    :escaped
+      <{ ... }>
+  is an HTML expression).
+
+%p
+  You can pass values to the component from it's parent like you would do with
+  an HTML attribute (strings can be the same, other values use brackets)
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <div>
+            <MyComponent target="Joe"/>
+            <MyComponent target={"Bill"}/>
+          </div>
+        }
+      }
+
+%h2 Styles
+
+%p
+  A component can have it's own scoped styles which are written using CSS and
+  can be attached to HTML tags:
+
+%pre
+  %code
+    :escaped
+      component MyComponent {
+        property target : String = "Word"
+
+        style target {
+         font-style: italic;
+         font-weight: bold;
+        }
+
+        fun render : Html {
+         <div>
+           "Hello "
+           <span::target>
+             <{ target }>
+           </span>
+         </div>
+        }
+      }
+
+%p
+  A style is defined by the
+  %code style
+  keyword and it's identifier. The identifier can be used to attach the styles
+  to an element using the
+  %code ::
+  symbol.
+
+%p
+  In the example above we attached the style named
+  %code target
+  to the span which contains the target property.
+
+%p
+  That's it for this post, thank you for reading 🙏
