@@ -61,3 +61,32 @@ article {
   scrollbar-color: #878d99 #282c34;
   scrollbar-width: thin;
 }
+
+.posts-small {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  display: grid;
+}
+
+.post-small {
+  background: #F6F6F6;
+  border-radius: 4px;
+  display: block;
+  padding: 20px;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    display: block;
+    color: inherit;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  small {
+    color: #999;
+  }
+}

@@ -1,0 +1,174 @@
+%p
+  In Mint styling is built in and handled at the language level.
+
+%p
+  You can add styles to HTML elements in a component using the
+  %code style
+  keyword:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        style base {
+          /* You can use standard CSS here... */
+          background-color: red;
+          color: white;
+        }
+
+        fun render : Html {
+          <div::base>
+            "I'm white on red!"
+
+            <span>"Yey!"</span>
+          </div>
+        }
+      }
+
+%p
+  The
+  %code base
+  is the identifier of the style which can be used to attach it to an HTML
+  element with two colons (
+  %code ::
+  ) after name of the opening tag (
+  %code
+    :escaped
+      <div::base>
+  ).
+
+%p
+  In the example we added the style
+  %code base
+  to our div.
+
+%h2 Pseudo classes and elements
+
+%p
+  There are many instances where you need to style an elements states (
+  %code :hover
+  ,
+  %code :active
+  , etc...) or it's pseudo elements (
+  %code ::before
+  and
+  %code ::after
+  ).
+
+%p
+  You can do that in a style by adding a new block whith a
+  %code &
+  prefix (just like the parent selector in
+  %a(href="https://sass-lang.com/documentation/style-rules/parent-selector")
+    sass
+  but limited):
+
+%pre
+  %code
+    :escaped
+      style base {
+        background-color: red;
+        color: white;
+
+        &::before {
+          content: "Hello I'm blue!";
+          color: blue;
+        }
+      }
+
+%p
+  The style child elements just do it like you would in sass:
+
+%pre
+  %code
+    :escaped
+      style base {
+        background-color: red;
+        color: white;
+
+        span {
+          font-weight: bold;
+        }
+      }
+
+%h2 Media Queries
+
+%p
+  Mint supports media queries in style blocks (with the same syntax) to allow
+  for responsive design:
+
+%pre
+  %code
+    :escaped
+      style base {
+        background-color: red;
+        color: white;
+
+        @media (max-width: 600px) {
+          font-style: italic;
+        }
+      }
+
+%h2 Interpolation
+
+%p
+  In an interactive application you want to style things depending on some
+  state. In Mint you can use interpolation
+  %code \#{...}
+  in CSS values to get data from the component:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        state color : String = "red"
+
+        style base {
+          color: \#{color};
+        }
+
+        fun handleClick : Promise(Never, Void) {
+          if (color == "red") {
+            next { color = "blue" }
+          } else {
+            next { color = "red" }
+          }
+        }
+
+        fun render : Html {
+          <div::base onClick={handleClick}>
+            <{ "I'm " + color + "!" }>
+          </div>
+        }
+      }
+
+%p
+  In the example we use the
+  %code color
+  state to style the element, when clicking on it we toggle between
+  %code red
+  and
+  %code blue
+  \.
+
+%p
+  Multiple interpolations can be used in the same value, for example, if I have a
+  %code top
+  and a
+  %code left
+  state we can use them to set the
+  %code transform
+  property:
+
+%pre
+  %code
+    :escaped
+      state left : Number = 100
+      state top : Number = 100
+
+      style base {
+        transform: translate(\#{left}px, \#{top}px) /* translate(100px, 100px) */
+      }
+
+%p
+  That's it for today, thank you for reading 🙏

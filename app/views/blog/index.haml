@@ -4,8 +4,9 @@
   %p.page__description
     Here you can find announcements for new releases, some interesting use cases, and guides on how to use the language.
 
-  .post-small
+  .posts-small
     - @posts.each do |post|
-      = link_to post[:title], blog_post_path(slug: post[:slug])
-      %small
-        = post[:formatted_date]
+      .post-small
+        = link_to post[:title], blog_post_path(slug: post[:slug])
+        %small
+          = post[:formatted_date]

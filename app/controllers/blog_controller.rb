@@ -8,7 +8,7 @@ class BlogController < ApplicationController
     dir =
       File.join(Rails.root, 'app', 'views', 'blog', 'posts', "*#{params[:slug]}.haml")
 
-    file = Dir.glob(dir).first
+    file = Dir.glob(dir, File::FNM_CASEFOLD).first
 
     if file
       @post = build_post(file)
@@ -26,10 +26,10 @@ class BlogController < ApplicationController
 
     {
       formatted_date: parsed.strftime("%A, %B #{parsed.day.ordinalize}, %Y"),
-      title: slug.split('-').map(&:capitalize).join(' '),
+      title: slug.split('-').join(' '),
       path: "blog/posts/#{File.basename(path)}",
+      slug: slug.downcase,
       date: parsed,
-      slug: slug
     }
   end
 

@@ -1,0 +1,349 @@
+%p
+  In this post I will show you how to make
+  %b HTTP
+  requests to an API 🙂
+
+%h2 The Code
+
+%p
+  This is the full source code to fetch planets from the
+  %a(href="https://swapi.co") Star Wars API
+  and display it in a table.
+
+%pre
+  %code
+    :escaped
+      record Planet {
+        population : String,
+        gravity : String,
+        climate : String,
+        name : String,
+      }
+
+      record Data {
+        results : Array(Planet),
+        count : Number,
+      }
+
+      enum Status {
+        Initial
+        Loading
+        Error(String)
+        Ok(Data)
+      }
+
+      store StarWars {
+        state status : Status = Status::Initial
+
+        fun load : Promise(Never, Void) {
+          sequence {
+            next { status = Status::Loading }
+
+            response =
+              "https://swapi.co/api/planets"
+              |> Http.get()
+              |> Http.send()
+
+            object =
+              response.body
+              |> Json.parse()
+              |> Maybe.toResult("")
+
+            decodedResults =
+              decode object as Data
+
+            next { status = Status::Ok(decodedResults) }
+          } catch Http.ErrorResponse => error {
+            next { status = Status::Error("Something went wrong with the request.") }
+          } catch Object.Error => error {
+            next { status = Status::Error("The data is not what is expected.") }
+          } catch String => error {
+            next { status = Status::Error("Invalid JSON data.") }
+          }
+        }
+      }
+
+      routes {
+        * {
+          StarWars.load()
+        }
+      }
+
+      component Main {
+        connect StarWars exposing { status }
+
+        fun render : Html {
+          case (status) {
+            Status::Initial => <div></div>
+            Status::Loading => <div>"Loading..."</div>
+            Status::Error message => <div><{ message }></div>
+            Status::Ok data =>
+              <table>
+                <tr>
+                  <th>"Name"</th>
+                  <th>"Climate"</th>
+                  <th>"Gravity"</th>
+                  <th>"Population"</th>
+                </tr>
+
+                for (planet of data.results) {
+                  <tr>
+                    <td><{ planet.name }></td>
+                    <td><{ planet.climate }></td>
+                    <td><{ planet.gravity }></td>
+                    <td><{ planet.population }></td>
+                  </tr>
+                }
+            </table>
+          }
+        }
+      }
+
+%p
+  I will now explain it to you block by block.
+
+%h2 Modelling the data
+
+%p
+  In any typed programming language, the structure of data must be defined somehow:
+
+%pre
+  %code
+    :escaped
+      record Planet {
+        population : String,
+        gravity : String,
+        climate : String,
+        name : String,
+      }
+
+      record Data {
+        results : Array(Planet),
+        count : Number,
+      }
+
+      enum Status {
+        Initial
+        Loading
+        Error(String)
+        Ok(Data)
+      }
+
+%p
+  In Mint there are two constructs for defining data:
+
+%ul
+  %li
+    %code record
+    \- which defines an object with fixed named key / value pairs
+  %li
+    %code enum
+    \- which defines an
+    %a(href="https://en.wikipedia.org/wiki/Algebraic_data_type") ADT
+    \- a type which represents a fix set of possibilities
+
+%p
+  In our example
+  %code Planet
+  and
+  %code Data
+  defines the data that comes from the API and the
+  %code Status
+  defines the possible states of the request.
+
+%h2 Defining the state
+
+%p
+  In Mint, global state is stored in a
+  %b store
+  which is globally accessible and basically works like a Component where
+  state is concerned. (
+  %code state
+  and
+  %code next
+  keywords
+  %a(href="/blog/events-and-state-of-components")
+    from the last article
+  )
+
+%pre
+  %code
+    :escaped
+      store StarWars {
+        state status : Status = Status::Initial
+
+        fun load : Promise(Never, Void) {
+          ...
+        }
+      }
+
+%h2 Handling the request
+
+%p
+  The handling of an HTTP request is done in a
+  %code sequence
+  block, which runs each expression in it
+  %b asynchronously
+  in sequence in the order they are written.
+
+%p
+  What this means that it will
+  %b await all promises
+  %code Promise(error, value)
+  and unbox the
+  %code value
+  in a variable for subsequent use or raise the
+  %code error
+  which is handled in a
+  %code catch
+  block.
+
+%pre
+  %code
+    :escaped
+      sequence {
+        next { status = Status::Loading }
+
+        response =
+          "https://swapi.co/api/planets"
+          |> Http.get()
+          |> Http.send()
+
+        object =
+          response.body
+          |> Json.parse()
+          |> Maybe.toResult("")
+
+        decodedResults =
+          decode object as Data
+
+        next { status = Status::Ok(decodedResults) }
+      } catch Http.ErrorResponse => error {
+        next { status = Status::Error("Something went wrong with the request.") }
+      } catch Object.Error => error {
+        next { status = Status::Error("The data is not what is expected.") }
+      } catch String => error {
+        next { status = Status::Error("Invalid JSON data.") }
+      }
+
+%p
+  The
+  %code Http
+  module contains functions to make
+  %code Http.get(url : String)
+  and send
+  %code Http.send(request : Http.Request)
+  HTTP requests.
+
+%p
+  The next part is to parse the
+  %code JSON
+  content into an
+  %code Object
+  and then
+  %code decode
+  it to the type we defined earlier, then we set the
+  %code status
+  to
+  %code Status::Ok
+  or
+  %code Status::Error
+  according to what happened.
+
+%h2 Routing
+
+%p
+  Mint has a built in system for handling routes which will be featured in a different article.
+
+%p
+  In our case we define the
+  %code *
+  route which handles all non-handled routes, in the route we just
+  load the data, which in practice means when the page is loaded:
+
+%pre
+  %code
+    :escaped
+      routes {
+        * {
+          StarWars.load()
+        }
+      }
+
+%h2 Displaying the data
+
+%p
+  The last part is to display the data which we will do in the
+  %code Main
+  component:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        connect StarWars exposing { status }
+
+        fun render : Html {
+          case (status) {
+            Status::Initial => <div></div>
+            Status::Loading => <div>"Loading..."</div>
+            Status::Error message => <div><{ message }></div>
+            Status::Ok data =>
+              <table>
+                <tr>
+                  <th>"Name"</th>
+                  <th>"Climate"</th>
+                  <th>"Gravity"</th>
+                  <th>"Population"</th>
+                </tr>
+
+                for (planet of data.results) {
+                  <tr>
+                    <td><{ planet.name }></td>
+                    <td><{ planet.climate }></td>
+                    <td><{ planet.gravity }></td>
+                    <td><{ planet.population }></td>
+                  </tr>
+                }
+            </table>
+          }
+        }
+      }
+
+%p
+  To get the data from the store, first we need to connect the component to it
+  using the
+  %code connect
+  keyword and
+  %code expose
+  the
+  %code status
+  state so it can be used in the scope of the component.
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    Connecting a component to a store makes it so that the component re-renders
+    when the data in the store changes.
+
+%p
+  Then based on the
+  %code status
+  we render different content:
+
+%ul
+  %li
+    %code Status::Initial
+    \- we display nothing
+  %li
+    %code Status::Loading
+    \- we display a loading message
+  %li
+    %code Status::Error message
+    \- we display the error message
+  %li
+    %code Status::Ok data
+    \- we display the data
+
+%p
+  And there you have it, thank you for reading 🙏
