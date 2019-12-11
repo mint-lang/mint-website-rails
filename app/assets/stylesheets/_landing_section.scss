@@ -8,6 +8,9 @@
   position: relative;
   min-height: 85vh;
 
+  padding: 100px 60px;
+  margin: 0 auto;
+
   grid-template-columns: minmax(0, 800px) min-content;
   justify-content: center;
   align-items: center;
