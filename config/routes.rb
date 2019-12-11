@@ -52,8 +52,15 @@ Rails.application.routes.draw do
         version: /\d+\.\d+\.\d+/,
         entity: /.*/
       },
-      as: :repo_entity
+      as: :_repo_entity
 
   get '/api',
-      to: 'versions#core'
+      to: 'versions#api'
+
+  get '/api/:category/:entity',
+      to: 'versions#api_entity',
+      constraints: {
+        entity: /.*/
+      },
+      as: :api_entity
 end

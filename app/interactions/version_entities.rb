@@ -1,5 +1,6 @@
 class VersionEntities < ActiveInteraction::Base
   include Rails.application.routes.url_helpers
+  include ApplicationHelper
 
   object :version, class: Version
   string :current, default: nil

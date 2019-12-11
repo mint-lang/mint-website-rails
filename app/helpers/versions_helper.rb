@@ -4,7 +4,6 @@ class Array
   end
 end
 
-
 module VersionsHelper
   def components
     @version

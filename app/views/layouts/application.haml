@@ -32,39 +32,27 @@
           = octicon "terminal"
           %span Try
 
-        .nav__separator
-
         = active_link_to install_path,
                   class: :nav__item,
                   active: :exact do
           = octicon "cloud-download"
           %span Install
 
-        .nav__separator
-
         = active_link_to guide_path, class: :nav__item do
           = octicon "book"
           %span Learn
-
-        .nav__separator
 
         = active_link_to blog_path, class: :nav__item do
           = octicon "bookmark"
           %span Blog
 
-        .nav__separator
-
-        = link_to '/packages/mint-lang/core', class: :nav__item do
+        = active_link_to '/api', class: :nav__item do
           = octicon "repo"
           %span Api
-
-        .nav__separator
 
         = active_link_to packages_path, class: :nav__item do
           = octicon "archive"
           %span Packages
-
-        .nav__separator
 
         = link_to 'https://github.com/mint-lang/mint',
                   class: :nav__item,

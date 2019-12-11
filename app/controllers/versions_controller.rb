@@ -4,6 +4,23 @@ class VersionsController < ApplicationController
   before_action :find_version, only: [:version, :entity]
   before_action :set_title
 
+  def api
+    params[:author] = 'mint-lang'
+    params[:repo] = 'core'
+
+    show
+  end
+
+  def api_entity
+    params[:author] = 'mint-lang'
+    params[:version] = '1.0.0'
+    params[:repo] = 'core'
+
+    find_version
+
+    entity
+  end
+
   def entity
     @category = params[:category]
     @entity = params[:entity]
