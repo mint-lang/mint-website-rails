@@ -2,15 +2,14 @@
 #
 # Table name: versions
 #
-#  id             :integer          not null, primary key
-#  package_id     :integer
-#  version        :string
-#  package_json   :json
-#  documentation  :json
-#  readme         :text
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  effect_manager :boolean
+#  id            :bigint           not null, primary key
+#  package_id    :bigint
+#  version       :string
+#  readme        :text
+#  mint_json     :json
+#  documentation :json
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Version < ActiveRecord::Base
@@ -23,6 +22,10 @@ class Version < ActiveRecord::Base
 
   def to_param
     version
+  end
+
+  def name
+    mint_json['name']
   end
 
   def description

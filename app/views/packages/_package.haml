@@ -5,12 +5,12 @@
     .package__row__left
       .package__name
         = link_to repo_root_path(package.author, package.repo) do
-          = search_highlighted package.repository
+          = search_highlighted version.name
           .package__latest_version
             = version.version
 
       .package__summary
-        = search_highlighted version.mint_json['description']
+        = search_highlighted version.description
 
   .package__infos
     = link_to repo_author_path(package.author) do

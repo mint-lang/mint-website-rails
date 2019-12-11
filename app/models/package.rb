@@ -2,12 +2,12 @@
 #
 # Table name: packages
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  repository :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
 #  stars      :integer
 #  pushed_at  :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Package < ActiveRecord::Base

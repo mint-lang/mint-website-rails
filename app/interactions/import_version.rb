@@ -72,11 +72,7 @@ class ImportVersion < ActiveInteraction::Base
         end
       end
 
-      if package.folder
-        yield File.join(dir, package.folder)
-      else
-        yield dir
-      end
+      yield dir
     end
   end
 

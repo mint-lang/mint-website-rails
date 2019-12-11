@@ -60,7 +60,10 @@
 
         .nav__separator
 
-        = link_to '', class: :nav__item, active: :exact do
+        = link_to 'https://github.com/mint-lang/mint',
+                  class: :nav__item,
+                  target: '_blank',
+                  active: :exact do
           = octicon "mark-github"
           %span Github
 
