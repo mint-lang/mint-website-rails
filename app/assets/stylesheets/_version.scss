@@ -13,11 +13,25 @@
     color: #333;
 
     align-items: center;
+    font-weight: 600;
     display: flex;
+    height: 20px;
+
+    margin: 7px 0;
+
+    .type-badge {
+      flex: 0 0 auto;
+    }
+
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
 
     &.active,
     &:hover {
-      color: $link;
+      color: $primary;
     }
   }
 }

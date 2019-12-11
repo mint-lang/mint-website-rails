@@ -54,4 +54,6 @@ Rails.application.routes.draw do
       },
       as: :repo_entity
 
+  get '/api',
+      to: 'versions#core'
 end

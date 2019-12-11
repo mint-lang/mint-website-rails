@@ -34,6 +34,16 @@
       color: $primary;
     }
 
+    div {
+      align-items: center;
+      display: flex;
+    }
+
+    svg {
+      fill: currentColor;
+      margin-right: 7px;
+    }
+
     small {
       display: block;
       color: #AAA;

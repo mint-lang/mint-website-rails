@@ -15,11 +15,13 @@ class Package < ActiveRecord::Base
   has_one :latest_version, class_name: :Version
 
   scope :recent, lambda {
-    order(pushed_at: :desc)
+    initial
+      .order(pushed_at: :desc)
   }
 
   scope :search, lambda {
-    joins(:versions)
+    initial
+      .joins(:versions)
       .includes(:latest_version)
       .where("
         version =
@@ -30,6 +32,10 @@ class Package < ActiveRecord::Base
         ", "string_to_array(version, '.')::INT[]")
       .distinct
       .order(stars: :desc)
+  }
+
+  scope :initial, lambda {
+    where("repository != 'mint-lang/core'")
   }
 
   def author

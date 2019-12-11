@@ -2,55 +2,64 @@
 - set_meta_tags description: @version.description
 
 .page
-  %h1.page__title= package.repository
-  %h2.page__description= @version.description
+  .guide.guide--wide
+    .toc
+      .page__package
+        %strong= @version.name
+        %p= @version.description
 
-  .version
-    .version__sidebar
+      .toc__section
+        Search
       .input-search
         = octicon 'search'
-        %input{ "data-id": "version-search", value: params[:search] }
+        %input{ "data-id": "version-search", value: params[:search], placeholder: "Find entities... " }
 
-      %div#sidebar
+      - if package.repository != 'mint-lang/core'
+        .toc__section Basic information
+
+        .toc__pages
+          - if @version == package.latest_version
+            = link_to repo_root_path(package.author, package.repo), class: "toc__page" do
+              %div
+                = octicon "book"
+                README
+          - else
+            = link_to repo_version_path(package.author, package.repo, @version), class: "toc__page" do
+              %div
+                = octicon "book"
+                README
+
+          = link_to "https://github.com/#{package.repository}/tree/#{@version.version}", class: "toc__page" do
+            %div
+              = octicon "mark-github"
+              Source on Github
+
+      .toc__section
+        Entities
+
+      .toc__pages#sidebar
         = render partial: 'sidebar'
 
-      .version__sidebar__title Versions
-      - package.versions.each do |version|
-        - if version == @version
-          .version__tag.version__tag--active
-            = version.version
-        - elsif @entity
-          = link_to version.version,
-                    repo_entity_path(package.author,
-                                     package.repo,
-                                     version.version,
-                                     @category,
-                                     @entity),
-                    class: 'version__tag'
-        - else
-          = link_to version.version,
-                    repo_version_path(package.author, package.repo, version.version),
-                    class: 'version__tag'
+      - if package.repository != 'mint-lang/core'
+        .toc__section Versions
 
-      .version__sidebar__title Basic information
-      .version__infos
-        %div
-          - if @version == package.latest_version
-            = link_to repo_root_path(package.author, package.repo) do
-              %i.ion-clipboard
-              README
-          - else
-            = link_to repo_version_path(package.author, package.repo, @version) do
-              %i.ion-clipboard
-              README
-
-        %div
-          = link_to "https://github.com/#{package.repository}/tree/#{@version.version}" do
-            %i.ion-social-github
-            Browse source on Github
+        .toc__pages
+          - package.versions.each do |version|
+            - if @entity
+              = active_link_to version.version,
+                        repo_entity_path(package.author,
+                                         package.repo,
+                                         version.version,
+                                         @category,
+                                         @entity),
+                        class: 'toc__page'
+            - else
+              = active_link_to version.version,
+                        repo_version_path(package.author, package.repo, version.version),
+                        class: 'toc__page'
 
       - if @version.dependencies.any?
-        .version__sidebar__title Dependencies
+        .toc__section Dependencies
         .version__dependencies
           - @version.dependencies.each do |repo, version|
             - if Package.find_by_repository(repo)
@@ -67,11 +76,8 @@
                 %span
                   = version['constraint']
 
-    .version__content
+    .guide-content
       - if @entity
-        .version__docs
-          %h1= @entity
-          != body_html
-      - else
-        .version__docs
-          != body_html
+        %h1= @entity
+
+      != body_html

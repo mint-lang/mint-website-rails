@@ -15,12 +15,14 @@ class PackagesController < ApplicationController
     else
       @packages =
         Package
+        .initial
         .includes(:latest_version)
         .order(stars: :desc)
         .limit(30)
 
       @recent =
         Package
+        .initial
         .includes(:latest_version)
         .recent
         .limit(30)
@@ -42,6 +44,7 @@ class PackagesController < ApplicationController
 
     @packages =
       Package
+      .initial
       .includes(:latest_version)
       .where('repository ILIKE ?', "#{params[:author]}%")
   end
@@ -51,6 +54,7 @@ class PackagesController < ApplicationController
 
     @packages =
       Package
+        .initial
         .includes(:latest_version)
         .order(stars: :desc)
   end

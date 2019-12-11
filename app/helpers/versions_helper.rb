@@ -44,7 +44,7 @@ module VersionsHelper
       else
         ""
       end
-    else
+    elsif @version.readme
       GitHub::Markup.render('readme.md', @version.readme)
     end
   end

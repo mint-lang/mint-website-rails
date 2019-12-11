@@ -24,6 +24,11 @@ class VersionsController < ApplicationController
 
     find_entities
 
+    unless @version.readme
+      @category = 'modules'
+      @entity = @version.documentation['modules'].first['name']
+    end
+
     respond_to do |format|
       format.html { render :show }
       format.js { render partial: 'sidebar' }

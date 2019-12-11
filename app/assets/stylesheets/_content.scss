@@ -56,7 +56,9 @@
     margin-bottom: 0;
   }
 
-  li > pre {
+  li > pre,
+  li + li,
+  li > ul {
     margin-top: 7px;
   }
 

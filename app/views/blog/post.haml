@@ -7,7 +7,8 @@
       .toc__pages
         - @posts.each do |post|
           = active_link_to blog_post_path(slug: post[:slug]), class: :toc__page, active: :exact do
-            = post[:title]
+            %div
+              = post[:title]
             %small
               = post[:formatted_date]
 

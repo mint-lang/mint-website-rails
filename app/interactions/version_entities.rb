@@ -38,7 +38,7 @@ class VersionEntities < ActiveInteraction::Base
         end
       end
 
-      item[:entities] = entities
+      item[:entities] = entities.sort_by { |item| item[:name] }
 
     end
 

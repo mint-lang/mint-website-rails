@@ -3,6 +3,10 @@
   padding-bottom: 100px;
   display: grid;
 
+  &--wide {
+    grid-template-columns: minmax(400px, 1fr) 900px 1fr;
+  }
+
   @media (max-width: 1330px) {
     grid-template-columns: 300px 1fr;
   }

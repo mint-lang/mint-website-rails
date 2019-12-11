@@ -54,6 +54,12 @@
 
         .nav__separator
 
+        = link_to '/packages/mint-lang/core', class: :nav__item do
+          = octicon "repo"
+          %span Api
+
+        .nav__separator
+
         = active_link_to packages_path, class: :nav__item do
           = octicon "archive"
           %span Packages
@@ -83,7 +89,7 @@
       hljs.registerLanguage('mint',() => {
         console.log(hljs)
         const MINT_CONTAINS = []
-        const MINT_KEYWORDS = 'component store module fun state property next if else sequence parallel style record connect enum routes try catch case where when use for of true false then finally get exposing as decode encode'
+        const MINT_KEYWORDS = 'global component store module fun state property next if else sequence parallel style record connect enum routes try catch case where when use for of true false then finally get exposing as decode encode'
 
          var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
          var TAG_INTERNALS = {
