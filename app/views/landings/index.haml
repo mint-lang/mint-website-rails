@@ -1,18 +1,414 @@
-.landing-hero
-  .landing-hero__left
-    = render partial: 'shared/logo', locals: { size: 40 }
+.landing
+  .landing-hero
+    .landing-hero__left
+      = render partial: 'shared/logo', locals: { size: 40 }
 
-    %h1
-      The programming language for writing single page applications.
+      %h1
+        The programming language for writing single page applications.
 
-    %h2
-      Mint has all the tools you need to write
-      %b error free, easily readable
-      and
-      %b maintainable
-      applications
-      in
-      %b record time.
+      %h2
+        Mint has all the tools you need to write
+        %b error free, easily readable
+        and
+        %b maintainable
+        applications
+        in
+        %b record time.
+
+      .btn-group
+        %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
+          = octicon 'terminal', height: 22
+          Try
+
+        %a.btn.btn--big.btn--secondary(href="/install")
+          = octicon 'cloud-download', height: 22
+          Install
+
+        %a.btn.btn--big.btn--tertiary(href="/guide")
+          = octicon 'book', height: 22
+
+          Learn
+
+    .landing-hero__right
+      %pre.landing-snippet
+        %code.mint
+          :escaped
+            component Counter {
+              state count : Number = 0
+
+              fun increment : Promise(Never, Void) {
+                next { counter = counter + 1 }
+              }
+
+              fun decrement : Promise(Never, Void) {
+                next { counter = counter - 1 }
+              }
+
+              fun render : Html {
+                <div>
+                  <button onClick={decrement}>
+                    "Decrement"
+                  </button>
+
+                  <span>
+                    <{ counter }>
+                  </span>
+
+                  <button onClick={increment}>
+                    "Increment"
+                  </button>
+                </div>
+              }
+            }
+
+  .landing-section.landing-section--green.landing-section--inverse
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    .landing-section__content
+      %h3 Styling
+
+      %hr
+
+      %p
+        In Mint you can
+        %b style elements
+        directly
+        %b with CSS
+        using
+        %code style
+        blocks.
+
+      %p
+        Inside a
+        %code style
+        block you can nest as many
+        %b sub selectors
+        and
+        %b media queries
+        as you like.
+
+      %p
+        Interpolate any
+        %b Mint expressions
+        in any value using the
+        %b interpolation syntax:
+        %code \#{...}
+      %p
+        You can even use
+        %code if
+        and
+        %code case
+        expressions inside any block to
+        %b apply styles conditionally.
+
+      %hr
+
+      %a.btn.btn--neutral(href="/guide/reference/components/styling-elements")
+        Styling Reference
+
+    %pre.landing-snippet
+      %code.mint
+        :escaped
+          component TodoItem {
+            property color : String = "#333"
+            property label : String = ""
+            property done : Bool = false
+
+            style base {
+              align-items: center;
+              display: flex;
+            }
+
+            style label {
+              font-weight: bold;
+              color: \#{color};
+              flex: 1;
+
+              if (done) {
+                text-decoration: line-through;
+              }
+            }
+
+            fun render : Html {
+              <div::base>
+                <span::label>
+                  <{ label }>
+                </span>
+
+                <Icon.Checkmark/>
+                <Icon.Trash/>
+              </div>
+            }
+          }
+
+  .landing-section
+    .landing-section__content
+      %h3 Data Management
+
+      %hr
+
+      %p
+        In Mint a
+        %code store
+        contains and manages some data.
+
+      %p
+        Stores are
+        %b globally accessible
+        and can be
+
+        = succeed '.' do
+          %b connected to components
+
+      %p
+        When the data in a store changes the connected components are re-rendered.
+
+      %hr
+
+      %a.btn.btn--neutral(href="/guide/reference/stores")
+        Stores Reference
+
+    %pre.landing-snippet
+      %code.mint
+        :escaped
+          record Todo {
+            label : String,
+            done : Bool
+          }
+
+          store Todos {
+            property items : Array(Todo) = []
+
+            fun add (todo : Todo) : Promise(Never, Void) {
+              next { items = Array.push(todo, items) }
+            }
+
+            fun delete (todo : Todo) : Promise(Never, Void) {
+              next { items = Array.delete(todo, items) }
+            }
+          }
+
+          component TodoList {
+            connect Todos exposing { add, delete }
+
+            ...
+          }
+
+  .landing-section.landing-section--inverse.landing-section--orange
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    .landing-section__content
+      %h3 Routing
+
+      %hr
+
+      %p
+        In Mint
+        %b routing
+        is a language feature instead of a library.
+
+      %p
+        Routes can be defined in a
+        %code routes
+        block, with support for
+
+        = succeed '.' do
+          %b typed path parameters
+
+      %p
+        The runtime handles clicks on anchor tags and navigates in a smart way so
+        you don't have to.
+
+      %hr
+
+      %a.btn.btn--neutral(href="/guide/reference/routing")
+        Routing Reference
+
+    %pre.landing-snippet
+      %code.mint
+        :escaped
+
+          routes {
+            / {
+              Application.setPage(Page::Home)
+            }
+
+            /blog {
+              Application.setPage(Page::Blog)
+            }
+
+            /blog/:slug (slug : String) {
+              sequence {
+                Posts.load(slug)
+                Application.setPage(Page::Post)
+              }
+            }
+
+            * {
+              Application.setPage(Page::NotFound)
+            }
+          }
+
+  .landing-section
+    .landing-section__content
+      %h3 JavaScript Interopability
+
+      %hr
+
+      %p
+        You can
+        %b inline
+        any
+        %b JavaScript code
+        easily by using
+        %b bacticks:
+        %code `...`
+
+      %p
+        There are constructs for helping converting values:
+
+      %ul
+        %li
+          %code encode
+          converts an typed value into a JavaScript object
+
+        %li
+          %code decode
+          converts a JavaScript object into a typed value
+
+      %p
+        Interpolating Mint code in the inlined JavaScript can be done with the
+        %b interpolation syntax:
+        %code \#{...}
+      %hr
+
+      %a.btn.btn--neutral(href="/guide/reference/javascript-interop")
+        Interop Reference
+
+    %pre.landing-snippet
+      %code.mint
+        :escaped
+          module MyFunctions {
+            fun alert(message : String) : Promise(Never, Void) {
+              `
+              (new Promise((resolve) => {
+                alert(\#{message})
+                resolve()
+              })()
+              `
+            }
+
+            fun decode : Maybe(TodoItem) {
+              try {
+                object =
+                  `{ label: "Check out Mint!",
+                     done: false }`
+
+                result =
+                  decode as TodoItem
+
+                Maybe::Just(result)
+              } catch {
+                Maybe::Nothing()
+              }
+            }
+          }
+
+  .landing-section.landing-section--inverse.landing-section--purple
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    %svg{:viewbox => "0 0 502.70832 13.229167", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M0 0s167.309 6.615 251.354 6.615C335.4 6.615 502.708 0 502.708 0v13.23H0z"}
+
+    .landing-section__content
+      %h3 Batteries Included
+
+      %hr
+
+      %p
+        Mint has all the features you need, built in:
+
+      %ul
+        %li
+          = octicon "browser"
+          %b Development Server
+
+        %li
+          = octicon "code"
+          %b Code Formatter
+
+        %li
+          = octicon "zap"
+          %b Test Runner
+
+        %li
+          = octicon "archive"
+          %b Package Manager
+
+        %li
+          = octicon "book"
+          %b Documentation Generator
+
+        %li
+          = octicon "package"
+          %b Build Tool
+
+      %hr
+
+      %a.btn.btn--neutral(href="/guide/getting-started/using-the-cli")
+        Cli Reference
+
+    %pre.landing-snippet
+      %code.plaintext
+        :escaped
+          $ mint init my-awesome-project
+
+          Mint - Initializing a new project
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ⚙ Creating directory structure...
+          ⚙ Writing initial files...
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          All done in 2.231ms!
+
+          $ mint start --auto-format
+
+          Mint - Running the development server
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ⚙ Ensuring dependencies... 181μs
+          ⚙ Parsing files... 2.608ms
+          ⚙ Development server started on http://127.0.0.1:3000/
+
+          $ mint install
+
+          Mint - Installing dependencies
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ⚙ Constructing dependency tree...
+            ✔ Cloned mint-codemirror(https://github.com/mint...)
+
+          ⚙ Resolving dependency tree...
+            ◈ mint-codemirror ➔ 6.0.0
+
+          ⚙ Copying packages...
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          All done in 2.75s!
+
+
+
+  .landing-cta
+    %h3
+      What are you waiting for?
+
+    %p
+      Getting started with Mint is easy!
 
     .btn-group
       %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
@@ -27,336 +423,3 @@
         = octicon 'book', height: 22
 
         Learn
-
-  .landing-hero__right
-    %pre.landing-snippet
-      %code.mint
-        :escaped
-          component Counter {
-            state count : Number = 0
-
-            fun increment : Promise(Never, Void) {
-              next { counter = counter + 1 }
-            }
-
-            fun decrement : Promise(Never, Void) {
-              next { counter = counter - 1 }
-            }
-
-            fun render : Html {
-              <div>
-                <button onClick={decrement}>
-                  "Decrement"
-                </button>
-
-                <span>
-                  <{ counter }>
-                </span>
-
-                <button onClick={increment}>
-                  "Increment"
-                </button>
-              </div>
-            }
-          }
-
-.landing-section.landing-section--green.landing-section--inverse
-  .landing-section__content
-    %h3 Styling
-
-    %hr
-
-    %p
-      In Mint you can
-      %b style elements
-      directly
-      %b with CSS
-      using
-      %code style
-      blocks.
-
-    %p
-      Inside a
-      %code style
-      block you can nest as many
-      %b sub selectors
-      and
-      %b media queries
-      as you like.
-
-    %p
-      Interpolate any
-      %b Mint expressions
-      in any value using the
-      %b interpolation syntax:
-      %code \#{...}
-    %p
-      You can even use
-      %code if
-      and
-      %code case
-      expressions inside any block to
-      %b apply styles conditionally.
-
-    %hr
-
-    %a.btn.btn--neutral(href="/guide/reference/components/styling-elements")
-      Styling Reference
-
-  %pre.landing-snippet
-    %code.mint
-      :escaped
-        component TodoItem {
-          property color : String = "#333"
-          property label : String = ""
-          property done : Bool = false
-
-          style base {
-            align-items: center;
-            display: flex;
-          }
-
-          style label {
-            font-weight: bold;
-            color: \#{color};
-            flex: 1;
-
-            if (done) {
-              text-decoration: line-through;
-            }
-          }
-
-          fun render : Html {
-            <div::base>
-              <span::label>
-                <{ label }>
-              </span>
-
-              <Icon.Checkmark/>
-              <Icon.Trash/>
-            </div>
-          }
-        }
-
-.landing-section
-  .landing-section__content
-    %h3 Data Management
-
-    %hr
-
-    %p
-      In Mint a
-      %code store
-      contains and manages some data.
-
-    %p
-      Stores are
-      %b globally accessible
-      and can be
-
-      = succeed '.' do
-        %b connected to components
-
-    %p
-      When the data in a store changes the connected components are re-rendered.
-
-    %hr
-
-    %a.btn.btn--neutral(href="/guide/reference/stores")
-      Stores Reference
-
-  %pre.landing-snippet
-    %code.mint
-      :escaped
-        record Todo {
-          label : String,
-          done : Bool
-        }
-
-        store Todos {
-          property items : Array(Todo) = []
-
-          fun add (todo : Todo) : Promise(Never, Void) {
-            next { items = Array.push(todo, items) }
-          }
-
-          fun delete (todo : Todo) : Promise(Never, Void) {
-            next { items = Array.delete(todo, items) }
-          }
-        }
-
-        component TodoList {
-          connect Todos exposing { add, delete }
-
-          ...
-        }
-
-.landing-section.landing-section--inverse.landing-section--orange
-  .landing-section__content
-    %h3 Routing
-
-    %hr
-
-    %p
-      In Mint
-      %b routing
-      is a language feature instead of a library.
-
-    %p
-      Routes can be defined in a
-      %code routes
-      block, with support for
-
-      = succeed '.' do
-        %b typed path parameters
-
-    %p
-      The runtime handles clicks on anchor tags and navigates in a smart way so
-      you don't have to.
-
-    %hr
-
-    %a.btn.btn--neutral(href="/guide/reference/routing")
-      Routing Reference
-
-  %pre.landing-snippet
-    %code.mint
-      :escaped
-
-        routes {
-          / {
-            Application.setPage(Page::Home)
-          }
-
-          /blog {
-            Application.setPage(Page::Blog)
-          }
-
-          /blog/:slug (slug : String) {
-            sequence {
-              Posts.load(slug)
-              Application.setPage(Page::Post)
-            }
-          }
-
-          * {
-            Application.setPage(Page::NotFound)
-          }
-        }
-
-.landing-section
-  .landing-section__content
-    %h3 JavaScript Interopability
-
-    %hr
-
-    %p
-      You can
-      %b inline
-      any
-      %b JavaScript code
-      easily by using
-      %b bacticks:
-      %code `...`
-
-    %p
-      There are constructs for helping converting values:
-
-    %ul
-      %li
-        %code encode
-        converts an typed value into a JavaScript object
-
-      %li
-        %code decode
-        converts a JavaScript object into a typed value
-
-    %p
-      Interpolating Mint code in the inlined JavaScript can be done with the
-      %b interpolation syntax:
-      %code \#{...}
-    %hr
-
-    %a.btn.btn--neutral(href="/guide/reference/javascript-interop")
-      Interop Reference
-
-  %pre.landing-snippet
-    %code.mint
-      :escaped
-        module MyFunctions {
-          fun alert(message : String) : Promise(Never, Void) {
-            `
-            (new Promise((resolve) => {
-              alert(\#{message})
-              resolve()
-            })()
-            `
-          }
-
-          fun decode : Maybe(TodoItem) {
-            try {
-              object =
-                `{ label: "Check out Mint!",
-                   done: false }`
-
-              result =
-                decode as TodoItem
-
-              Maybe::Just(result)
-            } catch {
-              Maybe::Nothing()
-            }
-          }
-        }
-
-.landing-batteries
-  .landing-batteries__content
-    %h3 Batteries Included
-
-    %p Mint has all the features you need, built in.
-
-    .landing-batteries__grid
-      %div
-        = octicon "browser"
-        %span Development Server
-
-      %div
-        = octicon "code"
-        %span Code Formatter
-
-      %div
-        = octicon "zap"
-        %span Test Runner
-
-      %div
-        = octicon "archive"
-        %span Package Manager
-
-      %div
-        = octicon "book"
-        %span Documentation Generator
-
-      %div
-        = octicon "package"
-        %span Build Tool
-
-.landing-cta
-  %h3
-    What are you waiting for?
-
-  %p
-    Getting started with Mint is easy!
-
-  .btn-group
-    %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
-      = octicon 'terminal', height: 22
-      Try
-
-    %a.btn.btn--big.btn--secondary(href="/install")
-      = octicon 'cloud-download', height: 22
-      Install
-
-    %a.btn.btn--big.btn--tertiary(href="/guide")
-      = octicon 'book', height: 22
-
-      Learn

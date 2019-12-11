@@ -1,8 +1,12 @@
 .landing-section {
-  background: image-url('dot-grid.png');
-  padding: 120px 60px;
+  --border-color: rgba(0,0,0,0.3);
+  --gradient-color: #FFF;
+  --bold-color: #333;
+  --color: #666;
 
+  background: var(--background-color);
   position: relative;
+  min-height: 85vh;
 
   grid-template-columns: minmax(0, 800px) min-content;
   justify-content: center;
@@ -10,30 +14,32 @@
   grid-gap: 100px;
   display: grid;
 
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  border-top: 1px solid rgba(0,0,0,0.2);
-
   h3 {
     font-family: 'M PLUS Rounded 1c';
+    color: var(--bold-color);
     font-size: 36px;
     margin: 0;
   }
 
   hr {
-    margin: 20px 0;
+    margin: 25px 0;
 
     border: 0;
-    border-bottom: 1px dashed rgba(#000, 0.3);
+    border-bottom: 1px dashed var(--border-color);
   }
 
   p, ul {
+    color: var(--color);
     line-height: 1.6;
     font-size: 18px;
-    color: #666;
+
+    svg {
+      fill: currentColor;
+    }
   }
 
   b {
-    color: #333;
+    color: var(--bold-color);
   }
 
   li + li {
@@ -44,8 +50,27 @@
     direction: ltr;
   }
 
+  > svg {
+    fill: var(--background-color);
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    &:first-of-type {
+      transform: translateY(calc(-100% + 2px));
+      top: 0;
+    }
+
+    &:last-of-type {
+      transform: translateY(calc(100% - 2px)) rotate(180deg);
+      bottom: 0;
+    }
+  }
+
+
   &__content {
-    background: radial-gradient(closest-side, #FFF 65%, transparent);
+    background: radial-gradient(closest-side, var(--gradient-color) 65%, transparent);
+    text-shadow: 0 0 2px rgba(#000,0.1);
 
     .btn {
       margin-top: 10px;
@@ -65,47 +90,27 @@
   }
 
   &--green {
-    background: #459f56 image-url('interlaced.png');
-    color: white;
-
-    p, ul {
-      color: rgba(#FFF, 0.9);
-    }
-
-    b {
-      color: #FFF;
-    }
-
-    hr {
-      border-color: rgba(#FFF, 0.5);
-    }
+    --border-color: rgba(255, 255, 255,0.3);
+    --color: rgba(255, 255, 255, 0.9);
+    --gradient-color: transparent;
+    --background-color: #459f56;
+    --bold-color: #FFF;
   }
 
-  &--green &__content {
-    background: radial-gradient(closest-side, rgba(#459f56,0.8) 65%, transparent);
-    text-shadow: 0 0 2px rgba(#000,0.1);
+  &--purple {
+    --border-color: rgba(255, 255, 255,0.3);
+    --color: rgba(255, 255, 255, 0.9);
+    --gradient-color: transparent;
+    --background-color: #9e2cbf;
+    --bold-color: #FFF;
   }
 
   &--orange {
-    background: #db6a41 image-url('interlaced.png');
-    color: white;
-
-    p, ul {
-      color: rgba(#FFF, 0.9);
-    }
-
-    b {
-      color: #FFF;
-    }
-
-    hr {
-      border-color: rgba(#FFF, 0.5);
-    }
-  }
-
-  &--orange &__content {
-    background: radial-gradient(closest-side, rgba(#db6a41,0.8) 65%, transparent);
-    text-shadow: 0 0 2px rgba(#000,0.1)
+    --border-color: rgba(255, 255, 255,0.3);
+    --color: rgba(255, 255, 255, 0.9);
+    --gradient-color: transparent;
+    --background-color: #db6a41;
+    --bold-color: #FFF;
   }
 
   @media (max-width: 1200px) {

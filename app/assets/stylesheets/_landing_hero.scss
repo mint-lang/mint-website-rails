@@ -1,5 +1,4 @@
 .landing-hero {
-  background: image-url('dot-grid.png');
   padding: 40px 60px;
 
   grid-template-columns: minmax(200px, 860px) min-content;
@@ -10,7 +9,6 @@
   display: grid;
   flex: 1;
 
-  border-bottom: 2px solid rgba(0,0,0,0.2);
   min-height: calc(100vh - 80px);
   position: relative;
 
