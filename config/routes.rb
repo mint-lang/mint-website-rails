@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
   root 'landings#index'
 
+  get '/auth/:provider/callback', to: 'sandbox#login'
+
+  resources :sandbox do
+    collection do
+      get :user
+      get :logout
+    end
+
+    member do
+      get :preview
+      post :fork
+      post :format
+    end
+  end
+
   get '/guide',
       to: 'guides#index'
 

@@ -23,9 +23,19 @@ ActiveRecord::Schema.define(version: 2019_11_03_120933) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.json "data"
+  create_table "sandboxes", id: :string, force: :cascade do |t|
+    t.string "content"
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sandboxes_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "uid"
+    t.string "nickname"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,5 +51,6 @@ ActiveRecord::Schema.define(version: 2019_11_03_120933) do
     t.index ["package_id"], name: "index_versions_on_package_id"
   end
 
+  add_foreign_key "sandboxes", "users"
   add_foreign_key "versions", "packages"
 end

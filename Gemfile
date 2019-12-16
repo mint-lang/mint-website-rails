@@ -32,3 +32,13 @@ end
 
 gem "octicons", "~> 9.2"
 gem "octicons_helper", "~> 9.2"
+
+gem "omniauth", "~> 1.9"
+
+gem "omniauth-github", "~> 1.3"
+
+gem "ansi-to-html", "~> 0.0.3"
+
+gem "aw", "~> 0.1.10"
+
+gem "redis", "~> 4.1"
