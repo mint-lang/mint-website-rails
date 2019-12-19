@@ -16,7 +16,7 @@
         %b record time.
 
       .btn-group
-        %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
+        %a.btn.btn--big.btn--primary{href: ENV['SANDBOX_URL']}
           = octicon 'terminal', height: 22
           Try
 
@@ -411,7 +411,7 @@
       Getting started with Mint is easy!
 
     .btn-group
-      %a.btn.btn--big.btn--primary(href="https://sandbox.mint-lang.com/")
+      %a.btn.btn--big.btn--primary{href: ENV['SANDBOX_URL']}
         = octicon 'terminal', height: 22
         Try
 

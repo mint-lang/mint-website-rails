@@ -1,4 +1,5 @@
 class SandboxController < ApplicationController
+  AS_JSON = {include: { user: { only: %i[id nickname image]}}}
   skip_before_action :verify_authenticity_token
 
   def login
@@ -11,7 +12,7 @@ class SandboxController < ApplicationController
 
     session[:id] = user.id
 
-    render plain: ''
+    redirect_to ENV['SANDBOX_URL']
   end
 
   def logout
@@ -26,41 +27,34 @@ class SandboxController < ApplicationController
   end
 
   def update
-    with_user do |user|
-      sandbox =
-        user.sandboxes.find_by_id(params[:id])
+    with_sandbox do |user, sandbox|
+      sandbox.update!({
+        content: params[:content],
+        title: params[:title]
+      }.compact)
 
-      if sandbox
-        sandbox.update!({
-          content: params[:content],
-          title: params[:title]
-        }.compact)
-
-        render json: sandbox.as_json
-      else
-        render plain: '', status: 404
-      end
+      render json: sandbox.as_json(AS_JSON)
     end
   end
 
   def format
-    with_user do |user|
-      sandbox =
-        user.sandboxes.find_by_id(params[:id])
+    with_sandbox do |user, sandbox|
+      FormatSandbox.run sandbox: sandbox
 
-      if sandbox
-        FormatSandbox.run sandbox: sandbox
-
-        render json: sandbox.as_json
-      else
-        render plain: '', status: 404
-      end
+      render json: sandbox.as_json(AS_JSON)
     end
   end
 
   def index
     with_user do |user|
-      render json: user.sandboxes.sort_by(&:title).as_json
+      sandboxes =
+         Sandbox
+          .where(user_id: user.id)
+          .includes(:user)
+          .sort_by(&:title)
+          .as_json(AS_JSON)
+
+      render json: sandboxes
     end
   end
 
@@ -73,7 +67,14 @@ class SandboxController < ApplicationController
           content: "",
           user: user)
 
-      render json: sandbox.as_json, status: 201
+      render json: sandbox.as_json(AS_JSON), status: 201
+    end
+  end
+
+  def destroy
+    with_sandbox do |user, sandbox|
+      sandbox.destroy!
+      render json: sandbox.as_json(AS_JSON), status: 200
     end
   end
 
@@ -82,7 +83,7 @@ class SandboxController < ApplicationController
       Sandbox.find_by_id(params[:id])
 
     if sandbox
-      render json: sandbox.as_json, status: 200
+      render json: sandbox.as_json(AS_JSON), status: 200
     else
       render plain: '', status: 404
     end
@@ -101,7 +102,7 @@ class SandboxController < ApplicationController
             title: sandbox.title,
             user: user)
 
-        render json: forked.as_json, status: 200
+        render json: forked.as_json(AS_JSON), status: 200
       else
         render plain: '', status: 404
       end
@@ -125,6 +126,19 @@ class SandboxController < ApplicationController
   end
 
   protected
+
+  def with_sandbox
+    with_user do |user|
+      sandbox =
+        user.sandboxes.find_by_id(params[:id])
+
+      if sandbox
+        yield user, sandbox
+      else
+        render plain: '', status: 403
+      end
+    end
+  end
 
   def with_user
     user = User.find_by_id(session[:id])

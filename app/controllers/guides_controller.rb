@@ -18,5 +18,6 @@ class GuidesController < ApplicationController
   end
 
   def index
+    set_meta_tags title: 'Guide'
   end
 end

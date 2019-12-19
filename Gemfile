@@ -42,3 +42,6 @@ gem "ansi-to-html", "~> 0.0.3"
 gem "aw", "~> 0.1.10"
 
 gem "redis", "~> 4.1"
+
+gem "dotenv", "~> 2.7"
+gem "dotenv-rails", "~> 2.7"

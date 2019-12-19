@@ -1,6 +1,6 @@
 class PackagesController < ApplicationController
   def landing
-    set_meta_tags title: 'Find and read documentation of Elm packages.'
+    set_meta_tags title: 'Packages'
 
     if params[:search]
       @packages =

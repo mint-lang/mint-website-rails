@@ -2,7 +2,6 @@ class VersionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   before_action :find_version, only: [:version, :entity]
-  before_action :set_title
 
   def api
     params[:author] = 'mint-lang'
@@ -25,6 +24,8 @@ class VersionsController < ApplicationController
     @category = params[:category]
     @entity = params[:entity]
 
+    set_title
+
     find_entities
 
     respond_to do |format|
@@ -46,6 +47,8 @@ class VersionsController < ApplicationController
       @entity = @version.documentation['modules'].first['name']
     end
 
+    set_title
+
     respond_to do |format|
       format.html { render :show }
       format.js { render partial: 'sidebar' }
@@ -55,6 +58,8 @@ class VersionsController < ApplicationController
   def version
     find_entities
 
+    set_title
+
     respond_to do |format|
       format.html { render :show }
       format.js { render partial: 'sidebar' }
@@ -62,14 +67,11 @@ class VersionsController < ApplicationController
   end
 
   def set_title
-    title_parts = [
+    set_meta_tags(title: [
       params[:author],
       params[:repo],
-      params[:version],
-      params[:module]
-    ]
-
-    set_meta_tags(title: title_parts.compact.join(' - '))
+      @entity
+    ])
   end
 
   def find_version

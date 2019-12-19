@@ -20,7 +20,6 @@ class FormatSandbox < ActiveInteraction::Base
               File.write('Main.mint', sandbox.content)
 
               Open3.popen3("#{relative_executable} format Main.mint") do |stdin, stdout, stderr|
-                puts stdout.read
                 File.read(File.join(dir, "Main.mint"))
               end
             end

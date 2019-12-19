@@ -5,7 +5,11 @@
                         keywords: %w(mint mint-lang packages),
                         description: 'The programming language for writing single page applications.',
                         canonical: request.path,
-                        charset: 'utf-8'
+                        charset: 'utf-8',
+                        author: 'Gusztáv Szikszai',
+                        separator: '/',
+                        og: { title: :title,
+                              site_name: :site }
 
     = csrf_meta_tags
     = favicon_link_tag 'favicon.png'
@@ -25,7 +29,7 @@
         = link_to root_path, class: :nav__brand do
           = render partial: 'shared/logo', locals: { size: 20 }
 
-        = link_to 'https://sandbox.mint-lang.com',
+        = link_to ENV['SANDBOX_URL'],
                   class: :nav__item,
                   target: '_blank',
                   active: :exact do

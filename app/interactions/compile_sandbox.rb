@@ -20,7 +20,7 @@ class CompileSandbox < ActiveInteraction::Base
       Aw.fork! do
         Dir.mktmpdir do |dir|
           Dir.chdir dir do
-        		executable =
+            executable =
               Rails.root.join 'vendor', 'executables', 'mint'
 
             relative_executable =
@@ -53,11 +53,6 @@ class CompileSandbox < ActiveInteraction::Base
         <html>
         <head>
           <title></title>
-          <style>
-            html, body {
-              margin: 0;
-            }
-          </style>
         </head>
         <body>
           <script>
@@ -92,5 +87,5 @@ class CompileSandbox < ActiveInteraction::Base
       end
 
     html
-	end
+  end
 end

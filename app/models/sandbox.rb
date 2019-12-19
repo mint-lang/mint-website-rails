@@ -18,7 +18,6 @@ class Sandbox < ApplicationRecord
   after_commit :clear_cache
 
   def clear_cache
-  	puts "WTF------------------------------------------------------------------"
     Redis.current.hdel('sandboxes', id)
   end
 end
