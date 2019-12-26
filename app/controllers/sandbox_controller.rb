@@ -45,6 +45,17 @@ class SandboxController < ApplicationController
     end
   end
 
+  def recent
+    sandboxes =
+      Sandbox
+        .includes(:user)
+        .order(updated_at: :desc)
+        .limit(20)
+        .as_json(AS_JSON)
+
+    render json: sandboxes
+  end
+
   def index
     with_user do |user|
       sandboxes =

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :sandbox do
     collection do
+      get :recent
       get :user
       get :logout
     end
