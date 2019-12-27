@@ -23,7 +23,7 @@ class ImportVersion < ActiveInteraction::Base
 
   def version
     @version ||=
-      Version.find_or_initialize_by(package: package, version: semver)
+      Version.unscoped.find_or_initialize_by(package: package, version: semver)
   end
 
   def readme(dir)

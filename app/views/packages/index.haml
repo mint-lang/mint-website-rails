@@ -1,5 +1,12 @@
 .page
-  %h1.page__title Packages
-  %p.page__description This page contains the packages that you can use with documentaion.
+  .page__header
+    .page__header__infos
+      %h1.page__title Packages
+      %p.page__description This page contains the packages that you can use in your projects.
+
+    .page__header__actions
+      = link_to add_package_path, class: "btn btn--neutral" do
+        = octicon "archive"
+        Add Package
 
   = render 'packages', packages: @packages, pagination: true

@@ -42,6 +42,13 @@ Rails.application.routes.draw do
       to: 'blog#post',
       as: :blog_post
 
+  get '/package',
+      to: 'packages#add',
+      as: :add_package
+
+  post '/package',
+      to: 'packages#handle_add'
+
   get '/packages',
       to: 'packages#index',
       as: :packages

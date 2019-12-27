@@ -3,6 +3,26 @@
   max-width: 1620px;
   margin: 0 auto;
 
+  &__errors {
+    background: #ffbaba;
+    border-radius: 6px;
+    color: #821e1e;
+    padding: 10px 20px;
+
+    margin-bottom: 30px;
+  }
+
+  &__header {
+    margin-bottom: 40px;
+
+    align-items: center;
+    display: flex;
+
+    &__actions {
+      margin-left: auto;
+    }
+  }
+
   &__package {
     border-bottom: 2px dashed rgba(#000, 0.1);
 
@@ -35,8 +55,6 @@
 
   &__description {
     margin: 0;
-    margin-bottom: 40px;
-
     color: #666;
   }
 

@@ -35,34 +35,48 @@ class VersionsController < ApplicationController
   end
 
   def show
-    @version =
+    package =
       Package
       .find_by_repository("#{params[:author]}/#{params[:repo]}")
-      .latest_version
 
-    find_entities
+    if package
+      @version =
+        package.latest_version
 
-    unless @version.readme
-      @category = 'modules'
-      @entity = @version.documentation['modules'].first['name']
-    end
+      if @version
+        find_entities
 
-    set_title
+        unless @version.readme
+          @category = 'modules'
+          @entity = @version.documentation['modules'].first['name']
+        end
 
-    respond_to do |format|
-      format.html { render :show }
-      format.js { render partial: 'sidebar' }
+        set_title
+
+        respond_to do |format|
+          format.html { render :show }
+          format.js { render partial: 'sidebar' }
+        end
+      else
+        redirect_to packages_path
+      end
+    else
+      redirect_to packages_path
     end
   end
 
   def version
-    find_entities
+    if @version
+      find_entities
 
-    set_title
+      set_title
 
-    respond_to do |format|
-      format.html { render :show }
-      format.js { render partial: 'sidebar' }
+      respond_to do |format|
+        format.html { render :show }
+        format.js { render partial: 'sidebar' }
+      end
+    else
+      redirect_to packages_path
     end
   end
 

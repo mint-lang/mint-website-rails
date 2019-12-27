@@ -116,3 +116,23 @@ article {
     }
   }
 }
+
+.add-package {
+  max-width: 300px;
+  grid-gap: 10px;
+  justify-items: start;
+  display: grid;
+
+  input:not(.btn) {
+    padding: 15px;
+    font-family: inherit;
+    border: 2px solid #DDD;
+    border-radius: 6px;
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+  }
+}

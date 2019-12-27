@@ -1,0 +1,14 @@
+.page
+  .page__header
+    .page__header__infos
+      %h1.page__title
+        Packages by
+        = params[:author]
+
+      %p.page__description
+        This page contains the packages by
+
+        = succeed "." do
+          %b= params[:author]
+
+  = render 'packages', packages: @packages, pagination: true

@@ -1,4 +1,17 @@
 class PackagesController < ApplicationController
+  def handle_add
+    @outcome = SyncPackage.run(repository: params[:repository])
+
+    if @outcome.valid?
+      author, repo =
+        params[:repository].split("/", 2)
+
+      redirect_to repo_root_path(author, repo)
+    else
+      render :add
+    end
+  end
+
   def landing
     set_meta_tags title: 'Packages'
 

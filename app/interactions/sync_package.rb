@@ -5,6 +5,19 @@ class SyncPackage < ActiveInteraction::Base
     return if raw_versions.empty?
     update_package_infos
     import_versions
+
+    unless package.versions.any?
+      Version
+        .unscoped
+        .where(package_id: package.id)
+        .destroy_all
+
+      package.destroy
+
+      errors.add(:repository, 'No versions for this repository!')
+    end
+  rescue StandardError => error
+    errors.add(:repository, error)
   end
 
   def update_package_infos
@@ -21,9 +34,6 @@ class SyncPackage < ActiveInteraction::Base
     Octokit
       .tags(repository)
       .map(&:name)
-  rescue StandardError => error
-    puts error
-    []
   end
 
   def versions
