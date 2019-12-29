@@ -2,7 +2,7 @@
   .page__header
     .page__header__infos
       %h1.page__title Install Mint
-      %p.page__description This page will guide you on how to install Mint on different operating systems.
+      %p.page__description This page will guide you on how to install Mint on different platforms.
 
   .install__grid
     .install__section
@@ -21,7 +21,7 @@
             brew tap acciaiodigitale/homebrew-mint-lang
             brew install mint-lang
 
-    .install__section
+    .install__section.install__section--with-margin
       .install__title
         = octicon "mark-github", height: 24
         %span Install from source
@@ -38,7 +38,7 @@
 
         %pre.install__snippet
           %code.plaintext
-            git clone https://github.com/mint-lang/mint
+            git clone https://github.com/mint-lang/mint.git
             cd mint
             shards install
             crystal build src/mint.cr -o mint -p --release --no-debug
@@ -51,8 +51,9 @@
         %span Install on Linux
 
       .install__instructions
-        Since Mint is just a binary you can download the pre build binaries and
-        use them.
+        %p
+          Since Mint is just a binary you can download the pre build binaries
+          and use them.
 
         %pre.install__snippet
           %code.plaintext
@@ -60,3 +61,27 @@
             chmod +x ./mint
             sudo mv /mint /usr/local/bin/mint
 
+    .install__section.install__section--with-margin
+      .install__title
+        = render partial: 'icons/docker'
+        %span Usage with Docker
+
+      .install__instructions
+        %p
+          You can run mint using a docker container by using the
+          %a(href="https://github.com/mint-lang/mint-docker")
+            mint-docker
+          repository.
+
+        %p
+          You will need to have
+          %a(href="https://www.docker.com/") Docker
+          and
+          %a(href="https://docs.docker.com/compose/") Docker Compose
+          installed.
+
+        %pre.install__snippet
+          %code.plaintext
+            git clone https://github.com/mint-lang/mint-docker.git
+            cd mint-docker
+            docker-compose up

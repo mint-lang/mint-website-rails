@@ -1,17 +1,16 @@
 .install {
   &__grid {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px 60px;
-    display: grid;
+    column-count: 2;
+    column-gap: 40px;
 
     @media (max-width: 1200px) {
-      grid-template-columns: 1fr;
+      column-count: 1;
     }
   }
 
   &__section {
-    &:nth-child(2) {
-      grid-row: span 2;
+    &--with-margin {
+      margin-top: 40px;
     }
   }
 
