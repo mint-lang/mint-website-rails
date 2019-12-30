@@ -27,3 +27,15 @@ if (search) {
     }, 300)
   })
 }
+
+const toggle = document.querySelector('.nav__mobile-menu-toggle')
+const close = document.querySelector('.mobile-menu__close')
+const menu = document.querySelector('.mobile-menu')
+
+toggle.addEventListener('click', () => {
+  menu.classList.add('mobile-menu--open')
+})
+
+close.addEventListener('click', () => {
+  menu.classList.remove('mobile-menu--open')
+})

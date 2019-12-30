@@ -24,10 +24,54 @@
     = javascript_include_tag '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js'
 
   %body
+    .mobile-menu
+      .mobile-menu__close
+        = octicon "x", width: 24
+
+      = link_to ENV['SANDBOX_URL'],
+                class: 'mobile-menu__item',
+                target: '_blank',
+                active: :exact do
+        = octicon "terminal"
+        %span Try
+
+      = active_link_to install_path,
+                class: 'mobile-menu__item',
+                active: :exact do
+        = octicon "cloud-download"
+        %span Install
+
+      = active_link_to guide_path, class: 'mobile-menu__item' do
+        = octicon "book"
+        %span Learn
+
+      = active_link_to blog_path, class: 'mobile-menu__item' do
+        = octicon "bookmark"
+        %span Blog
+
+      = active_link_to '/api', class: 'mobile-menu__item' do
+        = octicon "repo"
+        %span Api
+
+      = active_link_to packages_path, class: 'mobile-menu__item' do
+        = octicon "archive"
+        %span Packages
+
+      = link_to 'https://github.com/mint-lang/mint',
+                class: 'mobile-menu__item',
+                target: '_blank',
+                active: :exact do
+        = octicon "mark-github"
+        %span Github
+
     .nav
       .nav__wrapper
         = link_to root_path, class: :nav__brand do
           = render partial: 'shared/logo', locals: { size: 20 }
+
+        .nav__mobile-menu-toggle
+          %span Menu
+          = render partial: 'icons/menu'
 
         = link_to ENV['SANDBOX_URL'],
                   class: :nav__item,
@@ -64,11 +108,6 @@
                   active: :exact do
           = octicon "mark-github"
           %span Github
-
-    - if breadcrumbs.length > 1
-      .breadcrumbs
-        .breadcrumbs__wrap<
-          = render_breadcrumbs separator: '<i class="ion-ios-arrow-forward"></i>'
 
     %article
       = yield

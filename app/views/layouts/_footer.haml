@@ -29,7 +29,7 @@
 
         = link_to guide_path do
           = octicon 'book'
-          Guide
+          Learn
 
         = link_to packages_path do
           = octicon 'archive'
@@ -37,6 +37,10 @@
 
       .footer__column
         %strong Source
+
+        = link_to '/api' do
+          = octicon "repo"
+          Api
 
         %a(href="https://github.com/mint-lang/mint" target="_blank")
           = octicon 'mark-github'
@@ -59,6 +63,10 @@
 
       .footer__column
         %strong Social
+
+        = link_to blog_path do
+          = octicon 'bookmark'
+          Blog
 
         %a(href="https://twitter.com/mint_lang" target="_blank")
           = render partial: 'icons/twitter'
