@@ -1,16 +1,21 @@
 .page
   .guide
-    .toc
-      .toc__section
-        Posts
+    .toc-mobile
+      Posts
+      = octicon "chevron-down", width: 14
 
-      .toc__pages
-        - @posts.each do |post|
-          = active_link_to blog_post_path(slug: post[:slug]), class: :toc__page, active: :exact do
-            %div
-              = post[:title]
-            %small
-              = post[:formatted_date]
+    .toc
+      .toc__wrapper
+        .toc__section
+          Posts
+
+        .toc__pages
+          - @posts.each do |post|
+            = active_link_to blog_post_path(slug: post[:slug]), class: :toc__page, active: :exact do
+              %div
+                = post[:title]
+              %small
+                = post[:formatted_date]
 
     .guide-content
       %h1.page__title

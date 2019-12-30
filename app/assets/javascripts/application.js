@@ -39,3 +39,20 @@ toggle.addEventListener('click', () => {
 close.addEventListener('click', () => {
   menu.classList.remove('mobile-menu--open')
 })
+
+
+const tocToggle = document.querySelector('.toc-mobile')
+
+if (tocToggle) {
+  const toc = document.querySelector('.toc')
+
+  tocToggle.addEventListener('click', () => {
+    toc.classList.add('toc--open')
+  })
+
+  toc.addEventListener('click', (event) => {
+    if (toc === event.target || event.target.matches("a *")) {
+      toc.classList.remove('toc--open')
+    }
+  })
+}

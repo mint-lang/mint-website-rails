@@ -1,20 +1,10 @@
 .toc {
-  border-right: 1px solid #EEE;
-  padding-right: 50px;
-  margin-right: 50px;
+  display: grid;
 
-  @media (max-width: 1200px) {
-    background: white;
-    position: fixed;
-    width: 300px;
-    bottom: 0;
-    left: 0;
-    top: 0;
-
-    transform: translateX(-330px);
-    overflow-y: scroll;
-    padding: 20px;
-    margin: 0;
+  &__wrapper {
+    border-right: 1px solid #EEE;
+    padding-right: 50px;
+    margin-right: 50px;
   }
 
   &__spacer {
@@ -70,5 +60,59 @@
     &:not(:first-child) {
       margin-top: 30px;
     }
+  }
+
+  @media (max-width: 1200px) {
+    background: rgba(20,20,20,0.9);
+    position: fixed;
+    z-index: 500;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+
+
+    pointer-events: none;
+    opacity: 0;
+
+    &--open {
+      pointer-events: auto;
+      opacity: 1;
+
+    }
+
+    &--open &__wrapper {
+      transform: translateX(0);
+    }
+
+    &__wrapper {
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      transform: translateX(-330px);
+      background: white;
+      padding: 20px;
+      width: 280px;
+      margin: 0;
+    }
+  }
+}
+
+.toc-mobile {
+  display: none;
+
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  background: #EEE;
+  cursor: pointer;
+
+  font-weight: bold;
+
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 1200px) {
+    display: flex;
   }
 }
