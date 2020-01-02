@@ -4,3 +4,11 @@
 
     .guide-content
       = render template: @page, layout: false
+
+      - if @next || @previous
+        = guide_nav do
+          - if @previous
+            = guide_nav_previous @previous[:path], @previous[:title]
+
+          - if @next
+            = guide_nav_next @next[:path], @next[:title]
