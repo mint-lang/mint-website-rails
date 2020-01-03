@@ -18,8 +18,13 @@ class BlogController < ApplicationController
   end
 
   def build_post(path)
+    basename =
+      File.basename(path, '.*')
+
+    return if basename.starts_with?("_")
+
     date, slug =
-      File.basename(path, '.*').split('_')
+      basename.split('_')
 
     parsed =
       Date.parse(date)
@@ -38,9 +43,12 @@ class BlogController < ApplicationController
       dir =
         File.join(Rails.root, 'app', 'views', 'blog', 'posts', "*")
 
-      @posts = Dir.glob(dir).map do |file|
-        build_post(file)
-      end
+      @posts =
+        Dir
+        .glob(dir)
+        .map { |file| build_post(file) }
+        .compact
+
     end.sort_by { |item| item[:date] }.reverse
   end
 end
