@@ -13,7 +13,16 @@
 
     = csrf_meta_tags
     = favicon_link_tag 'favicon.png'
-    = analytics_init if GoogleAnalytics.valid_tracker?
+
+    - if Rails.env.production?
+      / Global site tag (gtag.js) - Google Analytics
+      %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=#{ENV['GA_TRACKING_CODE']}"}
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '#{ENV['GA_TRACKING_CODE']}');
 
     %meta{ content: 'width=device-width; initial-scale=1.0; maximum-scale=1.0;',
            name: 'viewport' }

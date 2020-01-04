@@ -45,5 +45,3 @@ gem "redis", "~> 4.1"
 
 gem "dotenv", "~> 2.7"
 gem "dotenv-rails", "~> 2.7"
-
-gem "google-analytics-rails", "~> 1.1"
