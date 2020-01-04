@@ -13,6 +13,7 @@
 
     = csrf_meta_tags
     = favicon_link_tag 'favicon.png'
+    = analytics_init if GoogleAnalytics.valid_tracker?
 
     %meta{ content: 'width=device-width; initial-scale=1.0; maximum-scale=1.0;',
            name: 'viewport' }
