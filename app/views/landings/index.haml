@@ -34,7 +34,7 @@
         %code.mint
           :escaped
             component Counter {
-              state count : Number = 0
+              state counter : Number = 0
 
               fun increment : Promise(Never, Void) {
                 next { counter = counter + 1 }
@@ -51,7 +51,7 @@
                   </button>
 
                   <span>
-                    <{ counter }>
+                    <{ Number.toString(counter) }>
                   </span>
 
                   <button onClick={increment}>
