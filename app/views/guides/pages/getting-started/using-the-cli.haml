@@ -115,6 +115,35 @@
   %li open a browser in headless mode
   %li run the tests in the browser printing the results along the way
 
+%p
+  The test command contains several flags you can set, such as which browser to use:
+
+%pre
+  %code.plaintext
+    :plain
+      mint test --help
+      Usage:
+        mint test [flags...] <test> [arg...]
+
+      Runs the tests
+
+      Flags:
+        --browser, -b (default: "chrome")  # Which browser to run the tests in
+        --env, -e (default: "")            # Loads the given .env file
+        --help                             # Displays help for the current command.
+        --manual, -m                       # Start the test server for manual testing
+        --reporter, -r (default: "dot")    # Which reporter to use (dot, documentation)
+
+      Arguments:
+        test
+
+%p
+  Currently both
+  %code chrome
+  and 
+  %code firefox
+  are supported.
+
 %h2 Building for production
 
 %p
