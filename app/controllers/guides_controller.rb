@@ -20,7 +20,7 @@ class GuidesController < ApplicationController
     {
       title: 'Recipies',
       pages: [
-        { title: "Using thirdy party CSS", path: "/recipies/using-third-party-css" }
+        { title: "Using third party CSS", path: "/recipies/using-third-party-css" }
       ]
     },
       title: 'Reference',
