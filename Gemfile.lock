@@ -155,7 +155,7 @@ GEM
       omniauth (~> 1.9)
     pg (0.18.4)
     public_suffix (4.0.1)
-    puma (3.12.2)
+    puma (3.12.3)
     rack (2.0.8)
     rack-cors (1.0.5)
       rack (>= 1.6.0)
