@@ -8,17 +8,17 @@
     .install__section
       .install__title
         = render partial: 'icons/apple'
-        %span Install on Mac OSX
+        %span Install on Mac OSX (or Linux)
 
       .install__instructions
-        To easily install Mint on MacOSX you can use
+        To easily install Mint on MacOSX or Linux you can use
 
         = succeed '.' do
           %a(href="http://brew.sh/" target="_blank" rel="noreferer") Homebrew
 
         %pre.install__snippet
           %code.plaintext
-            brew tap acciaiodigitale/homebrew-mint-lang
+            brew tap homebrew-community/alpha
             brew install mint-lang
 
     .install__section.install__section--with-margin
