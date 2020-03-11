@@ -26,6 +26,8 @@ class GuidesController < ApplicationController
       title: 'Reference',
       pages: [
         { title: "Literals", path: "/reference/literals" },
+        { title: "Arrays", path: "/reference/arrays" },
+        { title: "Tuples", path: "/reference/tuples" },
         { title: "Functions", path: "/reference/functions" },
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
