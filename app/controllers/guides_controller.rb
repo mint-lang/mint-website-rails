@@ -32,6 +32,7 @@ class GuidesController < ApplicationController
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
         { title: "Built in Types", path: "/reference/built-in-types" },
+        { title: "Constants", path: "/reference/constants" },
         { title: "Equality", path: "/reference/equality" },
         { title: "Stores", path: "/reference/stores" },
         { title: "Routing", path: "/reference/routing" },
