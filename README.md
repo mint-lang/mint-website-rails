@@ -1,24 +1,28 @@
-# README
+# Mint Website
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/mint-lang/Lobby)
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/mint-lang)
 
-Things you may want to cover:
+-------------
 
-* Ruby version
+This repository hosts the code for the website of the Mint programming language
+www.mint-lang.com
 
-* System dependencies
+Also it hosts the API for the sandbox site sandbox.mint-lang.com
 
-* Configuration
+## Setup
 
-* Database creation
+The website is a [Ruby on Rails](https://rubyonrails.org/) application.
 
-* Database initialization
+To get up and running you will need:
 
-* How to run the test suite
+- [Ruby](https://www.ruby-lang.org/en/) (2.6.3) installed
+- [PostgreSQL](https://www.postgresql.org/) installed
 
-* Services (job queues, cache servers, search engines, etc.)
+## Starting the server
 
-* Deployment instructions
+You will need to:
 
-* ...
+- Create a database `rails db:create`
+- Migrate the database `rails db:migrate`
+- Start the server `rails s`
