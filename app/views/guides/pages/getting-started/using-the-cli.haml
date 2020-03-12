@@ -120,7 +120,7 @@
 
 %pre
   %code.plaintext
-    :plain
+    :escaped
       mint test --help
       Usage:
         mint test [flags...] <test> [arg...]
@@ -128,11 +128,15 @@
       Runs the tests
 
       Flags:
-        --browser, -b (default: "chrome")  # Which browser to run the tests in
-        --env, -e (default: "")            # Loads the given .env file
-        --help                             # Displays help for the current command.
-        --manual, -m                       # Start the test server for manual testing
-        --reporter, -r (default: "dot")    # Which reporter to use (dot, documentation)
+        --browser, -b (default: "chrome")                                    # Which browser to run the tests in (chrome, firefox)
+        --browser-host, -x (default: ENV["BROWSER_HOST"]? || "127.0.0.1")    # Target host, useful when hosted on another machine. (Default: 127.0.0.1)
+        --browser-port, -c (default: (ENV["BROWSER_PORT"]? || "3001").to_i)  # Target port, useful when hosted on another machine. (Default: 3001)
+        --env, -e (default: "")                                              # Loads the given .env file
+        --help                                                               # Displays help for the current command.
+        --host, -h (default: ENV["HOST"]? || "127.0.0.1")                    # Host to serve the tests on. (Default: 127.0.0.1)
+        --manual, -m                                                         # Start the test server for manual testing
+        --port, -p (default: (ENV["PORT"]? || "3001").to_i)                  # Port to serve the tests on. (Default: 3001)
+        --reporter, -r (default: "dot")                                      # Which reporter to use (dot, documentation)
 
       Arguments:
         test
@@ -140,7 +144,7 @@
 %p
   Currently both
   %code chrome
-  and 
+  and
   %code firefox
   are supported.
 
