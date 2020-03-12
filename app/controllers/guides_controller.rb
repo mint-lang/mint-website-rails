@@ -60,6 +60,7 @@ class GuidesController < ApplicationController
             { title: "Internal State", path: "/reference/components/internal-state" },
             { title: "Referencing Entities", path: "/reference/components/referencing-entities" },
             { title: "Global Components", path: "/reference/components/global-components" },
+            { title: "Lifecycle Functions", path: "/reference/components/lifecycle-functions" },
           ]
         },
         {
