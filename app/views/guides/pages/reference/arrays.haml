@@ -56,15 +56,17 @@
 %pre
   %code
     :plain
-      [] => ""                /* Empty array  */
-      ["a"] => ""             /* Array with only one specific element */
-      [a] => ""               /* Array with only one element */
-      [a, b] => ""            /* Array with only two elements  */
-      [a, ...middle, b] => "" /* Array at least with three elements */
-      [...head, tail] => ""   /* Array at least two elements */
-      [head, ...tail] => ""   /* Array at least two elements */
-      [...items] => ""        /* Items would be the array */
-      => ""                   /* Fallback as usual */
+      case (["A", "B", "C"]) {
+        [] => ""                /* Empty array  */
+        ["a"] => ""             /* Array with only one specific element */
+        [a] => ""               /* Array with only one element */
+        [a, b] => ""            /* Array with only two elements  */
+        [a, ...middle, b] => "" /* Array at least with three elements */
+        [...head, tail] => ""   /* Array at least two elements */
+        [head, ...tail] => ""   /* Array at least two elements */
+        [...items] => ""        /* Items would be the array */
+        => ""                   /* Fallback as usual */
+      }
 
 %p
   Using the
