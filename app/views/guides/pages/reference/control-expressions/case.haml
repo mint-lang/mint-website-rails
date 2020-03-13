@@ -44,7 +44,7 @@
     %code if...else
     statements under the hood.
 
-%h2 Matching an enum
+%h2 Matching an Enum
 
 %p
   %a(href="/guide/reference/enums") Enums
@@ -58,5 +58,30 @@
         Result::Ok value => /* do something with the value */
       }
 
+%h2 Matching a Tuple
 
+%p
+  %a(href="/guide/reference/tuples") Tuples
+  can be matched using a case expression like so:
+
+%pre
+  %code
+    :escaped
+      case ({"First", 0, true}) {
+        {first, second, third} => /* do something with the variables */
+      }
+
+%h2 Matching an Array
+
+%p
+  %a(href="/guide/reference/arrays") Arrays
+  can be matched using a case expression like so:
+
+%pre
+  %code
+    :escaped
+      case (["first", "second", "third"]) {
+        [first, second, third] => /* do something if it only has three elements */
+        [head, ...tail] => /* do something otherwise with the head and tail */
+      }
 

@@ -1,0 +1,277 @@
+- set_meta_tags title: "Blog / 0.8.0"
+
+%script(src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0-alpha/dist/Chart.min.js")
+
+%p
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.8.0" target="_blank")
+    Mint 0.8.0
+  has been released!
+
+%p
+  This release comes with new language features, bug fixes and additions to the standard library.
+
+%p
+  There are
+  %a(href="https://github.com/mint-lang/mint/compare/0.7.1...0.8.0" target="_blank")
+    122 commits since 0.7.1
+  by 6 contributors.
+
+%p
+  Let’s review some highlights in this release. But don’t miss out on the rest of the
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.8.0" target="_blank") release changelog
+  which has a lot of valuable information.
+
+%h2 Preact
+
+%p
+  In this release
+  %a(href="https://reactjs.org/" target="_blank") React
+  has been replaced with
+  %a(href="https://preactjs.com/" target="_blank") Preact
+  as the underlying runtime. This means that the size of the generated JavaScript is a lot smaller!
+
+%p
+  These are the results for the
+  %a(href="https://github.com/mint-lang/mint-realworld" target="_blank") Mint implementation
+  of
+  %a(href="https://github.com/gothinkster/realworld" target="_blank") RealWorld
+  (GZipped version is 65% smaller):
+
+%p
+  %br
+  %canvas(id="realworld" width="400" height="200")
+
+%p
+  To see a more real world use here are the results for the frontend of
+  %a(href="https://www.base-api.io/") Base API
+  (GZipped version is 30% smaller):
+
+%p
+  %br
+  %canvas(id="base" width="400" height="200")
+
+%h2 Tuples
+
+%p
+  This release introduces
+  = succeed "," do
+    %a(href="https://en.wikipedia.org/wiki/Tuple") tuples
+  datastructures which contains a fixed set values, where each value can have a different type.
+
+%pre
+  %code
+    :escaped
+      try {
+        {first, second, third} =
+          {"First Value", 10, true}
+
+        first
+      }
+
+%p
+  Check out it's documentation
+  %a(href="/guide/reference/tuples")
+    here
+  , and the corresponding issue
+  %a(href="https://github.com/mint-lang/mint/pull/209")
+    here
+  \.
+
+%h2 Constants
+
+%p
+  It is now possible to declare constants in
+  %b stores
+  :plain
+    ,
+  %b modules
+  and
+  %b components.
+
+%pre
+  %code
+    :plain
+      module Math {
+        const PI = 3.141592653589793
+      }
+
+%p
+  Constants can be accessed like variables inside the scope of the entity which
+  defined them and from outside they can be accessed with the following syntax:
+
+%pre
+  %code
+    :plain
+      Math:Pi
+
+%h2 Array pattern matching
+
+%p
+  It is now possible to pattern match array in
+  %code case
+  expressions.
+
+%pre
+  %code
+    :plain
+      case (["A", "B", "C"]) {
+        [] => ""                /* Empty array  */
+        ["a"] => ""             /* Array with only one specific element */
+        [a] => ""               /* Array with only one element */
+        [a, b] => ""            /* Array with only two elements  */
+        [a, ...middle, b] => "" /* Array at least with three elements */
+        [...head, tail] => ""   /* Array at least two elements */
+        [head, ...tail] => ""   /* Array at least two elements */
+        [...items] => ""        /* Items would be the array */
+        => ""                   /* Fallback as usual */
+      }
+
+%h2 Additions to the Standard Library
+
+%p
+  The following functions has been added to the standard library which ships with Mint:
+
+%ul
+  %li
+    %code Clipboard.set
+  %li
+    %code FileSize.format
+  %li
+    %code Provider.MediaQuery
+  %li
+    %code Provider.Resize
+  %li
+    %code Provider.Shortcuts
+  %li
+    %code Dom.containedInSelector
+  %li
+    %code Dom.getAttribute
+  %li
+    %code Dom.setStyle
+  %li
+    %code Dom.focus
+  %li
+    %code Dom.getElementFromPoint
+  %li
+    %code String.trim
+  %li
+    %code String.withDefault
+  %li
+    %code Window.prompt
+  %li
+    %code Window.open
+  %li
+    %code Window.getScrollbarWidth
+  %li
+    %code Maybe.andThen
+  %li
+    %code Math.random
+
+%h2 External Assets
+
+%p
+  It is now possible to add
+  %b external stylesheets (CSS)
+  alongside with
+  %b external javascripts
+  \, each is compiled into a single file (one for stylesheets one for JavaSctipts).
+
+%p
+  More information in issues and PRs
+  %a(href="https://github.com/mint-lang/mint/issues/151") #151
+  %a(href="https://github.com/mint-lang/mint/issues/155") #155
+  %a(href="https://github.com/mint-lang/mint/issues/183") #183
+
+
+%h2 Styling
+
+%p
+  CSS rules whith multiple selectors are now compiled separately into their own rules:
+
+%pre
+  %code.css
+    :escaped
+      div,
+      p {
+        color: red;
+      }
+
+%p
+  now compiles as:
+
+%pre
+  %code.css
+    :escaped
+      div {
+        color: red;
+      }
+
+      p {
+        color: red;
+      }
+
+%p
+  This is needed because most browsers will skip rules containing invalid selectors like this one:
+
+%pre
+  %code.css
+    :escaped
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb,
+      &::-ms-thumb {
+        background-color: red;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        border: 0;
+      }
+
+%h2 Next steps
+
+%p
+  Please update your Mint and report any issues. We will keep moving forward and start the development focusing on 0.9.0.
+
+:javascript
+  new Chart(document.getElementById('base'), {
+    type: 'bar',
+    options: {
+      legend: {
+        display: false
+      }
+    },
+    data: {
+      labels: ['React (487K)', 'React - GZip (117K)', 'Preact (373K)', 'Preact - GZip (82K)'],
+      datasets: [{
+        label: 'Size',
+        data: [487, 117, 373, 82],
+        backgroundColor: [
+            '#DDD',
+            '#DDD',
+            '#02b046',
+            '#02b046',
+        ]
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('realworld'), {
+    type: 'bar',
+    options: {
+      legend: {
+        display: false
+      }
+    },
+    data: {
+      labels: ['React (376K)', 'React - GZip (109K)', 'Preact (150K)', 'Preact - GZip (38K)'],
+      datasets: [{
+        label: 'Size',
+        data: [376, 109, 150, 38],
+        backgroundColor: [
+            '#DDD',
+            '#DDD',
+            '#02b046',
+            '#02b046',
+        ]
+      }]
+    }
+  });

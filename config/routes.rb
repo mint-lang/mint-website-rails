@@ -40,7 +40,10 @@ Rails.application.routes.draw do
 
   get '/blog/:slug',
       to: 'blog#post',
-      as: :blog_post
+      as: :blog_post,
+      constraints: {
+        slug: /.*/
+      }
 
   get '/package',
       to: 'packages#add',

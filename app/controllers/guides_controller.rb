@@ -26,10 +26,13 @@ class GuidesController < ApplicationController
       title: 'Reference',
       pages: [
         { title: "Literals", path: "/reference/literals" },
+        { title: "Arrays", path: "/reference/arrays" },
+        { title: "Tuples", path: "/reference/tuples" },
         { title: "Functions", path: "/reference/functions" },
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
         { title: "Built in Types", path: "/reference/built-in-types" },
+        { title: "Constants", path: "/reference/constants" },
         { title: "Equality", path: "/reference/equality" },
         { title: "Stores", path: "/reference/stores" },
         { title: "Routing", path: "/reference/routing" },
@@ -57,6 +60,7 @@ class GuidesController < ApplicationController
             { title: "Internal State", path: "/reference/components/internal-state" },
             { title: "Referencing Entities", path: "/reference/components/referencing-entities" },
             { title: "Global Components", path: "/reference/components/global-components" },
+            { title: "Lifecycle Functions", path: "/reference/components/lifecycle-functions" },
           ]
         },
         {
