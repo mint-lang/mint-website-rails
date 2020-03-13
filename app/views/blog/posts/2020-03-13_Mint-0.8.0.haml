@@ -3,7 +3,7 @@
 %script(src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0-alpha/dist/Chart.min.js")
 
 %p
-  %a(href="" target="_blank")
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.8.0" target="_blank")
     Mint 0.8.0
   has been released!
 
@@ -13,12 +13,12 @@
 %p
   There are
   %a(href="https://github.com/mint-lang/mint/compare/0.7.1...0.8.0" target="_blank")
-    121 commits since 0.7.1
+    122 commits since 0.7.1
   by 6 contributors.
 
 %p
   Let’s review some highlights in this release. But don’t miss out on the rest of the
-  %a(href="" target="_blank") release changelog
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.8.0" target="_blank") release changelog
   which has a lot of valuable information.
 
 %h2 Preact
@@ -28,7 +28,7 @@
   %a(href="https://reactjs.org/" target="_blank") React
   has been replaced with
   %a(href="https://preactjs.com/" target="_blank") Preact
-  as a runtime. This means that the size of the generated JavaScript is a lot smaller!
+  as the underlying runtime. This means that the size of the generated JavaScript is a lot smaller!
 
 %p
   These are the results for the
@@ -42,7 +42,9 @@
   %canvas(id="realworld" width="400" height="200")
 
 %p
-  To see a more real world use here are the results for the frontend of Base API (GZipped version is 30% smaller):
+  To see a more real world use here are the results for the frontend of
+  %a(href="https://www.base-api.io/") Base API
+  (GZipped version is 30% smaller):
 
 %p
   %br
@@ -238,17 +240,17 @@
       }
     },
     data: {
-        labels: ['React (487K)', 'React - GZip (117K)', 'Preact (373K)', 'Preact - GZip (82K)'],
-        datasets: [{
-            label: 'Size',
-            data: [487, 117, 373, 82],
-            backgroundColor: [
-                '#DDD',
-                '#DDD',
-                '#02b046',
-                '#02b046',
-            ]
-        }]
+      labels: ['React (487K)', 'React - GZip (117K)', 'Preact (373K)', 'Preact - GZip (82K)'],
+      datasets: [{
+        label: 'Size',
+        data: [487, 117, 373, 82],
+        backgroundColor: [
+            '#DDD',
+            '#DDD',
+            '#02b046',
+            '#02b046',
+        ]
+      }]
     }
   });
 
@@ -260,16 +262,16 @@
       }
     },
     data: {
-        labels: ['React (376K)', 'React - GZip (109K)', 'Preact (150K)', 'Preact - GZip (38K)'],
-        datasets: [{
-            label: 'Size',
-            data: [376, 109, 150, 38],
-            backgroundColor: [
-                '#DDD',
-                '#DDD',
-                '#02b046',
-                '#02b046',
-            ]
-        }]
+      labels: ['React (376K)', 'React - GZip (109K)', 'Preact (150K)', 'Preact - GZip (38K)'],
+      datasets: [{
+        label: 'Size',
+        data: [376, 109, 150, 38],
+        backgroundColor: [
+            '#DDD',
+            '#DDD',
+            '#02b046',
+            '#02b046',
+        ]
+      }]
     }
   });
