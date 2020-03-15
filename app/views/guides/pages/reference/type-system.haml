@@ -1,0 +1,48 @@
+- set_meta_tags title: 'Guide / Reference / Type System'
+
+%h1 Type System
+
+%p
+  In Mint the types and type definitions are only for the type checker and compiler,
+  they are not available or used by the runtime.
+
+%p
+  Because of that types can be defined in any type definition (except Records and Enums),
+  so for example if
+  %code Time
+  is not defined as an
+  %code Enum
+  or
+  %code Record
+  when writing this:
+
+%pre
+  %code
+    :escaped
+      module Time {
+        fun now : Time {
+          ...
+        }
+      }
+
+%p
+  will define
+  %code Time
+  as a type.
+
+%p
+  Since only this function defines this as a return type we can safely use the
+  same type in type signatures of other functions:
+
+%pre
+  %code
+    :escaped
+      fun day (date : Time ) : Number {...}
+      fun format (pattern : String, date : Time) : String {...}
+
+%p
+  because the
+  %code Time.now()
+  is the only place values of
+  %code Time
+  can come from.
