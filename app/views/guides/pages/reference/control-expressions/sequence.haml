@@ -56,7 +56,7 @@
         store it in the "users" variable
         */
         users =
-          decode response.body as Array(User)
+          decode body as Array(User)
 
         /* If everything went well store the users */
         next { users = users }
