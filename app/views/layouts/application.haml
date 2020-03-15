@@ -128,7 +128,6 @@
 
     :javascript
       hljs.registerLanguage('mint',() => {
-        console.log(hljs)
         const MINT_CONTAINS = []
         const MINT_KEYWORDS = 'const global component store module fun state property next if else sequence parallel style record connect enum routes try catch case where when use for of true false then finally get exposing as decode encode'
 
@@ -236,3 +235,9 @@
       hljs.configure({languages: ['mint']})
       hljs.initHighlightingOnLoad();
 
+    :javascript
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
