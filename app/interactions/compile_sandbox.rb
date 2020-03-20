@@ -40,11 +40,6 @@ class CompileSandbox < ActiveInteraction::Base
         <title></title>
       </head>
       <body>
-        <script>
-          window.onmessage = () => {
-            window.location.reload()
-          }
-        </script>
         <script type="text/javascript">
           #{js};
           Mint.embed()
@@ -60,11 +55,6 @@ class CompileSandbox < ActiveInteraction::Base
         <title></title>
       </head>
       <body style="background: #282c34;color:#EEE;font-size:14px;">
-        <script>
-          window.onmessage = () => {
-            window.location.reload()
-          }
-        </script>
         <pre>#{Ansi::To::Html.new(CGI::escapeHTML(error)).to_html(:xterm)}</pre>
       </body>
       </html>
