@@ -28,6 +28,7 @@ class GuidesController < ApplicationController
         { title: "Literals", path: "/reference/literals" },
         { title: "Arrays", path: "/reference/arrays" },
         { title: "Tuples", path: "/reference/tuples" },
+        { title: "Type System", path: "/reference/type-system" },
         { title: "Functions", path: "/reference/functions" },
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
