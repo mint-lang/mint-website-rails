@@ -1,5 +1,5 @@
 class SandboxController < ApplicationController
-  AS_JSON = {include: { user: { only: %i[id nickname image]}}}
+  AS_JSON = {only: %i[id title content created_at updated_at user_id], include: { user: { only: %i[id nickname image]}}}
   skip_before_action :verify_authenticity_token
 
   def login
@@ -28,10 +28,9 @@ class SandboxController < ApplicationController
 
   def update
     with_sandbox do |user, sandbox|
-      sandbox.update!({
-        content: params[:content],
-        title: params[:title]
-      }.compact)
+      UpdateSandbox.run content: params[:content],
+                        title: params[:title],
+                        sandbox: sandbox
 
       render json: sandbox.as_json(AS_JSON)
     end
@@ -85,6 +84,7 @@ class SandboxController < ApplicationController
   def destroy
     with_sandbox do |user, sandbox|
       sandbox.destroy!
+
       render json: sandbox.as_json(AS_JSON), status: 200
     end
   end
@@ -111,6 +111,7 @@ class SandboxController < ApplicationController
             id: SecureRandom.urlsafe_base64(10),
             content: sandbox.content,
             title: sandbox.title,
+            html: sandbox.html,
             user: user)
 
         render json: forked.as_json(AS_JSON), status: 200
@@ -127,16 +128,41 @@ class SandboxController < ApplicationController
       Sandbox.find_by_id(params[:id])
 
     if sandbox
-      outcome =
-        CompileSandbox.run sandbox: sandbox
+      render html: sandbox.html.to_s.html_safe
+    else
+      render plain: '', status: 404
+    end
+  end
 
-      render html: outcome.result
+  def screenshot
+    sandbox =
+      Sandbox.find_by_id(params[:id])
+
+    if sandbox
+      url = url_for(sandbox.screenshot)
+
+      if url
+        redirect_to url
+      else
+        render plain: '', status: 404
+      end
     else
       render plain: '', status: 404
     end
   end
 
   protected
+
+  def url_for(object)
+    return unless object.attached?
+
+    case Rails.application.config.active_storage.service
+    when :amazon
+      object.service_url
+    else
+      Rails.application.routes.url_helpers.url_for(object)
+    end
+  end
 
   def with_sandbox
     with_user do |user|

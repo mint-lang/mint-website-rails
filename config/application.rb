@@ -22,5 +22,6 @@ module MintWebsiteBackend
   class Application < Rails::Application
     config.load_defaults 6.0
     config.autoload_paths += Dir.glob("#{config.root}/app/interactions/*")
+    config.active_job.queue_adapter = :sucker_punch
   end
 end

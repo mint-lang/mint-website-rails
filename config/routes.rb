@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
 
     member do
+      get :screenshot
       get :preview
       post :fork
       post :format

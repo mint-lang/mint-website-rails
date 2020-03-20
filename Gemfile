@@ -47,3 +47,5 @@ gem "dotenv", "~> 2.7"
 gem "dotenv-rails", "~> 2.7"
 
 gem "ferrum", "~> 0.7"
+
+gem "sucker_punch", "~> 2.1"

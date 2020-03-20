@@ -15,9 +15,5 @@ class Sandbox < ApplicationRecord
 
   validates :title, presence: true
 
-  after_commit :clear_cache
-
-  def clear_cache
-    Redis.current.hdel('sandboxes', id)
-  end
+  has_one_attached :screenshot
 end
