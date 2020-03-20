@@ -155,13 +155,7 @@ class SandboxController < ApplicationController
 
   def url_for(object)
     return unless object.attached?
-
-    case Rails.application.config.active_storage.service
-    when :amazon
-      object.service_url
-    else
-      Rails.application.routes.url_helpers.url_for(object)
-    end
+    Rails.application.routes.url_helpers.url_for(object)
   end
 
   def with_sandbox
