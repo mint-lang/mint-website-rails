@@ -49,3 +49,5 @@ gem "dotenv-rails", "~> 2.7"
 gem "ferrum", "~> 0.7"
 
 gem "sucker_punch", "~> 2.1"
+
+gem "aws-sdk-s3", "~> 1.61"
