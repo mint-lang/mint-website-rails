@@ -201,7 +201,7 @@
     :escaped
       component Greeter {
         fun render : Html {
-          <div onClick={(event : Html.Event) : Void { Debug.log("Hello") }}>
+          <div onClick={(event : Html.Event) : String { Debug.log("Hello") }}>
             "Click Me!"
           </div>
         }
