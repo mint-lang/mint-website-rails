@@ -1,8 +1,10 @@
-%a{name: item['name']}
+- name = item['name'] || item['key']
+
+%a{name: name}
 .entity
   .entity__signature<
-    %a.entity__name{href: "##{item['name']}"}
-      %div= item['name']
+    %a.entity__name{href: "##{name}"}
+      %div= name || item['key']
 
     - if item['arguments'].to_a.any?
       %div.entity__operator= "("
@@ -15,11 +17,12 @@
 
       %div.entity__operator= ")"
 
-    %div.entity__operator
-      = ":"
+    - if item['type']
+      %div.entity__operator
+        = ":"
 
-    %div.entity__type
-      = item['type']
+      %div.entity__type
+        = item['type']
 
     - if item['default']
       %div.entity__operator= "="
@@ -30,5 +33,6 @@
   - if item['default'] && item['default'].size > 50
     %div.entity__default.entity__default--block= item['default']
 
-  .entity__body
-    != item['description']
+  - if item['description']
+    .entity__body
+      != item['description']

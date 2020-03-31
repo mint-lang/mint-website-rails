@@ -97,6 +97,6 @@ class VersionsController < ApplicationController
   end
 
   def find_entities
-    @items = VersionEntities.run!(version: @version, search: params[:search], current: params[:entity])
+    @items = VersionEntities.run!(version: @version, category: params[:category], search: params[:search], current: params[:entity])
   end
 end

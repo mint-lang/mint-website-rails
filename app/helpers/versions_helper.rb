@@ -5,27 +5,6 @@ class Array
 end
 
 module VersionsHelper
-  def components
-    @version
-      .documentation['components']
-      .to_a
-      .sort_by { |mod| mod['name'] }
-  end
-
-  def modules
-    @version
-      .documentation['modules']
-      .to_a
-      .sort_by { |mod| mod['name'] }
-  end
-
-  def stores
-    @version
-      .documentation['stores']
-      .to_a
-      .sort_by { |mod| mod['name'] }
-  end
-
   def body_html
     if @entity
       docs =
@@ -36,6 +15,12 @@ module VersionsHelper
       case @category
       when 'components'
         render partial: 'component', locals: { docs: docs }
+      when 'providers'
+        render partial: 'provider', locals: { docs: docs }
+      when 'records'
+        render partial: 'record', locals: { docs: docs }
+      when 'enums'
+        render partial: 'enum', locals: { docs: docs }
       when 'modules'
         render partial: 'module', locals: { docs: docs }
       when 'stores'

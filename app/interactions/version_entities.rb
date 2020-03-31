@@ -3,6 +3,7 @@ class VersionEntities < ActiveInteraction::Base
   include ApplicationHelper
 
   object :version, class: Version
+  string :category, default: nil
   string :current, default: nil
   string :search, default: nil
 
@@ -10,7 +11,10 @@ class VersionEntities < ActiveInteraction::Base
     all =
       process('components') +
         process('modules') +
-        process('stores')
+        process('stores') +
+        process('enums') +
+        process('providers') +
+        process('records')
 
     filtered = []
 
@@ -31,7 +35,13 @@ class VersionEntities < ActiveInteraction::Base
           filtered << item
         end
       else
-        if current == item[:name]
+        same_category =
+          category && category == item[:category]
+
+        same_name =
+          current == item[:name]
+
+        if (same_category && same_name) || (!category && same_name)
           filtered << item
           entities = item[:entities]
         else
@@ -43,7 +53,7 @@ class VersionEntities < ActiveInteraction::Base
 
     end
 
-    filtered.sort_by { |item| item[:name] }
+    filtered.sort_by { |item| [item[:category], item[:name]] }
   end
 
 
