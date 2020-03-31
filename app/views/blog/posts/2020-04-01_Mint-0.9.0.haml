@@ -1,0 +1,325 @@
+- set_meta_tags title: "Blog / 0.9.0"
+
+%p
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.9.0" target="_blank")
+    Mint 0.9.0
+  has been released!
+
+%p
+  This release comes with changes to the type system, bug fixes and support for CSS at rules.
+
+%p
+  There are
+  %a(href="https://github.com/mint-lang/mint/compare/0.8.0...0.9.0" target="_blank")
+    XXX commits since 0.8.0
+  by XXX contributors.
+
+%p
+  Let’s review some highlights in this release. But don’t miss out on the rest of the
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.9.0" target="_blank") release changelog
+  which has a lot of valuable information.
+
+%h2 Optional Type Signatures
+
+%p
+  There are some type signatures which can be inferred by the type-checker but are required to write in 0.8.0:
+
+%ul
+  %li return type of a function
+  %li type of a computed property
+  %li type of a state variable
+  %li type of a property
+
+%p
+  These types are optional in 0.9.0 and their are types inferred if not provided:
+
+%pre
+  %code
+    :escaped
+      component Main {
+        property firstName = "John"
+
+        state lastName = "Doe"
+
+        get fullName {
+          "\#{firstName} \#{lastName}"
+        }
+
+        fun updateLastName (name : String) {
+          next { lastName = name }
+        }
+
+        fun render {
+          <div>
+            <{ fullName }>
+          </div>
+        }
+      }
+
+%p
+  This change will make the code more readable by reducing the visual complexity, and will make developers more productive.
+
+%h2 Type Specifiation
+
+%p
+  It is now possible to specify the type of an
+  %b array literal
+  or an
+  %b inline JavaScript
+  code.
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    This is not a type cast, it's just to help the type checker in certain cases.
+
+%h3 Array Literal
+
+%p
+  To specify the type of an array use the
+  %code of
+  keyword followed by the type of it's items:
+
+%pre
+  %code
+    :escaped
+      [] /* Array(a) */
+      [] of String /* Array(String) */
+
+%p
+  This can be done for array literals which contain values as well:
+
+%pre
+  %code
+    :escaped
+      ["A", "B"] of String /* Array(String) */
+
+%p
+  This is useful in situations where the type of the array needs to be specified, for example when two records has multilpe arrays and would both match a generic structure:
+
+%pre
+  %code
+    :escaped
+      record User {
+        projects : Array(Project)
+      }
+
+      record Guest {
+        projects : Array(GuestProject)
+      }
+
+      /* This could match either and would resolve to User */
+      { projects: [] }
+
+      /* This will resolve to Guest */
+      { projects: [] of GuestProject }
+
+%h3 Inline JavaScript
+
+%p
+  To specify the type of an inline JavaScript code use the
+  %code as
+  keyword:
+
+%pre
+  %code
+    :escaped
+      `"Hello World!"` as String
+
+%h2 Type Constructors
+
+%p
+  Records can now be constructed using a
+  %b type constructor
+  which is a function with the same name as the record and which takes the values of the fields as parameters and returns a record:
+
+%pre
+  %code
+    :escaped
+      record User {
+        name : String,
+        age : Number,
+        active : Bool,
+      }
+
+      User("John Doe", 32, true) == {
+        name = "John Doe",
+        active = true,
+        age = 32
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    The order of the parameters are in the same as the order the fields.
+
+%p
+  This function can be partially applied as well:
+
+%pre
+  %code
+    :escaped
+      record User {
+        name : String,
+        age : Number,
+        active : Bool,
+      }
+
+      try {
+        partial =
+          User("John Doe", 32)
+
+        partial(true) == {
+          name = "John Doe",
+          active = true,
+          age = 32
+        }
+      }
+
+%h2 Required Properties
+
+%p
+  It is now possible to omit the default value of a property, making it required:
+
+%pre
+  %code
+    :escaped
+      component User {
+        property name : String
+
+        fun render {
+          <div>
+            "User: \#{name}"
+          </div>
+        }
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    If a required property is not provided the type checker will show you an error.
+
+%p
+  A property needs to have either a default value or a type signature to determine it's final type:
+
+%pre
+  %code
+    :escaped
+      /* These are valid */
+      property name : String = "Joe"
+      property name : String
+      property name = "Joe"
+
+      /* This is not valid and will show an error. */
+      property name
+
+%h2
+  CSS At Rules
+
+%p
+  Up until this point the
+  %code @media
+  rule was the only one supported. In this release
+  %code @font-face
+  ,
+  %code @supports
+  and
+  %code @keyframes
+  rules are supported as well.
+
+%h3
+  Supports
+
+%p
+  %code @supports
+  rules can be used the same way as
+  %code @media
+  rules, it can be nested into other rules and can contain interpolations.
+
+
+%pre
+  %code
+    :escaped
+      component Main {
+        style base {
+          @supports (display: grid) {
+            div {
+              display: grid;
+            }
+          }
+        }
+
+        fun render : Html {
+          <div::base>
+            "Hello!!!"
+          </div>
+        }
+      }
+
+%h3
+  Keyframes
+
+%p
+  %code @keyframes
+  rules can be defined inside
+  %code style
+  blocks but they are considered global, they can't be nested into other selectors but can contain interploations.
+
+%pre
+  %code
+    :escaped
+      component Main {
+        style base {
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+            }
+
+            to {
+              opacity: 1;
+            }
+          }
+
+          animation: fade-in 1s linear;
+        }
+
+        fun render : Html {
+          <div::base>
+            "Hello!!!"
+          </div>
+        }
+      }
+
+%h3
+  Font Face
+
+%p
+  %code @font-face
+  rules can be defined inside
+  %code style
+  blocks but they are considered global, because of that they can't have interpolations and they can't be nested into other selectors.
+
+%pre
+  %code
+    :escaped
+      component Main {
+        style base {
+          @font-face {
+            src: url(sansation_light.woff);
+            font-family: myFirstFont;
+          }
+
+          font-family: myFirstFont;
+        }
+
+        fun render : Html {
+          <div::base>
+            "Yey!!!"
+          </div>
+        }
+      }
+
+%h2 Next steps
+
+%p
+  Please update your Mint and report any issues. We will keep moving forward and start the development focusing on 0.10.0.
