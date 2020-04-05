@@ -34,17 +34,17 @@
         %code.mint
           :escaped
             component Counter {
-              state counter : Number = 0
+              state counter = 0
 
-              fun increment : Promise(Never, Void) {
+              fun increment {
                 next { counter = counter + 1 }
               }
 
-              fun decrement : Promise(Never, Void) {
+              fun decrement {
                 next { counter = counter - 1 }
               }
 
-              fun render : Html {
+              fun render {
                 <div>
                   <button onClick={decrement}>
                     "Decrement"
@@ -114,9 +114,9 @@
       %code.mint
         :escaped
           component TodoItem {
-            property color : String = "#333"
-            property label : String = ""
-            property done : Bool = false
+            property color = "#333"
+            property label = ""
+            property done = false
 
             style base {
               align-items: center;
@@ -133,7 +133,7 @@
               }
             }
 
-            fun render : Html {
+            fun render {
               <div::base>
                 <span::label>
                   <{ label }>
@@ -181,13 +181,13 @@
           }
 
           store Todos {
-            property items : Array(Todo) = []
+            property items = [] of Todo
 
-            fun add (todo : Todo) : Promise(Never, Void) {
+            fun add (todo : Todo) {
               next { items = Array.push(todo, items) }
             }
 
-            fun delete (todo : Todo) : Promise(Never, Void) {
+            fun delete (todo : Todo) {
               next { items = Array.delete(todo, items) }
             }
           }
