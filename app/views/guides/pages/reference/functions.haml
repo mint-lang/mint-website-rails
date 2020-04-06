@@ -262,3 +262,22 @@
     Be careful when using recursive functions, the type-checker does not check if
     there is an exit condition, if there is not it will cause an infinite loop.
 
+%h2 Pipe operator
+
+%p
+  The pipe operator
+  %code |>
+  can be used to pipe an expression into a function as the first parameter:
+
+%pre
+  %code.mint
+    :escaped
+      " Joe   "
+      |> String.toUppercase
+      |> String.trim
+
+      /* Is the same as */
+      String.trim(String.toUppercase(" Joe   "))
+
+%p
+  Using this operator makes the code more readable.
