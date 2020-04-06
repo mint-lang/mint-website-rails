@@ -39,6 +39,50 @@
   %span
     Properties must be fully defined meaning types in it cannot have any type variables.
 
+%h2 Required properties
+
+%p
+  A property can be
+  %b required
+  by leaving out the default value:
+
+%pre
+  %code
+    :escaped
+      component User {
+        property name : String
+
+        fun render {
+          <div>
+            "User: \#{name}"
+          </div>
+        }
+      }
+
+%p
+  This means when using this component this property must be set, if it's not
+  then the type checker will show you an error.
+
+%h2 Optional type
+
+%p
+  The
+  %b type annoation
+  can be left out if a default value is set:
+
+%pre
+  %code
+    :escaped
+      component User {
+        property name = "Joe"
+
+        fun render {
+          <div>
+            "User: \#{name}"
+          </div>
+        }
+      }
+
 %h2 Passing properties
 
 %p

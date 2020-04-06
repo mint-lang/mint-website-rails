@@ -23,3 +23,27 @@
           </div>
         }
       }
+
+%h2 Optional type
+
+%p
+  The
+  %b type annoation
+  is optional:
+
+%pre
+  %code
+    :escaped
+      component Greeter {
+        property name : String
+
+        get text {
+          "Hello " + name + "!"
+        }
+
+        fun render {
+          <div>
+            <{ text }>
+          </div>
+        }
+      }

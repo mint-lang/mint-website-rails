@@ -157,7 +157,8 @@
   %b pseudo elements and states
   or style child elements.
 
-%h2 Media queries
+%h2
+  %code @media
 
 %p
   %a(href="https://www.w3.org/TR/css3-mediaqueries/")
@@ -183,10 +184,107 @@
         }
       }
 
+%h2
+  %code @supports
+
+%p
+  %a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports")
+    @supports
+  can be defined for a style or sub rule. When matched,
+  their contents apply to all elements that match them.
+
+%pre
+  %code
+    :escaped
+      component Test {
+        style base {
+          color: red;
+
+          @supports (display: grid) {
+            display: grid;
+          }
+        }
+        fun render : Html {
+          <div::base>
+            <{ "Hello!!" }>
+          </div>
+        }
+      }
+
+%h2
+  %code @font-face
+
+%p
+  %a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face")
+    @font-face
+  rules can be defined in a style block. The declaration will be global meaning that any other component can reference that font.
+
+%pre
+  %code
+    :escaped
+      component Test {
+        style base {
+          @font-face {
+            font-family: "Open Sans";
+            src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+                 url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+          }
+
+          font-family: "Open Sans";
+        }
+
+        fun render : Html {
+          <div::base>
+            <{ "Hello!!" }>
+          </div>
+        }
+      }
+
+%h2
+  %code @keyframes
+
+%p
+  %a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes")
+    @keyframes
+  rules can be defined in a style block. The declaration will be global meaning that any other component can reference that animation.
+
+%pre
+  %code
+    :escaped
+      component Test {
+        style base {
+          @keyframes slidein {
+            from {
+              transform: translateX(0%);
+            }
+
+            to {
+              transform: translateX(100%);
+            }
+          }
+
+          animation: slidein 3s;
+        }
+
+        fun render : Html {
+          <div::base>
+            <{ "Hello!!" }>
+          </div>
+        }
+      }
+
 %h2 Nesting
 
 %p
-  Sub rules and media queries can be nested in each other infinitely:
+  %b
+    Sub rules
+  ,
+  %b
+    %code @media
+  and
+  %b
+    %code @supports
+  rules can be nested in each other infinitely:
 
 %pre
   %code
@@ -196,6 +294,14 @@
 
         div {
           color: blue;
+
+          @supports (display: grid) {
+            display: grid;
+
+            b {
+              font-weight: normal;
+            }
+          }
 
           span {
             color: yellow;
