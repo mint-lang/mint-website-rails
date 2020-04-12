@@ -74,17 +74,13 @@
         [] => ""                /* Empty array  */
         ["a"] => ""             /* Array with only one specific element */
         [a] => ""               /* Array with only one element */
-        [a, b] => ""            /* Array with only two elements  */
-        [a, ...middle, b] => "" /* Array at least with three elements */
-        [...head, tail] => ""   /* Array at least two elements */
-        [head, ...tail] => ""   /* Array at least two elements */
+        [a, b] => ""            /* Array with only two elements */
+        [a, ...middle, b] => "" /* Array at least with two elements (middle can be empty) */
+        [...head, tail] => ""   /* Array at one element (head can be empty) */
+        [head, ...tail] => ""   /* Array at one element (tail can be empty) */
         [...items] => ""        /* Items would be the array */
         => ""                   /* Fallback as usual */
       }
 
 %p
-  Using the
-  %code ...
-  spread operator will make the
-  %code case
-  exhaustive.
+  The type checker will raise an error if the case is not exhaustive.
