@@ -16,7 +16,10 @@ if (search) {
       }
 
       const response = await fetch(a.href, {
-        headers: { "Accept": "application/javascript" }
+        headers: {
+          "Accept": "application/javascript",
+          "X-Requested-With": "javascript"
+        }
       })
 
       const html = await response.text()
