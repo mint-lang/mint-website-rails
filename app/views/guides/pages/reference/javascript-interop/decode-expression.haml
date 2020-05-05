@@ -44,7 +44,7 @@
       decode object as String
 
 %p
-  \...will try to convert the untyped value to a typed value. it returns a
+  \...will try to convert the untyped value to a typed value. It returns a
   %code Result(Object.Error, ...)
   , which can be used in a
 
@@ -133,12 +133,12 @@
 %h2 Decoding not supported names
 
 %p
-  There are times when we want to decode a key from an object into a record
-  whats name is not supported as a record key for example
+  There are times when we want to decode an object containing a key whose
+  name is not a valid record key, for example
   %code tag_list
-  \. In this case we can use the
+  \. In this case the
   %code using
-  keyword to specify the mapping between the object and the record.
+  keyword can be used to specify the mapping between the object and the record.
 
 %p
   Here is an example:
