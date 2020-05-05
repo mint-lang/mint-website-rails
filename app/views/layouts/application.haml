@@ -61,7 +61,7 @@
 
       = active_link_to '/api', class: 'mobile-menu__item' do
         = octicon "repo"
-        %span Api
+        %span API
 
       = active_link_to packages_path, class: 'mobile-menu__item' do
         = octicon "archive"
@@ -72,7 +72,7 @@
                 target: '_blank',
                 active: :exact do
         = octicon "mark-github"
-        %span Github
+        %span GitHub
 
     .nav
       .nav__wrapper
@@ -106,7 +106,7 @@
 
         = active_link_to '/api', class: :nav__item do
           = octicon "repo"
-          %span Api
+          %span API
 
         = active_link_to packages_path, class: :nav__item do
           = octicon "archive"
@@ -117,7 +117,7 @@
                   target: '_blank',
                   active: :exact do
           = octicon "mark-github"
-          %span Github
+          %span GitHub
 
     %article
       = yield
