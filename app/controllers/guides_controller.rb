@@ -18,9 +18,9 @@ class GuidesController < ApplicationController
       ]
     },
     {
-      title: 'Recipies',
+      title: 'Recipes',
       pages: [
-        { title: "Using third party CSS", path: "/recipies/using-third-party-css" }
+        { title: "Using third party CSS", path: "/recipes/using-third-party-css" }
       ]
     },
       title: 'Reference',
