@@ -33,3 +33,7 @@ You will need to:
 - Create a database `rails db:create`
 - Migrate the database `rails db:migrate`
 - Start the server `rails s`
+
+## Why Ruby?
+
+Mint is designed for writing SPAs, but this website is mostly static and cacheable, therefore it makes little sense to build it as a SPA. It's all about picking the right tool for the job.
