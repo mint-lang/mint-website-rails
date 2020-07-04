@@ -1,8 +1,7 @@
 # Mint Website
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/mint-lang/Lobby)
-[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/mint-lang)
-[![Discord](https://discord.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg)](https://discord.gg/NXFUJs2)
+[![Join our Discord server](https://discord.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg)](https://discord.gg/NXFUJs2)
 
 ---
 
