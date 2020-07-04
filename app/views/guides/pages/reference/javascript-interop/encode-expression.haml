@@ -29,13 +29,13 @@
 
 %p
   The general rule is that you can
-  %code encode
-  everything which can be
   %code decode
-  ed.
+  anything that you can
+  %code encode
+  .
 
 %p
-  Encoding data is useful when you want to convert it to Json:
+  Encoding data is useful when you want to convert it to JSON:
 
 
 %pre
@@ -45,4 +45,3 @@
       |> Json.stringify()
 
       /* { "name": "Bob"} */
-
