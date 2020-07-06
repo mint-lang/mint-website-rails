@@ -83,7 +83,8 @@
   expressions, the value of a
   %code try
   expression is the value of
-  %b its last expression
-  . So every
+  = succeed "." do
+    %b its last expression
+  So every
   %code catch
   expression must also return the same type.
