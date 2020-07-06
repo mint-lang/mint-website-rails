@@ -47,6 +47,7 @@ class GuidesController < ApplicationController
             { title: "try", path: "/reference/control-expressions/try" },
             { title: "sequence", path: "/reference/control-expressions/sequence" },
             { title: "parallel", path: "/reference/control-expressions/parallel" },
+            { title: "next", path: "/reference/control-expressions/next" },
           ]
         },
         {
