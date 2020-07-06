@@ -43,10 +43,11 @@ class GuidesController < ApplicationController
           pages: [
             { title: "if...else", path: "/reference/control-expressions/if-else" },
             { title: "case", path: "/reference/control-expressions/case" },
-            { title: "for", path: "/reference/control-expressions/for" },
+            { title: "for...of", path: "/reference/control-expressions/for-of" },
             { title: "try", path: "/reference/control-expressions/try" },
             { title: "sequence", path: "/reference/control-expressions/sequence" },
             { title: "parallel", path: "/reference/control-expressions/parallel" },
+            { title: "next", path: "/reference/control-expressions/next" },
           ]
         },
         {
