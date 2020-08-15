@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-	This is the source code for the website <a href="www.mint-lang.com" target="_blank">www.mint-lang.com</a>. Along with the API for <a href="sandbox.mint-lang.com" target="_blank">sandbox.mint-lang.com</a>
+	This is the source code for the website <a href="https://www.mint-lang.com" target="_blank">www.mint-lang.com</a>. Along with the API for <a href="https://sandbox.mint-lang.com" target="_blank">sandbox.mint-lang.com</a>
 </p>
 
 <p align="center">
