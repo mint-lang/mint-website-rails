@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/Multimegamander/mint-website-rails/blob/master/banner.png?raw=true" alt="mint website></img>
+  <img src="https://github.com/Multimegamander/mint-website-rails/blob/master/banner.png?raw=true" alt="mint website"></img>
 </p>         
 
 <p align="center"> 
