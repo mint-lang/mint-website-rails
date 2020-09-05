@@ -1,7 +1,7 @@
 class GuidesController < ApplicationController
   PAGES = [
     {
-      title: 'Into',
+      title: 'Introduction',
       pages: [
         { title: "What & Why", path: "" }
       ],
@@ -32,7 +32,7 @@ class GuidesController < ApplicationController
         { title: "Functions", path: "/reference/functions" },
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
-        { title: "Built in Types", path: "/reference/built-in-types" },
+        { title: "Built-in Types", path: "/reference/built-in-types" },
         { title: "Constants", path: "/reference/constants" },
         { title: "Equality", path: "/reference/equality" },
         { title: "Stores", path: "/reference/stores" },
