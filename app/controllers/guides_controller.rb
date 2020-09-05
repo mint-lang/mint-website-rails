@@ -1,7 +1,7 @@
 class GuidesController < ApplicationController
   PAGES = [
     {
-      title: 'Into',
+      title: 'Introduction',
       pages: [
         { title: "What & Why", path: "" }
       ],
