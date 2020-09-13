@@ -1,7 +1,29 @@
-version: '2'
+version: '3'
 services:
   app:
-    image: ruby:2.6.3
+    build: .
     working_dir: /app
+    tty: true
+    environment:
+      DATABASE_HOST: postgres
+    command:
+      bundle exec rails s -p 3001 -b 0.0.0.0
+    depends_on:
+      - postgres
     volumes:
+      - gems:/usr/local/bundle
       - .:/app
+    ports:
+      - 3001:3001
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  gems:
+  db_data:

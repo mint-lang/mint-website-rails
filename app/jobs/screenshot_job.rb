@@ -11,9 +11,13 @@ class ScreenshotJob < ApplicationJob
   end
 
   def screenshot(sandbox)
-    browser = Ferrum::Browser.new(window_size: [600,300])
+    browser =
+      Ferrum::Browser.new(
+        browser_options: { 'no-sandbox': nil },
+        window_size: [600,300])
+
     browser.goto("#{ENV["RAILS_HOST_PROTOCOL"]}://#{ENV["RAILS_HOST"]}/sandbox/#{sandbox.id}/preview")
-    browser.screenshot(path: sandbox.id + '.jpg')
+    browser.screenshot(path: sandbox.id + '.jpg', full: true)
     browser.quit
 
     File.new(sandbox.id + '.jpg')

@@ -1,21 +1,16 @@
 default: &default
   adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  username: postgres
+  password: postgres
 
 development:
   <<: *default
   database: mint_development
-  host: localhost
-  password: postgres
-  username: postgres
 
 test:
   <<: *default
   database: mint_test
-  password: postgres
-  username: postgres
-
-production:
-  <<: *default
-  database: db/production.sqlite3
