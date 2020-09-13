@@ -117,3 +117,39 @@
         }
       }
 
+%h2 Children
+
+%p
+  The
+  %code children
+  property is special and for now it can only have the type
+  %code Array(Html).
+
+%p
+  It is used to access the children which are passed to the component:
+
+%pre
+  %code
+    :escaped
+      component Container {
+        property children : Array(Html) = []
+
+        fun render {
+          <div>
+            <{ children }>
+          </div>
+        }
+      }
+
+      component Main {
+        fun render {
+          <Container>
+            "I am a child node!"
+          </Container>
+        }
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    Currently the property is needed to be defined, but in a future release it can be used without it.

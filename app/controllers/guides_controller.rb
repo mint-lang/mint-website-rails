@@ -30,6 +30,7 @@ class GuidesController < ApplicationController
         { title: "Tuples", path: "/reference/tuples" },
         { title: "Type System", path: "/reference/type-system" },
         { title: "Functions", path: "/reference/functions" },
+        { title: "Modules", path: "/reference/modules" },
         { title: "Records", path: "/reference/records" },
         { title: "Enums", path: "/reference/enums" },
         { title: "Built in Types", path: "/reference/built-in-types" },
@@ -37,6 +38,7 @@ class GuidesController < ApplicationController
         { title: "Equality", path: "/reference/equality" },
         { title: "Stores", path: "/reference/stores" },
         { title: "Routing", path: "/reference/routing" },
+        { title: "Comments", path: "/reference/comments" },
         {
           title: "Control Expressions",
           path: "/reference/control-expressions",

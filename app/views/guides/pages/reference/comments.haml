@@ -1,0 +1,24 @@
+- set_meta_tags title: 'Guide / Reference / Comments'
+
+%h1 Comments
+
+%p
+  Mint has only one type of comments which has the following syntax:
+  %code /*...*/
+
+%pre
+  %code
+    :escaped
+      try {
+        /* Set a variable. */
+        name =
+          "Joe"
+
+        /* Convert it to upper case. */
+        String.toUpperCase(name)
+      }
+
+%p.hint.hint--info
+  = octicon "info"
+  %span
+    Mint doesn't have a tokenizer so if there is a place where you would like to use a comment but can't, open an issue!

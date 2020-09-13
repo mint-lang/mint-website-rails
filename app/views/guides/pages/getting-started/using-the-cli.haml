@@ -186,6 +186,17 @@
   %li
     create a service worker and manifest file
 
+%h3 Disabling the service worker
+
+%p
+  If you don't want a service worker for you application you can use the
+  %code --skip-service-worker
+  flag when building.
+
+%pre
+  %code.plaintext
+    mint build --skip-service-worker
+
 %h2 Browsing documentation of installed packages
 
 %p
