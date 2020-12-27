@@ -37,7 +37,7 @@
   = octicon "alert"
 
   %span
-    Properties must be fully defined meaning types in it cannot have any type variables.
+    Properties must be fully defined (meaning types in it cannot have any type variables).
 
 %h2 Required properties
 
@@ -60,7 +60,7 @@
       }
 
 %p
-  This means when using this component this property must be set, if it's not
+  This means when using this component, this property must be set. If it's not
   then the type checker will show you an error.
 
 %h2 Optional type
@@ -100,7 +100,7 @@
 %p.hint.hint--info
   = octicon "info"
   %span
-    All properties are type checked, attempting to set an incompatible value will show an error.
+    All properties are type checked. Attempting to set an incompatible value will show an error.
 
 %p
   There are some examples of passing different things:
@@ -152,4 +152,4 @@
 %p.hint.hint--info
   = octicon "info"
   %span
-    Currently the property is needed to be defined, but in a future release it can be used without it.
+    Currently the property must be defined, but in a future release it will be optional.
