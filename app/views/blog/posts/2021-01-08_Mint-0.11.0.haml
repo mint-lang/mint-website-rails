@@ -1,0 +1,112 @@
+- set_meta_tags title: "Blog / 0.11.0"
+
+%p
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.11.0" target="_blank")
+    Mint 0.11.0
+  has been released!
+
+%p
+  This release focused on bug fixes, although there are some new language features.
+
+%p
+  There are
+  %a(href="https://github.com/mint-lang/mint/compare/0.10.0...0.11.0" target="_blank")
+    102 commits since 0.10.0
+  by 5 contributors.
+
+%p
+  Let’s review some highlights in this release. But don’t miss out on the rest of the
+  %a(href="https://github.com/mint-lang/mint/releases/tag/0.11.0" target="_blank") release changelog
+  which has a lot of valuable information.
+
+%h2 Regular Expression Literal
+
+%p
+  Mint now supports regular expression literals:
+
+%pre
+  %code
+    :escaped
+      Regexp.match("abbc", /ab+c/i) == true
+
+%h2 Open Modules
+
+%p
+  Modules now can be defined in multiple places allowing to define constants and functions.
+
+%pre
+  %code
+    :escaped
+      module Greeter {
+        fun greet (name : String) {
+          "Hello \#{name}!"
+        }
+      }
+
+      module Greeter {
+        fun greetPolitely (name : String) {
+          "Have a nice day Mr. \#{name}!"
+        }
+      }
+
+%p
+  This is mostly useful if you want to extend a module in the standard library (like
+  %code Array
+  ).
+
+%h2
+  %code or
+  operator
+
+%p
+  Added the
+  %code or
+  operator as an alias to
+  %code Maybe.withDefault
+  \:
+
+%pre
+  %code
+    :escaped
+      Maybe.withDefault("Hello", Maybe::Just("Value")) /* "Value" */
+      Maybe.withDefault("Hello", Maybe::Nothing)       /* "Hello" */
+
+      Maybe::Just("Value") or "Hello" /* "Value" */
+      Maybe::Nothing or "Hello"       /* "Hello" */
+
+%h2
+  %code []
+  access on tuples
+
+%p
+  It is now possible to use
+  %code []
+  on tuples:
+
+%pre
+  %code
+    :escaped
+      {"Name", "Joe"}[0] == "Name"
+
+%p
+  Only literal numbers are valid since it's the only way we can only determine the type.
+
+%h2 Bugfixes and Issues
+
+%p
+  %b 27 bugs and issues
+  were fixed in this release.
+
+%h2 Next steps
+
+%p
+  Please update your Mint and report any issues. We will keep moving forward and start the development focusing on 0.12.0.
+
+%hr
+
+%p
+  Special thanks to
+  %b @Sija
+  for continuously reviewing the pull requests and to
+  %b @sokil
+  for implementing and fixing things. 🎉
