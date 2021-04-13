@@ -1,0 +1,33 @@
+- set_meta_tags title: 'Guide / Reference / Directives / @format'
+
+%h1 Format Directive
+
+%p
+  The
+  %code @format
+  directive returns the formatted string version of the code it's given and the
+  result of the code in a tuple
+  %code Tuple(a, String)
+  \. This is created to make it easy to display a simple example of Mint code:
+
+%pre
+  %code
+    :escaped
+      try {
+        {result, code} =
+          @format {
+            <div>
+              "Hello There!"
+            </div>
+          }
+
+        <div>
+          <{ result }>
+
+          <pre>
+            <code>
+              <{ code }>
+            </code>
+          </pre>
+        </div>
+      }

@@ -68,6 +68,16 @@ class GuidesController < ApplicationController
           ]
         },
         {
+          title: "Directives",
+          path: "/reference/directives",
+          pages: [
+            { title: "@asset", path: "/reference/directives/asset" },
+            { title: "@svg", path: "/reference/directives/svg" },
+            { title: "@format", path: "/reference/directives/format" },
+            { title: "@documentation", path: "/reference/directives/documentation" },
+          ]
+        },
+        {
           title: "JavaScript Interop",
           path: "/reference/javascript-interop",
           pages: [

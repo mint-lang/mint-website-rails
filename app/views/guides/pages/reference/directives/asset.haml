@@ -1,0 +1,49 @@
+- set_meta_tags title: 'Guide / Reference / Directives / @asset'
+
+%h1 Asset Directive
+
+%p
+  The asset directive allows you to
+  %b reference
+  a file relative to the current file.
+
+%p
+  Basically, it returns the path to the file, but more importantly it tells
+  the compiler that an asset is used.
+
+%p
+  During the build process the assets are bundled along with the generated
+  files.
+
+%p
+  For example, given this file structure:
+
+%pre
+  %code
+    :escaped
+      my-app
+      ├── images
+      │   └── some-image.jpg
+      ├── source
+      │   └── Main.mint
+      └── mint.json
+
+%p
+  This component references the
+  %code some-image.jpg
+  from the
+  %code images
+  folder.
+
+%pre
+  %code
+    :escaped
+      component Main {
+        fun render : Html {
+          <img src={@asset(../some-image.jpg)}/>
+        }
+      }
+
+%p
+  During the build process the asset will be put into the `dist/assets`
+  directory and the image tag will point to that image.

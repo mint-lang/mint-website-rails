@@ -1,0 +1,31 @@
+- set_meta_tags title: 'Guide / Reference / Directives'
+
+%h1 Directives
+
+%p
+  Mint has some language features call directives which interact with the
+  environment or the code itself at compile time.
+
+%p
+  There are currently 4 directives:
+
+%ul
+  %li
+    %code @asset
+    \- Reference assets such as images / videos / stylesheets
+
+  %li
+    %code @svg
+    \- Inline SVG directly as
+    %code
+      Html
+
+  %li
+    %code @format
+    \- Format the given code and return it as a
+    %code
+      Tuple(a, String)
+
+  %li
+    %code @documentation
+    \- Generate documentation JSON for a given component.
