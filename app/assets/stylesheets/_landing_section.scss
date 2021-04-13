@@ -1,5 +1,6 @@
 .landing-section {
   --border-color: rgba(0,0,0,0.3);
+  --gradient-color-end: #FFFFFF00;
   --gradient-color: #FFF;
   --bold-color: #333;
   --color: #666;
@@ -56,8 +57,8 @@
   > svg {
     fill: var(--background-color);
     position: absolute;
-    right: 0;
-    left: 0;
+    width: 105%;
+    left: -2.5%;
 
     &:first-of-type {
       transform: translateY(calc(-100% + 2px));
@@ -72,7 +73,7 @@
 
 
   &__content {
-    background: radial-gradient(closest-side, var(--gradient-color) 65%, transparent);
+    background: radial-gradient(closest-side, var(--gradient-color) 65%, var(--gradient-color-end));
     text-shadow: 0 0 2px rgba(#000,0.1);
 
     .btn {
@@ -95,7 +96,7 @@
   &--green {
     --border-color: rgba(255, 255, 255,0.3);
     --color: rgba(255, 255, 255, 0.9);
-    --gradient-color: transparent;
+    --gradient-color: var(--gradient-color-end);
     --background-color: #459f56;
     --bold-color: #FFF;
   }
@@ -103,7 +104,7 @@
   &--purple {
     --border-color: rgba(255, 255, 255,0.3);
     --color: rgba(255, 255, 255, 0.9);
-    --gradient-color: transparent;
+    --gradient-color: var(--gradient-color-end);
     --background-color: #9e2cbf;
     --bold-color: #FFF;
   }
@@ -111,7 +112,7 @@
   &--orange {
     --border-color: rgba(255, 255, 255,0.3);
     --color: rgba(255, 255, 255, 0.9);
-    --gradient-color: transparent;
+    --gradient-color: var(--gradient-color-end);
     --background-color: #db6a41;
     --bold-color: #FFF;
   }

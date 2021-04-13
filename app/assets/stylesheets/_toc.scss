@@ -4,9 +4,11 @@
 
   &__wrapper {
     border-right: 1px solid #EEE;
+    transition: transform 320ms;
+    box-sizing: border-box;
     padding-right: 50px;
     margin-right: 50px;
-    transition: transform 320ms;
+    height: 100vh;
   }
 
   &__spacer {

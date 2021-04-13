@@ -19,7 +19,7 @@
   }
 
   &__left {
-    background: radial-gradient(closest-side, white, transparent);
+    background: radial-gradient(closest-side, white, rgba(255,255,255,0));
     padding: 50px;
     left: -50px;
     top: -50px;
