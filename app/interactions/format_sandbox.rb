@@ -1,33 +1,25 @@
 class FormatSandbox < ActiveInteraction::Base
   object :sandbox, class: Sandbox
 
-	def execute
+  def execute
+    body =
+      {
+        files: [
+          {
+            contents: sandbox.content,
+            path: 'Main.mint'
+          }
+        ]
+      }.to_json
+
+    response =
+      Faraday
+        .post('https://mint-sandbox-compiler.herokuapp.com/format', body, 'Content-Type' => 'application/json')
+        .body
+
     result =
-      Aw.fork! do
-        Dir.mktmpdir do |dir|
-          begin
-            executable =
-              Rails.root.join 'vendor', 'executables', 'mint'
+      JSON.parse(response)
 
-            relative_executable =
-              Pathname.new(executable).relative_path_from(Pathname.new(dir))
-
-            Dir.chdir dir do
-              mint_json =
-                {"name" => "test", "source-directories" => ["."]}.to_json
-
-              File.write('mint.json', mint_json)
-              File.write('Main.mint', sandbox.content)
-
-              Open3.popen3("#{relative_executable} format") do |stdin, stdout, stderr|
-                stdout.read
-                File.read(File.join(dir, "Main.mint"))
-              end
-            end
-          end
-        end
-      end
-
-    sandbox.update_attribute(:content, result)
-	end
+    sandbox.update_attribute(:content, result['files'][0]['contents'])
+  end
 end
