@@ -64,9 +64,9 @@
         fun greet (name : String) : String {
           `
           (() => {
-            const uppercaseName = name.toUpperCase()
+            const uppercaseName = \#{name}.toUpperCase()
 
-            return "Hello " + \#{uppercaseName} + "!"
+            return "Hello " + uppercaseName + "!"
           })()
           `
         }
