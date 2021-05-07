@@ -68,13 +68,26 @@ class SandboxController < ApplicationController
     end
   end
 
+  DEFAULT_SANDBOX =
+    <<~EOS
+    component Main {
+      fun render : Html {
+        <div>"Hello World!"</div>
+      }
+    }
+    EOS
+
+  DEFAULT_HTML =
+    CompileSandbox.run!(content: DEFAULT_SANDBOX)
+
   def create
     with_user do |user|
       sandbox =
         Sandbox.create!(
           id: SecureRandom.urlsafe_base64(10),
+          content: DEFAULT_SANDBOX,
+          html: DEFAULT_HTML,
           title: 'My Sandbox',
-          content: "",
           user: user)
 
       render json: sandbox.as_json(AS_JSON), status: 201
