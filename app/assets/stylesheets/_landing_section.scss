@@ -57,8 +57,6 @@
   > svg {
     fill: var(--background-color);
     position: absolute;
-    width: 105%;
-    left: -2.5%;
 
     &:first-of-type {
       transform: translateY(calc(-100% + 2px));
