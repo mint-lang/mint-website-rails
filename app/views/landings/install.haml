@@ -45,9 +45,8 @@
             git clone https://github.com/mint-lang/mint.git
             cd mint
             shards install
-            crystal build src/mint.cr -o mint -p --release --no-debug
-            chmod +x ./mint
-            sudo mv ./mint /usr/local/bin/mint
+            shards build --progress --release --no-debug
+            sudo mv ./bin/mint /usr/local/bin/mint
 
     .install__section
       .install__title
