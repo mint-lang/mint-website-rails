@@ -34,7 +34,7 @@
     :escaped
       fun isLoggedIn (userState : UserState) : Bool {
         case (userState) {
-          UserState::LoggedIn user => true
+          UserState::LoggedIn(user) => true
           UserState::Visitor => false
         }
       }
