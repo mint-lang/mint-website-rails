@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'rails', '~> 6.0.3.6'
 gem 'pg', '~> 0.18.4'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 1.0'
 gem 'active_interaction', '~> 3.7', '>= 3.7.1'
