@@ -116,12 +116,14 @@
 %p.hint.hint--warning
   = octicon "alert"
   %span
-    Generated interpolation code uses single-letter argument names like
-    %code n
-    and
+    Generated interpolation code uses argument names like
     %code i
+    and
+    %code xyz
     , which can cause issues with shadowing or order of operations. To be safe,
-    avoid using single-letter variable names in your JavaScript code.
+    prefix your JavaScript variable names with a dollar sign, like
+    %code $i
+    \.
 
 %h2 Specifying the type
 
