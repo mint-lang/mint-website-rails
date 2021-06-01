@@ -41,7 +41,7 @@
 %pre
   %code
     :escaped
-      encode { name = "Bob" }
+      (encode { name = "Bob" })
       |> Json.stringify()
 
       /* { "name": "Bob"} */
