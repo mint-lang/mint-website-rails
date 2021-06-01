@@ -3,18 +3,25 @@
 %h1 Comments
 
 %p
-  Mint has only one type of comments which has the following syntax:
-  %code /*...*/
+  Mint supports inline comments (sinle line):
+  %code // ...
+
+%p
+  Multiline comments have the following syntax:
+  %code /* ... */
 
 %pre
   %code
     :escaped
       try {
-        /* Set a variable. */
+        // Set a variable.
         name =
           "Joe"
 
-        /* Convert it to upper case. */
+        /*
+           Convert it to upper case.
+           => JOE
+         */
         String.toUpperCase(name)
       }
 
