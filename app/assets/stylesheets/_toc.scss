@@ -89,6 +89,7 @@
     }
 
     &__wrapper {
+      -webkit-overflow-scrolling: touch;
       overflow-x: hidden;
       overflow-y: auto;
 
