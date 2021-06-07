@@ -275,9 +275,10 @@
       " Joe   "
       |> String.toUppercase
       |> String.trim
+      |> String.indent(2)
 
       /* Is the same as */
-      String.trim(String.toUppercase(" Joe   "))
+      String.indent(String.trim(String.toUppercase(" Joe   ")), 2)
 
 %p
   Using this operator makes the code more readable.
