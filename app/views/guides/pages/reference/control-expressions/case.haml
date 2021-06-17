@@ -54,8 +54,8 @@
   %code
     :escaped
       case (result) {
-        Result::Err error => /* do something with the error */
-        Result::Ok value => /* do something with the value */
+        Result::Err(error) => /* do something with the error */
+        Result::Ok(value) => /* do something with the value */
       }
 
 %h2 Matching a Tuple
