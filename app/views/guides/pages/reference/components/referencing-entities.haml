@@ -74,7 +74,7 @@
       component Main {
         fun handleClick : Promise(Never, Void) {
           case (item) {
-            Maybe::Just todoItem => todoItem.update("Bello")
+            Maybe::Just(todoItem) => todoItem.update("Bello")
             Maybe::Nothing => next {}
           }
         }
