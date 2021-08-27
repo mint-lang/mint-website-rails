@@ -17,8 +17,18 @@
       component Main {
         fun handleClick : Promise(Never, Void) {
           case (input) {
-            Maybe::Just element => Dom.focusWhenVisible(element)
-            Maybe::Nothing => next {}
+            Maybe::Just(element) =>
+              sequence {
+                Dom.focusWhenVisible(element)
+                next { }
+              } catch String => error {
+                sequence {
+                  Debug.log(error)
+                  next { }
+                }
+              }
+
+            Maybe::Nothing => next { }
           }
         }
 
