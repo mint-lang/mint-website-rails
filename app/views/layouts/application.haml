@@ -15,14 +15,7 @@
     = favicon_link_tag 'favicon.png'
 
     - if Rails.env.production?
-      / Global site tag (gtag.js) - Google Analytics
-      %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=#{ENV['GA_TRACKING_CODE']}"}
-      :javascript
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '#{ENV['GA_TRACKING_CODE']}');
+      %script(defer data-domain="mint-lang.com" src="https://plausible.io/js/plausible.js")
 
     %meta{ content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
            name: 'viewport' }
