@@ -29,7 +29,7 @@ The website is a [Ruby on Rails](https://rubyonrails.org/) application.
 
 To get up and running you will need:
 
--   [Ruby](https://www.ruby-lang.org/en/)  (2.6.3) installed
+-   [Ruby](https://www.ruby-lang.org/en/)  (2.6.6) installed
 -   [PostgreSQL](https://www.postgresql.org/)  installed, including  `libpq-dev`
 
 ## Setup
