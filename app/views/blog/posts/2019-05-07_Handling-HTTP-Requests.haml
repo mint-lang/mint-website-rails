@@ -9,7 +9,7 @@
 
 %p
   This is the full source code to fetch planets from the
-  %a(href="https://swapi.co") Star Wars API
+  %a(href="https://pipedream.com/apps/swapi") Star Wars API
   and display it in a table.
 
 %pre
@@ -42,7 +42,7 @@
             next { status = Status::Loading }
 
             response =
-              "https://swapi.co/api/planets"
+              "https://swapi.dev/api/planets"
               |> Http.get()
               |> Http.send()
 
@@ -78,8 +78,8 @@
           case (status) {
             Status::Initial => <div></div>
             Status::Loading => <div>"Loading..."</div>
-            Status::Error message => <div><{ message }></div>
-            Status::Ok data =>
+            Status::Error(message) => <div><{ message }></div>
+            Status::Ok(data) =>
               <table>
                 <tr>
                   <th>"Name"</th>
@@ -207,7 +207,7 @@
         next { status = Status::Loading }
 
         response =
-          "https://swapi.co/api/planets"
+          "https://swapi.dev/api/planets"
           |> Http.get()
           |> Http.send()
 
@@ -289,8 +289,8 @@
           case (status) {
             Status::Initial => <div></div>
             Status::Loading => <div>"Loading..."</div>
-            Status::Error message => <div><{ message }></div>
-            Status::Ok data =>
+            Status::Error(message) => <div><{ message }></div>
+            Status::Ok(data) =>
               <table>
                 <tr>
                   <th>"Name"</th>
@@ -341,10 +341,10 @@
     %code Status::Loading
     \- we display a loading message
   %li
-    %code Status::Error message
+    %code Status::Error(message)
     \- we display the error message
   %li
-    %code Status::Ok data
+    %code Status::Ok(data)
     \- we display the data
 
 %p
