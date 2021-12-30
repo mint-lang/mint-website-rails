@@ -1,0 +1,36 @@
+- set_meta_tags title: 'Guide / Reference / HTTP requests'
+
+%h1 HTTP requests
+
+%p
+  The
+  %code Http
+  module contains functions to make and send HTTP requests.
+
+%p
+  Here is an example of a GET request to the
+  %a(href="https://pipedream.com/apps/swapi")
+    Star Wars API
+  to fetch planets:
+
+%pre
+  %code
+    :escaped
+      response =
+        "https://swapi.dev/api/planets"
+        |> Http.get()
+        |> Http.send()
+
+      object =
+        response.body
+        |> Json.parse()
+        |> Maybe.toResult("")
+
+      decodedResults =
+        decode object as Data
+
+%p
+  To see the full code for this example, check out
+  %a(href="/blog/handling-http-requests")
+    this blog post
+  on HTTP requests.
