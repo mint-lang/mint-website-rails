@@ -21,6 +21,7 @@ gem 'github-markup', '~> 1.4', require: 'github/markup'
 gem 'breadcrumbs_on_rails', '~> 2.3', '>= 2.3.1'
 gem 'active_link_to', '~> 1.0'
 gem 'sassc'
+gem 'rack-canonical-host', '~> 1.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
