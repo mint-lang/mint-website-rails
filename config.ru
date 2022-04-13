@@ -3,5 +3,5 @@
 require 'rack/canonical_host'
 require_relative 'config/environment'
 
-use Rack::CanonicalHost, 'www.mint-lang.com', if: ->(uri) { uri.host == 'mint-lang.com' }
+use Rack::CanonicalHost, 'mint-lang.com', if: ->(uri) { uri.host == 'www.mint-lang.com' }
 run Rails.application
