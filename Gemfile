@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'rails', '~> 6.0.3.6'
+gem 'rails', '~> 6.1.7.2'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 4.3'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rack-cors', '~> 1.0'
+gem 'rack-cors', '~> 2.0'
 gem 'active_interaction', '~> 3.7', '>= 3.7.1'
 gem 'annotate', '~> 3.0', '>= 3.0.2'
 gem 'semantic', '~> 1.6', '>= 1.6.1'
@@ -34,9 +34,9 @@ end
 gem "octicons", "~> 9.2"
 gem "octicons_helper", "~> 9.2"
 
-gem "omniauth", "~> 1.9"
+gem "omniauth", "~> 2.1"
 
-gem "omniauth-github", "~> 1.3"
+gem "omniauth-github", "~> 2.0"
 
 gem "ansi-to-html", "~> 0.0.3"
 
