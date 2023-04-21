@@ -8,7 +8,7 @@ gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 4.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 2.0'
-gem 'active_interaction', '~> 3.7', '>= 3.7.1'
+gem 'active_interaction', '~> 4.0'
 gem 'annotate', '~> 3.0', '>= 3.0.2'
 gem 'semantic', '~> 1.6', '>= 1.6.1'
 gem 'haml', '~> 5.0', '>= 5.0.4'
