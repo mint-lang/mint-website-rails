@@ -1,5 +1,5 @@
 class SandboxController < ApplicationController
-  AS_JSON = {only: %i[id title content created_at updated_at user_id], include: { user: { only: %i[id nickname image]}}}
+  AS_JSON = {only: %i[id title content created_at updated_at user_id mint_version], include: { user: { only: %i[id nickname image]}}}
   skip_before_action :verify_authenticity_token
 
   def login
@@ -28,7 +28,8 @@ class SandboxController < ApplicationController
 
   def update
     with_sandbox do |user, sandbox|
-      UpdateSandbox.run content: params[:content],
+      UpdateSandbox.run mint_version: params[:mintVersion],
+                        content: params[:content],
                         title: params[:title],
                         sandbox: sandbox
 
@@ -78,7 +79,7 @@ class SandboxController < ApplicationController
     EOS
 
   DEFAULT_HTML =
-    CompileSandbox.run!(content: DEFAULT_SANDBOX)
+    CompileSandbox.run!(content: DEFAULT_SANDBOX, mint_version: '0.17.0')
 
   def create
     with_user do |user|
@@ -86,8 +87,9 @@ class SandboxController < ApplicationController
         Sandbox.create!(
           id: SecureRandom.urlsafe_base64(10),
           content: DEFAULT_SANDBOX,
-          html: DEFAULT_HTML,
+          mint_version: '0.17.0',
           title: 'My Sandbox',
+          html: DEFAULT_HTML,
           user: user)
 
       render json: sandbox.as_json(AS_JSON), status: 201

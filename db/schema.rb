@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_071624) do
+ActiveRecord::Schema.define(version: 2023_04_20_084141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_071624) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "html"
+    t.string "mint_version", default: "0.16.1"
     t.index ["user_id"], name: "index_sandboxes_on_user_id"
   end
 

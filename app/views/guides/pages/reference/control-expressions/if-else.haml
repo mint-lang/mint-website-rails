@@ -92,8 +92,8 @@
           }
         }
 
-        fun handleClick : Promise(Never, Void) {
-          next { clicked = true }
+        fun handleClick : Promise(Void) {
+          next { clicked: true }
         }
 
         fun render : Html {

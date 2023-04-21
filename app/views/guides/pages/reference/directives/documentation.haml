@@ -16,9 +16,7 @@
         name : String
       }
 
-      try {
-        decoded =
-          decode @documentation(Main) as Component
+      let decoded =
+        decode @documentation(Main) as Component
 
-        decoded.name
-      }
+      decoded.name

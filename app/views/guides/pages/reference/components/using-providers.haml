@@ -15,8 +15,8 @@
         state counter : Number = 0
 
         use Provider.Tick {
-          ticks = () : Promise(Never, Void) {
-            next { counter = counter + 1 }
+          ticks: () : Promise(Void) {
+            next { counter: counter + 1 }
           }
         }
 

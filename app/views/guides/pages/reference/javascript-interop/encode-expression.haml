@@ -15,7 +15,7 @@
 %pre
   %code
     :escaped
-      encode { name = "Bob" } /* Object */
+      encode { name: "Bob" } /* Object */
       encode variable /* Object */
 
 %p
@@ -41,7 +41,7 @@
 %pre
   %code
     :escaped
-      (encode { name = "Bob" })
+      (encode { name: "Bob" })
       |> Json.stringify()
 
       /* { "name": "Bob"} */

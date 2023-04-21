@@ -6,7 +6,7 @@
 
 %ul
   %li can take 0 or more parameters
-  %li must have only one expression as the body
+  %li can have 1 or more statements / expressions
   %li
     can be defined in
     %b components, modules, stores,
@@ -40,8 +40,6 @@
     %ul
       %li start with a lowercase letter
       %li contain only letters and numbers
-  %li
-    %b the body of the function is always a single expression
   %li type annotations for the arguments are mandatory
   %li
     the return type annotation is optional, if not provided the return type will
@@ -49,20 +47,6 @@
   %li
     the parentheses for the arguments can be left off if the function does not
     take any arguments.
-
-%h2 Where block
-
-%p You can assign variables for use in the function body in a where block:
-
-%pre
-  %code
-    :escaped
-      fun greet (id : String, users : Array(User)) : String {
-        "Hello " + user.name + "!"
-      } where {
-        user =
-          getUserFromId(id, users)
-      }
 
 %h2 Calling a function
 
@@ -210,30 +194,6 @@
         }
       }
 
-%h2 Partial Application
-
-%p
-  Functions can be
-  %a(href="https://en.wikipedia.org/wiki/Partial_application")
-    partially applied
-  which means that if you call a function with less arguments than the number
-  of arguments defined, it will not call the function but return another
-  function which takes the arguments that were left out:
-
-%pre
-  %code
-    :escaped
-      fun concat(head : String, tail : String) : String {
-        head + " " + tail
-      }
-
-      try {
-        partialFunction =
-          concat("Head") /* Function(String) */
-
-        partialFunction("Tail") /* Head Tail */
-      }
-
 %h2 Recursive Functions
 
 %p All functions can be called recursively:
@@ -269,7 +229,7 @@
 %p
   The pipe operator
   %code |>
-  can be used to pipe an expression into a function as the last parameter:
+  can be used to pipe an expression into a function as the first parameter:
 
 %pre
   %code.mint
@@ -280,7 +240,7 @@
       |> String.indent(2)
 
       /* Is the same as */
-      String.indent(2, String.trim(String.toUppercase(" Joe   ")))
+      String.indent(String.trim(String.toUppercase(" Joe   ")), 2)
 
 %p
   Using this operator makes the code more readable.

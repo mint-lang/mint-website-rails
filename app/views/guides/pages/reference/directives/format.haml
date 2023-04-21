@@ -13,21 +13,19 @@
 %pre
   %code
     :escaped
-      try {
-        {result, code} =
-          @format {
-            <div>
-              "Hello There!"
-            </div>
-          }
+      let {result, code} =
+        @format {
+          <div>
+            "Hello There!"
+          </div>
+        }
 
-        <div>
-          <{ result }>
+      <div>
+        <{ result }>
 
-          <pre>
-            <code>
-              <{ code }>
-            </code>
-          </pre>
-        </div>
-      }
+        <pre>
+          <code>
+            <{ code }>
+          </code>
+        </pre>
+      </div>

@@ -46,11 +46,6 @@
 %p
   \...will try to convert the untyped value to a typed value. It returns a
   %code Result(Object.Error, ...)
-  , which can be used in a
-
-  = succeed "." do
-    %a(href="/guide/reference/control-expressions/try")
-      try expression
 
 %p
   You can decode JavaScript values into Mint
@@ -101,34 +96,19 @@
 
       component Main {
         fun render : Html {
-          try {
-            object =
-              Json.parse("{\"name\": \"John\", \"age\": 30 }")
-              |> Maybe.toResult("Decode Error")
-
-            user =
-              decode object as User
-
-            <div>
-              <{ user.name }>
-            </div>
-          } catch Object.Error => error {
-            <div>
-              <{ "Could not decode!" }>
-            </div>
-          } catch String => error {
-            <div>
-              <{ "Invalid JSON!" }>
-            </div>
+          case (Json.parse("{\"name\": \"John\", \"age\": 30 }")) {
+            Maybe::Nothing => <div>"Can't parse JSON"</div>
+            Maybe::Just(object) =>
+              case (decode object as User) => {
+                Result::Err => <div>"Can't decode User"</div>
+                Result::Ok(user) =>
+                  <div>
+                    <{ user.name }>
+                  </div>
+              }
           }
         }
       }
-
-%p
-  In this case,
-  %code user
-  is a
-  %code Result(Object.Error, User)
 
 %h2 Decoding not supported names
 
@@ -173,7 +153,7 @@
   %code
     :escaped
       {
-        tagList = ["a", "b"]
+        tagList: ["a", "b"]
       }
 
 %p

@@ -13,17 +13,15 @@
 %pre
   %code
     :escaped
-      try {
-        // Set a variable.
-        name =
-          "Joe"
+      // Set a variable.
+      let name =
+        "Joe"
 
-        /*
-           Convert it to upper case.
-           => JOE
-         */
-        String.toUpperCase(name)
-      }
+      /*
+         Convert it to upper case.
+         => JOE
+       */
+      String.toUpperCase(name)
 
 %p.hint.hint--info
   = octicon "info"

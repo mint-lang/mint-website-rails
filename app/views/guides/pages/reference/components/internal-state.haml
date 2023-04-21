@@ -11,15 +11,15 @@
       component Main {
         state greeting : String = "Welcome"
 
-        fun greet : Promise(Never, Void) {
-          next { greeting = newGreeting }
-        } where {
-          newGreeting =
+        fun greet : Promise(Void) {
+          let newGreeting =
             if (greeting == "hello") {
               "bye"
             } else {
               "hello"
             }
+
+          next { greeting: newGreeting }
         }
 
         fun render : Html {

@@ -7,11 +7,9 @@
   %code Promise
   ,
   %code Result
-  ,
-  %code Void
   and
   = succeed "." do
-    %code Never
+    %code Void
   The
   %code Maybe
   type represents a
@@ -24,28 +22,19 @@
   The promise type represents a
   %a(href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise")
     JavaScript promise
-  \- an asynchronous computational task that might fail.
+  \- an asynchronous computational task.
 
 %p
-  In Mint promises have two parameters
-  %code Promise(error, result)
-  \:
-
-%ul
-  %li
-    %b error
-    \- the type of the error
-
-  %li
-    %b result
-    \- the type of the result
+  In Mint promises have only one parameter
+  %b result
+  \- which is the type the result of the computation.
 
 %p A good example is a HTTP request which in Mint looks like this:
 
 %pre
   %code
     :escaped
-      Promise(Http.ErrorResponse, Http.Response)
+      Promise(Result(Http.ErrorResponse, Http.Response))
 
 %p
   where
@@ -53,15 +42,6 @@
   is a record containing information about the error that happened while
   %code Http.Response
   is a record containing the response of the request.
-
-%p
-  Promises are used in a
-  %a(href="/guide/reference/control-expressions/sequence")
-    sequence
-  and
-  %a(href="/guide/reference/control-expressions/parallel")
-    parallel
-  expressions.
 
 %h2 Result
 
@@ -127,18 +107,6 @@
           |> Maybe.toResult("Conversion failed.")
           |> Result.isOk() /* true */
 
-%p
-  Results are used in
-  %a(href="/guide/reference/control-expressions/sequence")
-    sequence
-  ,
-  %a(href="/guide/reference/control-expressions/parallel")
-    parallel
-  and
-  %a(href="/guide/reference/control-expressions/try")
-    try
-  expressions.
-
 %h2 Void
 
 %p
@@ -149,25 +117,6 @@
   can only be explicitly returned with the
   %code void
   keyword.
-
-%h2 Never
-
-%p
-  The never type is used to describe tasks (promises or results) that can never
-  fail. For example, here is the type of task that can never fail:
-  %code Promise(Never, String)
-
-%p
-  These tasks don't need to be caught in
-  %a(href="/guide/reference/control-expressions/sequence")
-    sequence
-  ,
-  %a(href="/guide/reference/control-expressions/parallel")
-    parallel
-  and
-  %a(href="/guide/reference/control-expressions/try")
-    try
-  expressions.
 
 %h2 Maybe
 

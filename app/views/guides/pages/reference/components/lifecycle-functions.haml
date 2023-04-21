@@ -22,15 +22,15 @@
   %code
     :escaped
       component Test {
-        fun componentDidMount : Promise(Never, Void) {
+        fun componentDidMount : Promise(Void) {
           Debug.log("MOUNTED")
         }
 
-        fun componentDidUpdate : Promise(Never, Void) {
+        fun componentDidUpdate : Promise(Void) {
           Debug.log("UPDATED")
         }
 
-        fun componentWillUnmount : Promise(Never, Void) {
+        fun componentWillUnmount : Promise(Void) {
           Debug.log("WILL UNMOUNT")
         }
 

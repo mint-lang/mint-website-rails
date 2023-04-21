@@ -35,9 +35,9 @@
   %code
     :escaped
       {
-        email = "john@doe.com",
-        name = "John Doe",
-        id = 1
+        email: "john@doe.com",
+        name: "John Doe",
+        id: 1
       }
 
 %h2 Constructors
@@ -57,9 +57,9 @@
       }
 
       User("John Doe", 32, true) == {
-        name = "John Doe",
-        active = true,
-        age = 32
+        name: "John Doe",
+        active: true,
+        age: 32
       }
 
 %p.hint.hint--info
@@ -68,7 +68,7 @@
     The order of the parameters are in the same as the order the fields.
 
 %p
-  This function can be partially applied as well:
+  This function can be partially applied:
 
 %pre
   %code
@@ -79,15 +79,10 @@
         active : Bool,
       }
 
-      try {
-        partial =
-          User("John Doe", 32)
-
-        partial(true) == {
-          name = "John Doe",
-          active = true,
-          age = 32
-        }
+      User("John Doe", 32)(true) == {
+        name: "John Doe",
+        active: true,
+        age: 32
       }
 
 %h2 Nested records
@@ -115,13 +110,13 @@
 %pre
   %code
     :escaped
-      entity =
+      let entity =
         {
-          position = {
-            x = 0,
-            y = 0
+          position: {
+            x: 0,
+            y: 0
           },
-          id = "0"
+          id: "0"
         }
 
 %h2 Working with records
@@ -132,9 +127,9 @@
   %code
     :escaped
       {
-        email = "john.doe@gmail.com",
-        name = "John Doe",
-        id = 0
+        email: "john.doe@gmail.com",
+        name: "John Doe",
+        id: 0
       }
 
 %p
@@ -144,20 +139,20 @@
 %pre
   %code
     :escaped
-      user =
+      let user =
         {
-          email = "john.doe@gmail.com",
-          name = "John Doe",
-          id = 0
+          email: "john.doe@gmail.com",
+          name: "John Doe",
+          id: 0
         }
 
-      updatedUser =
-        { user | name = "Stuart" }
+      let updatedUser =
+        { user | name: "Stuart" }
 
       {
-        email = "john.doe@gmail.com",
-        name = "Stuart",
-        id = 0
+        email: "john.doe@gmail.com",
+        name: "Stuart",
+        id: 0
       }
 
 %p.hint.hint--warning

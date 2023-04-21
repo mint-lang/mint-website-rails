@@ -13,7 +13,7 @@
 %pre
   %code
     :escaped
-      { name = "Jon Doe", age = 27 } == { age = 27, name = "Jon Doe" } /* true */
+      { name: "Jon Doe", age: 27 } == { age: 27, name: "Jon Doe" } /* true */
       Maybe::Just("A") == Maybe::Just("A") /* true */
       ["A"] == ["A"] /* true */
 

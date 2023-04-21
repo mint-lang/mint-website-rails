@@ -15,20 +15,14 @@
   %code
     :escaped
       component Main {
-        fun handleClick : Promise(Never, Void) {
+        fun handleClick : Promise(Void) {
           case (input) {
-            Maybe::Just(element) =>
-              sequence {
-                Dom.focusWhenVisible(element)
-                next { }
-              } catch String => error {
-                sequence {
-                  Debug.log(error)
-                  next { }
-                }
-              }
-
             Maybe::Nothing => next { }
+            Maybe::Just(element) =>
+              {
+                await Dom.focusWhenVisible(element)
+                next {}
+              }
           }
         }
 
@@ -60,8 +54,8 @@
       component Item {
         state text : String = "Hello"
 
-        fun update(text : String) : Promise(Never, Void) {
-          next { text = text }
+        fun update(text : String) : Promise(Void) {
+          next { text: text }
         }
 
         fun render : Html {
@@ -72,7 +66,7 @@
       }
 
       component Main {
-        fun handleClick : Promise(Never, Void) {
+        fun handleClick : Promise(Void) {
           case (item) {
             Maybe::Just(todoItem) => todoItem.update("Bello")
             Maybe::Nothing => next {}

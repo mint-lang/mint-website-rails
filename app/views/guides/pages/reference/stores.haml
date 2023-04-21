@@ -14,12 +14,12 @@
       store Counter.Store {
         state counter : Number = 0
 
-        fun increment : Promise(Never, Void) {
-          next { counter = counter + 1 }
+        fun increment : Promise(Void) {
+          next { counter: counter + 1 }
         }
 
-        fun decrement : Promise(Never, Void) {
-          next { counter = counter - 1 }
+        fun decrement : Promise(Void) {
+          next { counter: counter - 1 }
         }
       }
 

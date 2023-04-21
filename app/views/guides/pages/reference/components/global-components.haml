@@ -34,7 +34,7 @@
   %code
     :escaped
       global component ConfirmModal {
-        state callback : Function(Promise(Never, Void)) = Promise.never
+        state callback : Function(Promise(Void)) = Promise.never
         state message : String = ""
         state open : Bool = false
 
@@ -56,21 +56,19 @@
 
         fun show (
           message : String,
-          callback : Function(Promise(Never, Void))
-        ) : Promise(Never, Void) {
+          callback : Function(Promise(Void))
+        ) : Promise(Void) {
           next
             {
-              callback = callback,
-              message = message,
-              open = true
+              callback: callback,
+              message: message,
+              open: true
             }
         }
 
-        fun handleClick : Promise(Never, Void) {
-          sequence {
-            callback()
-            next { open = false }
-          }
+        fun handleClick : Promise(Void) {
+          callback()
+          next { open: false }
         }
 
         fun render : Html {
@@ -89,7 +87,7 @@
       }
 
       component Main {
-        fun handleClick : Promise(Never, Void) {
+        fun handleClick : Promise(Void) {
           ConfirmModal.show("Hello There!", Promise.never)
         }
 

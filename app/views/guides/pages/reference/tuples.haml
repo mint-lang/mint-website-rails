@@ -47,26 +47,15 @@
 %pre
   %code
     :escaped
-      {first, second, third} =
+      let {first, second, third} =
         {"First Value", 10, true}
 
 %p
   Destructuring can be used in
-  %code try
-  :plain
-    ,
-  %code sequence
-  :plain
-    ,
-  %code parallel
-  :plain
-    ,
-  %code case
-  expressions
+  %code statements
   and
-  %code where
-  :plain
-    statements.
+  %code case
+  expressions.
 
 %pre
   %code
@@ -82,18 +71,11 @@
         {a, b, c} => a
       }
 
-      try {
-        {first, second, third} =
-          {"First Value", 10, true}
-
-        first
-      }
-
       fun tuples : String {
-        first
-      } where {
-        {first, second, third} =
+        let {first, second, third} =
           {"First Value", 10, true}
+
+        first
       }
 
 %p
