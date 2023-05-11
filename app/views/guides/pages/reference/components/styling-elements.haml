@@ -328,12 +328,12 @@
   %code
     :escaped
       style base {
-        if (loading) {
+        if loading {
           pointer-events: none;
           opacity: 0.5;
         }
 
-        case (status) {
+        case status {
           Status::Ok => color: blue;
           Status::Err =>
             border: 1px solid red;

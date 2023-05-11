@@ -20,7 +20,7 @@
 %pre
   %code
     :escaped
-      for (item of ["bob", "joe"]) {
+      for item of ["bob", "joe"] {
         String.toUpperCase(item)
       }
       /* The result will be ["BOB", "JOE"] */
@@ -35,7 +35,7 @@
         |> Map.set("name", "bob")
         |> Map.set("age", "33")
 
-      for (key, value of map) {
+      for key, value of map {
         String.toUpperCase("\#{key}: \#{value}")
       }
       /* The result will be ["name: bob", "age: 33"] */
@@ -58,7 +58,7 @@
 %pre
   %code
     :escaped
-      for (item of ["bob", "joe"]) {
+      for item of ["bob", "joe"] {
         String.toUpperCase(item)
       } when {
         item == "bob"

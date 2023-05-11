@@ -16,7 +16,7 @@
     :escaped
       component Main {
         fun handleClick : Promise(Void) {
-          case (input) {
+          case input {
             Maybe::Nothing => next { }
             Maybe::Just(element) =>
               {
@@ -67,7 +67,7 @@
 
       component Main {
         fun handleClick : Promise(Void) {
-          case (item) {
+          case item {
             Maybe::Just(todoItem) => todoItem.update("Bello")
             Maybe::Nothing => next {}
           }

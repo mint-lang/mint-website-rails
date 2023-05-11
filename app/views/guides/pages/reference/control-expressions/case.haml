@@ -8,7 +8,7 @@
 %pre
   %code
     :escaped
-      case (condition) {
+      case condition {
         match1 => value1
         match2 => value2
         match3 => value3
@@ -53,7 +53,7 @@
 %pre
   %code
     :escaped
-      case (result) {
+      case result {
         Result::Err(error) => /* do something with the error */
         Result::Ok(value) => /* do something with the value */
       }

@@ -11,7 +11,7 @@
 %pre
   %code
     :escaped
-      if (condition) {
+      if condition {
         value1
       } else {
         value2
@@ -51,9 +51,9 @@
 %pre
   %code
     :escaped
-      if (number > 5) {
+      if number > 5 {
         true
-      } else if (number > 2) {
+      } else if number > 2 {
         true
       } else {
         false
@@ -87,7 +87,7 @@
         style base {
           color: blue;
 
-          if (clicked) {
+          if clicked {
             color: red;
           }
         }
@@ -102,7 +102,7 @@
               "Click me!"
             </div>
 
-            if (clicked) {
+            if clicked {
               "I have been clicked!"
             }
           </div>
