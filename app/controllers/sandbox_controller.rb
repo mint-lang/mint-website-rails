@@ -79,7 +79,7 @@ class SandboxController < ApplicationController
     EOS
 
   DEFAULT_HTML =
-    CompileSandbox.run!(content: DEFAULT_SANDBOX, mint_version: '0.17.0')
+    CompileSandbox.run!(content: DEFAULT_SANDBOX, mint_version: '0.18.0')
 
   def create
     with_user do |user|
@@ -87,7 +87,7 @@ class SandboxController < ApplicationController
         Sandbox.create!(
           id: SecureRandom.urlsafe_base64(10),
           content: DEFAULT_SANDBOX,
-          mint_version: '0.17.0',
+          mint_version: '0.18.0',
           title: 'My Sandbox',
           html: DEFAULT_HTML,
           user: user)
