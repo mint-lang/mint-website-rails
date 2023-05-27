@@ -99,7 +99,7 @@
           case Json.parse("{\"name\": \"John\", \"age\": 30 }") {
             Result::Err => <div>"Can't parse JSON"</div>
             Result::Ok(object) =>
-              case decode object as User => {
+              case decode object as User {
                 Result::Err => <div>"Can't decode User"</div>
                 Result::Ok(user) =>
                   <div>
