@@ -21,7 +21,7 @@ class SyncPackage < ActiveInteraction::Base
   end
 
   def update_package_infos
-    package.update_attributes(stars: stars, pushed_at: pushed_at)
+    package.update(stars: stars, pushed_at: pushed_at)
   end
 
   def import_versions
