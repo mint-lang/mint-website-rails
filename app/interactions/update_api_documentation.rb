@@ -20,7 +20,7 @@ class UpdateApiDocumentation < ActiveInteraction::Base
 
   def version
     @version ||=
-      Package.find_by(repository: 'mint-lang/core').versions.unscoped.first
+      Package.find_by(repository: 'mint-lang/core').versions.first
   end
 
   def readme(dir)
