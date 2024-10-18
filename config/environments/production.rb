@@ -98,5 +98,9 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-   config.session_store(:cookie_store, key: '_mint_website_backend_session', secure: Rails.env.production?, domain: :all)
+   config.session_store(
+    :cookie_store,
+    key: '_mint_website_backend_session',
+    secure: Rails.env.production?,
+    domain: ['.mint-lang.com', '.netlify.app'])
 end
