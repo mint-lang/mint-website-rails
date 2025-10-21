@@ -17,7 +17,7 @@ class SandboxController < ApplicationController
 
   def logout
     session[:id] = nil
-    render plain: ''
+    render json: {status: :ok}
   end
 
   def user
