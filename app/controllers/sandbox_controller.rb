@@ -17,7 +17,7 @@ class SandboxController < ApplicationController
 
   def logout
     session[:id] = nil
-    render plain: ''
+    render json: {status: :ok}
   end
 
   def user
@@ -136,42 +136,7 @@ class SandboxController < ApplicationController
     end
   end
 
-  def preview
-    response.headers.delete "X-Frame-Options"
-
-    sandbox =
-      Sandbox.find_by_id(params[:id])
-
-    if sandbox
-      render html: sandbox.html.to_s.html_safe
-    else
-      render plain: '', status: 404
-    end
-  end
-
-  def screenshot
-    sandbox =
-      Sandbox.find_by_id(params[:id])
-
-    if sandbox
-      url = url_for(sandbox.screenshot)
-
-      if url
-        redirect_to url
-      else
-        render plain: '', status: 404
-      end
-    else
-      render plain: '', status: 404
-    end
-  end
-
   protected
-
-  def url_for(object)
-    return unless object.attached?
-    Rails.application.routes.url_helpers.url_for(object)
-  end
 
   def with_sandbox
     with_user do |user|
