@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '3.3.6'
 
-gem 'rails', '~> 6.1.7.2'
+gem 'rails', '~> 7.1.0'
+gem 'sprockets-rails' # Required for asset pipeline in Rails 7
+gem 'logger' # Required for Ruby 3.3 compatibility
 gem 'pg', '~> 1.4.6'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 2.0'
 gem 'active_interaction', '~> 4.0'
@@ -14,6 +16,7 @@ gem 'semantic', '~> 1.6', '>= 1.6.1'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'meta-tags', '~> 2.1'
 gem 'octokit', '~> 4.3'
+gem 'faraday-retry' # Required for Faraday v2.0+
 gem 'rubyzip', '>= 1.0.0'
 gem 'kaminari', '~> 1.2'
 gem 'github-markdown', '~> 0.6.9'
@@ -24,11 +27,11 @@ gem 'sassc'
 gem 'rack-canonical-host', '~> 1.1'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :windows]
 end
 
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5'
 end
 
 gem "octicons", "~> 9.2"
