@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get :recent
       get :user
+      get :logout
     end
 
     member do

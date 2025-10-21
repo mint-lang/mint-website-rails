@@ -15,6 +15,11 @@ class SandboxController < ApplicationController
     redirect_to ENV['SANDBOX_URL']
   end
 
+  def logout
+    session[:id] = nil
+    render plain: ''
+  end
+
   def user
     with_user do |user|
       render json: user.as_json
