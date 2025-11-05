@@ -3,15 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.6'
 
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 8.1.0'
 gem 'sprockets-rails' # Required for asset pipeline in Rails 7
 gem 'logger' # Required for Ruby 3.3 compatibility
-gem 'pg', '~> 1.4.6'
+gem 'pg', '~> 1.6' # Updated for Rails 8 compatibility
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 2.0'
-gem 'active_interaction', '~> 4.0'
-gem 'annotate', '~> 3.0', '>= 3.0.2'
+gem 'active_interaction', '~> 5.5' # Updated for Rails 8 compatibility
+gem 'annotaterb', '~> 4.0' # Replaces annotate for Rails 8 compatibility
 gem 'semantic', '~> 1.6', '>= 1.6.1'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'meta-tags', '~> 2.1'
