@@ -53,4 +53,4 @@ gem "ferrum", "~> 0.7"
 
 gem "sucker_punch", "~> 2.1"
 
-gem "aws-sdk-s3", "~> 1.61"
+gem "aws-sdk-s3", "~> 1.208"
