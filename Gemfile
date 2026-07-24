@@ -7,7 +7,7 @@ gem 'rails', '~> 7.1.0'
 gem 'sprockets-rails' # Required for asset pipeline in Rails 7
 gem 'logger' # Required for Ruby 3.3 compatibility
 gem 'pg', '~> 1.4.6'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 7.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 2.0'
 gem 'active_interaction', '~> 4.0'
