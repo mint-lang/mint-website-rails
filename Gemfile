@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.6'
 
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.1.6'
 gem 'sprockets-rails' # Required for asset pipeline in Rails 7
 gem 'logger' # Required for Ruby 3.3 compatibility
 gem 'pg', '~> 1.4.6'
@@ -18,7 +18,7 @@ gem 'meta-tags', '~> 2.1'
 gem 'octokit', '~> 4.3'
 gem 'faraday-retry' # Required for Faraday v2.0+
 gem 'rubyzip', '>= 1.0.0'
-gem 'kaminari', '~> 1.2'
+gem 'kaminari', '~> 1.3'
 gem 'github-markdown', '~> 0.6.9'
 gem 'github-markup', '~> 1.4', require: 'github/markup'
 gem 'breadcrumbs_on_rails', '~> 2.3', '>= 2.3.1'
@@ -37,8 +37,8 @@ end
 gem "octicons", "~> 9.2"
 gem "octicons_helper", "~> 9.2"
 
-gem "omniauth", "~> 1.9"
-gem "omniauth-github", "~> 1.3"
+gem "omniauth", "~> 2.3"
+gem "omniauth-github", "~> 2.0"
 
 gem "ansi-to-html", "~> 0.0.3"
 
